@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+    <link rel="manifest" href="manifest.webmanifest	">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        #main-text {
+            font-size: 24px;
+            margin-bottom: 50px;
+            position: relative;
+            line-height: 1.5; /* Hier den Wert für den Zeilenabstand anpassen */
+        }
+        #arrow-right {
+            position: absolute;
+            top: calc(50% - 25px);
+            right: 20px;
+            font-size: 40px;
+            cursor: pointer;
+            display: none;
+        }
+        #arrow-left {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 40px;
+            cursor: pointer;
+            display: none;
+        }
+        #arrow-left.visible, #arrow-right.visible {
+            display: block;
+        }
+        .wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(0,0,255,0) 70%, rgba(0,0,255,0.2) 80%, rgba(0,0,255,0.4) 90%, rgba(0,0,255,0.8) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            animation: pulse 2s infinite;
+            z-index: -1;
+        }
+        .wave.right {
+            transform: scaleX(-1);
+        }
+       
+        
+    </style>
+</head>
+<body>
+    <div id="main-text">
+        Hey Megan,<br>
+
+        Ich wollte dir nur ein paar Worte sagen, die mir schon lange auf dem Herzen liegen. <br>
+        Auch wenn ich weiß, dass unsere Wege sich vielleicht nicht in die gleiche Richtung führen, kann ich einfach nicht aufhören, <br>an dich zu denken.<br> 
+        Die Zeit, die ich mit dir verbracht habe, war für mich etwas ganz Besonderes, und ich kann die Momente nicht vergessen, <br>die wir geteilt haben.<br>
+        Ich habe versucht, meine Gefühle zu unterdrücken und weiterzumachen, aber ich kann nicht leugnen, dass du immer noch einen besonderen Platz in meinem Herzen hast.<br>
+        Auch wenn du mich schon mal abgewiesen hast, möchte ich dir sagen, dass ich dich immer noch schätze und respektiere.<br>
+        Ich wollte nur ehrlich sein und dir sagen, dass meine Gefühle für dich echt sind und dass ich dich wirklich mag.<br>
+        <br>
+        Alles Liebe,<br>
+        Danilo
+       
+    </div>
+    <div id="arrow-right">&#10140;</div>
+    <div id="arrow-left">&#10140;</div>
+    <div class="wave"></div>
+    <div class="wave right"></div>
+</body>
+</html>
