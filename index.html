@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You</title>
     <link rel="manifest" href="manifest.webmanifest">
     <style>
@@ -17,7 +17,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+        }
+        #main-content {
+            max-width: 90%; /* Maximale Breite für den Inhalt */
+            margin: auto; /* Zentrieren des Inhalts */
         }
         #main-text {
             font-size: 16px; /* Kleinerer Schriftgrad für Mobilgeräte */
@@ -47,18 +51,20 @@
     </style>
 </head>
 <body>
-    <div id="main-text">
-        Hey Megan,<br>
-
-        Ich wollte dir nur ein paar Worte sagen, die mir schon lange auf dem Herzen liegen. <br>
-        Auch wenn ich weiß, dass unsere Wege sich vielleicht nicht in die gleiche Richtung führen, kann ich einfach nicht aufhören, <br>an dich zu denken.<br> 
-        Die Zeit, die ich mit dir verbracht habe, war für mich etwas ganz Besonderes, und ich kann die Momente nicht vergessen, <br>die wir geteilt haben.<br>
-        Ich habe versucht, meine Gefühle zu unterdrücken und weiterzumachen, aber ich kann nicht leugnen, dass du immer noch einen besonderen Platz in meinem Herzen hast.<br>
-        Auch wenn du mich schon mal abgewiesen hast, möchte ich dir sagen, dass ich dich immer noch schätze und respektiere.<br>
-        Ich wollte nur ehrlich sein und dir sagen, dass meine Gefühle für dich echt sind und dass ich dich wirklich mag.<br>
-        <br>
-        Alles Liebe,<br>
-        Danilo
+    <div id="main-content">
+        <div id="main-text">
+            Hey Megan,<br>
+    
+            Ich wollte dir nur ein paar Worte sagen, die mir schon lange auf dem Herzen liegen. <br>
+            Auch wenn ich weiß, dass unsere Wege sich vielleicht nicht in die gleiche Richtung führen, kann ich einfach nicht aufhören, <br>an dich zu denken.<br> 
+            Die Zeit, die ich mit dir verbracht habe, war für mich etwas ganz Besonderes, und ich kann die Momente nicht vergessen, <br>die wir geteilt haben.<br>
+            Ich habe versucht, meine Gefühle zu unterdrücken und weiterzumachen, aber ich kann nicht leugnen, dass du immer noch einen besonderen Platz in meinem Herzen hast.<br>
+            Auch wenn du mich schon mal abgewiesen hast, möchte ich dir sagen, dass ich dich immer noch schätze und respektiere.<br>
+            Ich wollte nur ehrlich sein und dir sagen, dass meine Gefühle für dich echt sind und dass ich dich wirklich mag.<br>
+            <br>
+            Alles Liebe,<br>
+            Danilo
+        </div>
     </div>
     <div class="wave"></div>
     <div class="wave right"></div>
