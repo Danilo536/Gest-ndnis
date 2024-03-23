@@ -31,16 +31,18 @@
         }
         .wave {
             position: absolute;
-            top: -100px; /* Höhe der blauen Wellen nach unten verschieben */
+            top: -50%;
             left: 0;
-            width: 100%;
-            height: calc(100% + 200px); /* Höhe der blauen Wellen erhöhen */
+            width: 200%;
+            height: 200%;
             background-image: radial-gradient(circle, rgba(0,0,255,0) 70%, rgba(0,0,255,0.2) 80%, rgba(0,0,255,0.4) 90%, rgba(0,0,255,0.8) 100%);
             background-repeat: no-repeat;
             background-size: 100% 100%;
             z-index: -1;
         }
         .wave.right {
+            left: auto;
+            right: 0;
             transform: scaleX(-1);
         }
         @keyframes pulse {
