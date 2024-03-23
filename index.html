@@ -18,45 +18,43 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            position: relative;
         }
         #main-content {
-            max-width: 90%; /* Maximale Breite für den Inhalt */
-            margin: auto; /* Zentrieren des Inhalts */
+            max-width: 90%;
+            margin: auto;
         }
         #main-text {
-            font-size: 16px; /* Kleinerer Schriftgrad für Mobilgeräte */
-            margin: 20px; /* Kleinerer Abstand für Mobilgeräte */
-            line-height: 1.5; /* Hier den Wert für den Zeilenabstand anpassen */
-            color: white; /* Textfarbe auf Weiß setzen */
+            font-size: 16px;
+            margin: 20px;
+            line-height: 1.5;
         }
         .wave {
             position: absolute;
-            top: -50%;
-            left: 0;
-            width: 200%;
-            height: 200%;
+            width: 100%;
+            height: 400; /* Doppelte Höhe für die blauen Wellen */
             background-image: radial-gradient(circle, rgba(0,0,255,0) 70%, rgba(0,0,255,0.2) 80%, rgba(0,0,255,0.4) 90%, rgba(0,0,255,0.8) 100%);
             background-repeat: no-repeat;
             background-size: 100% 100%;
             z-index: -1;
         }
+        .wave.left {
+            top: 0;
+            left: 0;
+            transform: scaleY(2); /* Doppelte Höhe für die blaue Welle links */
+        }
         .wave.right {
-            left: auto;
+            top: 0;
             right: 0;
-            transform: scaleX(-1);
+            transform: scaleX(-1) scaleY(2); /* Doppelte Höhe für die blaue Welle rechts */
         }
-        @keyframes pulse {
-            0% { background-size: 100% 100%; }
-            100% { background-size: 150% 150%; }
-        }
-        
     </style>
 </head>
 <body>
     <div id="main-content">
         <div id="main-text">
             Hey Megan,<br>
-
+    
             Ich wollte dir nur ein paar Worte sagen, die mir schon lange auf dem Herzen liegen. <br>
             Auch wenn ich weiß, dass unsere Wege sich vielleicht nicht in die gleiche Richtung führen, kann ich einfach nicht aufhören, <br>an dich zu denken.<br> 
             Die Zeit, die ich mit dir verbracht habe, war für mich etwas ganz Besonderes, und ich kann die Momente nicht vergessen, <br>die wir geteilt haben.<br>
@@ -68,7 +66,7 @@
             Danilo
         </div>
     </div>
-    <div class="wave"></div>
+    <div class="wave left"></div>
     <div class="wave right"></div>
 </body>
 </html>
