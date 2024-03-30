@@ -1,6 +1,6 @@
 /* CSS für die Navbar */
 .navbar {
-  background-color: black; /* Hintergrundfarbe der Navbar */
+   color: black; /* Hintergrundfarbe der Navbar */
   overflow: hidden; /* Überlauf verbergen */
   width: 100%; /* Breite auf 100% der Seitenbreite festlegen */
   margin: 0; /* Nullrand festlegen */
