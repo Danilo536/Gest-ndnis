@@ -6,7 +6,7 @@
 }
 
 /* CSS für die Überschrift */
-h1 {
+.h1 {
   float: left; /* Links ausrichten */
   margin: 0; /* Nullabstand */
   padding: 15px; /* Innenabstand */
