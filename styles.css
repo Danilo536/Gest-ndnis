@@ -5,7 +5,7 @@
 }
 
 /* CSS für die Überschrift */
-.navbar h1 {
+h1 {
   float: left; /* Links ausrichten */
   margin: 0; /* Nullabstand */
   padding: 15px; /* Innenabstand */
@@ -13,25 +13,18 @@
 }
 
 /* CSS für die Navbar-Punkte */
-.navbar ul {
-  list-style-type: none; /* Listenpunkttyp entfernen */
-  margin: 0; /* Nullabstand */
-  padding: 0; /* Nullpolsterung */
+.navbar a {
   float: right; /* Rechts ausrichten */
-}
-
-.navbar li {
-  float: left; /* Links ausrichten */
-}
-
-.navbar li a {
   display: block; /* Blockelement */
   color: white; /* Textfarbe */
   text-align: center; /* Zentrierte Ausrichtung */
-  padding: 15px; /* Innenabstand */
+  padding: 14px 20px; /* Innenabstand */
   text-decoration: none; /* Textdekoration entfernen */
+  transition: background-color 0.3s; /* Übergangseffekt für die Hintergrundfarbe */
 }
 
-.navbar li a:hover {
+/* CSS für die Navbar-Punkte beim Hovern */
+.navbar a:hover {
   background-color: gray; /* Hintergrundfarbe ändern beim Hovern */
+  color: white; /* Textfarbe ändern beim Hovern */
 }
