@@ -1,36 +1,37 @@
-@media screen and (min-width: 1200px) {
-    navbar {
-        background-color: #000;
-        overflow: hidden;
-      }
-      
-      .navbar a {
-        float: left;
-        display: contents;
-        color: white;
-        text-align: center;
-        padding: 14px 20px;
-        text-decoration: none;
-      }
-      
-      .navbar a:hover {
-        background-color: #555;
-        color: #ddd;
-      }
+/* CSS für die Navbar */
+.navbar {
+  background-color: black; /* Hintergrundfarbe der Navbar */
+  overflow: hidden; /* Überlauf verbergen */
 }
 
-/* CSS für das Bild in der Navbar */
-.navbar img {
-    display: none; /* Standardmäßig ausgeblendet */
-  }
-  
-  @media only screen and (max-width: 600px) {
-    /* CSS für Bild auf mobilen Geräten */
-    .navbar img {
-      display: block; /* Angezeigt auf mobilen Geräten */
-      width: 50px; /* Breite des Bildes */
-      height: auto; /* Automatische Höhe basierend auf der Breite */
-      margin: 10px auto; /* Zentrierte Ausrichtung und Abstand */
-    }
-  }
-  
+/* CSS für die Überschrift */
+.navbar h1 {
+  float: left; /* Links ausrichten */
+  margin: 0; /* Nullabstand */
+  padding: 15px; /* Innenabstand */
+  color: white; /* Textfarbe */
+}
+
+/* CSS für die Navbar-Punkte */
+.navbar ul {
+  list-style-type: none; /* Listenpunkttyp entfernen */
+  margin: 0; /* Nullabstand */
+  padding: 0; /* Nullpolsterung */
+  float: right; /* Rechts ausrichten */
+}
+
+.navbar li {
+  float: left; /* Links ausrichten */
+}
+
+.navbar li a {
+  display: block; /* Blockelement */
+  color: white; /* Textfarbe */
+  text-align: center; /* Zentrierte Ausrichtung */
+  padding: 15px; /* Innenabstand */
+  text-decoration: none; /* Textdekoration entfernen */
+}
+
+.navbar li a:hover {
+  background-color: gray; /* Hintergrundfarbe ändern beim Hovern */
+}
