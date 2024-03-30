@@ -1,0 +1,36 @@
+@media screen and (min-width: 1200px) {
+    navbar {
+        background-color: #000;
+        overflow: hidden;
+      }
+      
+      .navbar a {
+        float: left;
+        display: contents;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+      }
+      
+      .navbar a:hover {
+        background-color: #555;
+        color: #ddd;
+      }
+}
+
+/* CSS für das Bild in der Navbar */
+.navbar img {
+    display: none; /* Standardmäßig ausgeblendet */
+  }
+  
+  @media only screen and (max-width: 600px) {
+    /* CSS für Bild auf mobilen Geräten */
+    .navbar img {
+      display: block; /* Angezeigt auf mobilen Geräten */
+      width: 50px; /* Breite des Bildes */
+      height: auto; /* Automatische Höhe basierend auf der Breite */
+      margin: 10px auto; /* Zentrierte Ausrichtung und Abstand */
+    }
+  }
+  
