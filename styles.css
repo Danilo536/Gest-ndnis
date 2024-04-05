@@ -25,25 +25,38 @@ body {
 .navbar-link {
     color: white;
     text-decoration: none;
-    padding: 0 20px; /* Hier wurde das Padding erhöht */
+    padding: 0 20px;
 }
 
-/* Media Queries für die Anpassung an verschiedene Bildschirmgrößen */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+}
+
+/* Media Queries */
 @media only screen and (max-width: 600px) {
+    .navbar-right {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
     .navbar {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .navbar-left h1 {
-        margin-bottom: 10px;
-    }
-
-    .navbar-right {
-        margin-top: 10px;
-    }
-
     .navbar-link {
-        padding: 10px 0;
+        padding: 10px 20px;
+        display: block;
     }
 }
