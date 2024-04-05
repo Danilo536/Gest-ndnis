@@ -1,31 +1,56 @@
-/* CSS für die Navbar */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
 .navbar {
-  background-color: black; /* Hintergrundfarbe der Navbar */
-  overflow: hidden; /* Überlauf verbergen */
-  width: 100%; /* Breite auf 100% der Seitenbreite festlegen */
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
-/* CSS für die Überschrift */
-.h1 {
-  float: left; /* Links ausrichten */
-  margin: 0; /* Nullabstand */
-  padding: 15px; /* Innenabstand */
-  color: white; /* Textfarbe */
+.navbar-left {
+    flex-grow: 1;
 }
 
-/* CSS für die Navbar-Punkte */
-.navbar a {
-  float: right; /* Rechts ausrichten */
-  display: block; /* Blockelement */
-  color: white; /* Textfarbe */
-  text-align: center; /* Zentrierte Ausrichtung */
-  padding: 14px 20px; /* Innenabstand */
-  text-decoration: none; /* Textdekoration entfernen */
-  transition: background-color 0.3s; /* Übergangseffekt für die Hintergrundfarbe */
+.navbar h1 {
+    margin: 0;
 }
 
-/* CSS für die Navbar-Punkte beim Hovern */
-.navbar a:hover {
-  background-color: gray; /* Hintergrundfarbe ändern beim Hovern */
-  color: white; /* Textfarbe ändern beim Hovern */
+.navbar-right {
+    display: flex;
+}
+
+.navbar-btn {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.content {
+    padding: 20px;
+}
+
+/* Responsives Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-right {
+        margin-top: 10px;
+        margin-left: auto;
+    }
+
+    .navbar-btn {
+        margin-left: 0;
+        margin-top: 5px;
+    }
 }
