@@ -1,22 +1,20 @@
+/* Globales CSS-Styling */
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar {
-    background-color: #000;
-    color: #fff;
+    background-color: #333;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
 }
 
-.navbar-left {
-    flex-grow: 1;
-}
-
-.navbar h1 {
+.navbar-left h1 {
     margin: 0;
 }
 
@@ -24,33 +22,22 @@ body {
     display: flex;
 }
 
-.navbar-btn {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    margin-left: 10px;
-    cursor: pointer;
+.navbar-link {
+    color: white;
+    text-decoration: none;
+    padding: 0 10px;
 }
 
 .content {
     padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* Responsives Design */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+h2 {
+    color: #333;
+}
 
-    .navbar-right {
-        margin-top: 10px;
-        margin-left: auto;
-    }
-
-    .navbar-btn {
-        margin-left: 0;
-        margin-top: 5px;
-    }
+p {
+    line-height: 1.5;
 }
