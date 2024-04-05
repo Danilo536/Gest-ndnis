@@ -1,17 +1,25 @@
-/* Globales CSS-Styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+/* styles.css */
 
+/* Navbar-Styling */
 .navbar {
-    background-color: #333;
-    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #000;
+    color: #fff;
     padding: 10px 20px;
+}
+
+.menu-icon {
+    display: none; /* Anfangs ausgeblendet für Desktop */
+    cursor: pointer;
+}
+
+.menu-line {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
 }
 
 .navbar-left h1 {
@@ -23,40 +31,22 @@ body {
 }
 
 .navbar-link {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    padding: 0 20px;
+    margin-left: 20px;
 }
 
-.menu-icon {
-    cursor: pointer;
-    display: none;
-}
-
-.menu-line {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 5px;
-}
-
-/* Media Queries */
-@media only screen and (max-width: 600px) {
+/* Media Query für Responsive Design */
+@media (max-width: 768px) {
+    .navbar-left h1 {
+        font-size: 1.5rem; /* Kleinere Schriftgröße für Überschrift */
+    }
+    
     .navbar-right {
-        display: none;
+        display: none; /* Rechter Navbar-Teil für Desktop ausblenden */
     }
 
     .menu-icon {
-        display: flex;
-    }
-
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar-link {
-        padding: 10px 20px;
-        display: block;
+        display: block; /* Menüsymbol für Mobile anzeigen */
     }
 }
