@@ -18,7 +18,7 @@
 .menu-line {
     width: 30px;
     height: 3px;
-    background-color: white;
+    background-color: #fff;
     margin: 5px 0;
 }
 
@@ -53,5 +53,25 @@
 
     .menu-icon {
         display: block; /* Menüsymbol für Mobile anzeigen */
+    }
+
+    .navbar-links {
+        flex-direction: column; /* Menüpunkte für Mobile untereinander anordnen */
+        position: absolute;
+        top: 60px; /* Höhe der Navbar anpassen */
+        right: 0;
+        background-color: #000;
+        width: 100%;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        display: none;
+    }
+
+    .navbar-links.active {
+        display: block; /* Menüpunkte anzeigen, wenn Menüsymbol geklickt wird */
+    }
+
+    .navbar-link {
+        margin: 10px 0; /* Abstand zwischen den Menüpunkten */
     }
 }
