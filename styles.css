@@ -28,6 +28,11 @@
 
 .navbar-right {
     display: flex;
+    align-items: center;
+}
+
+.navbar-links {
+    display: flex;
 }
 
 .navbar-link {
