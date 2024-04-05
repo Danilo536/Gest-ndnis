@@ -29,8 +29,8 @@ body {
 }
 
 .menu-icon {
-    display: none;
     cursor: pointer;
+    display: none;
 }
 
 .menu-line {
@@ -47,7 +47,7 @@ body {
     }
 
     .menu-icon {
-        display: block;
+        display: flex;
     }
 
     .navbar {
