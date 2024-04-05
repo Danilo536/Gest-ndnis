@@ -25,5 +25,5 @@ body {
 .navbar-link {
     color: white;
     text-decoration: none;
-    padding: 0 20px; /* Hier wurde das Padding erhöht */
+    padding: 0 60px; /* Hier wurde das Padding erhöht */
 }
