@@ -1,8 +1,6 @@
+// script.js
+
 function toggleMenu() {
-    var navbarRight = document.getElementById("navbarRight");
-    if (navbarRight.style.display === "block") {
-        navbarRight.style.display = "none";
-    } else {
-        navbarRight.style.display = "block";
-    }
+    var navbarLinks = document.getElementById("navbarLinks");
+    navbarLinks.classList.toggle("active");
 }
