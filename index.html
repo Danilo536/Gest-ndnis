@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Martin Luther</title>
+    <title>Navbar</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="navbar">
-        <div class="navbar-left">
-            <h1>Martin Luther</h1>
-        </div>
-        <div class="navbar-right" id="navbarRight">
-            <div class="menu-icon" onclick="toggleMenu()">
-                <div class="menu-line"></div>
-                <div class="menu-line"></div>
-                <div class="menu-line"></div>
-            </div>
-            <div class="navbar-links" id="navbarLinks">
-                <a href="#" class="navbar-link">Information</a>
-                <a href="timeline.html" class="navbar-link">Zeitstrahl</a>
-                <a href="#" class="navbar-link">Quiz</a>
-            </div>
-        </div>
+
+<div class="navbar">
+    <div class="logo">Martin Luther</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="menu">
+        <a href="#">Information</a>
+        <a href="#">Zeitstrahl</a>
+        <a href="#">Quiz</a>
     </div>
-    <div class="content">
-        <!-- Hier kommt der Inhalt der Seite -->
-    </div>
+</div>
+
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("menu");
+        menu.classList.toggle("active");
+    }
+</script>
+
 </body>
 </html>
