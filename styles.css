@@ -1,68 +1,52 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
+/* CSS für die Navbar */
 .navbar {
-    background-color: #333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 }
 
-.logo {
-    color: white;
-    font-size: 20px;
+.navbar-title {
+  margin: 0;
+  font-size: 24px;
 }
 
-.menu-toggle {
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
+.navbar-menu-btn {
+  display: none; /* Auf Desktop verstecken */
+}
+
+.navbar-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #333;
+  padding: 10px;
+}
+
+.navbar-menu-btn:checked + .navbar-menu {
+  display: block;
+}
+
+.navbar-menu a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px; /* Abstand zwischen den Links */
+}
+
+.navbar-menu a:hover {
+  color: red;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-menu-btn {
+    display: block;
+  }
+
+  .navbar-menu {
     display: none;
-}
-
-.menu {
-    display: flex;
-}
-
-.menu a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-}
-
-.menu a:hover {
-    background-color: #555;
-}
-
-@media screen and (max-width: 600px) {
-    .logo {
-        font-size: 18px;
-    }
-
-    .menu {
-        display: none;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .menu.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        background-color: #333;
-        z-index: 1000;
-    }
-
-    .menu.active a {
-        padding: 10px;
-        border-bottom: 1px solid white;
-    }
+  }
 }
