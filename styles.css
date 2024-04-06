@@ -2,15 +2,6 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-.button {
-    text-decoration: none;
-    color: white;
-}
-.button:hover {
-    color: red;
-    text-decoration: underline;
-}
-
 .navbar {
     background-color: #000;
     color: #fff;
@@ -34,8 +25,12 @@ body {
 
 .navbar-link {
     color: white;
-    text-decoration: underline;
+    text-decoration: none;
     padding: 0 10px;
+}
+.navbar-link:hover {
+    color: red;
+    text-decoration: underline;
 }
 .navbar-btn {
     background-color: transparent;
