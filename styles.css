@@ -1,77 +1,68 @@
-/* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
 
-/* Navbar-Styling */
 .navbar {
+    background-color: #333;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #000;
-    color: #fff;
     padding: 10px 20px;
 }
 
-.menu-icon {
-    display: none; /* Anfangs ausgeblendet für Desktop */
+.logo {
+    color: white;
+    font-size: 20px;
+}
+
+.menu-toggle {
+    color: white;
+    font-size: 24px;
     cursor: pointer;
+    display: none;
 }
 
-.menu-line {
-    width: 30px;
-    height: 3px;
-    background-color: #fff;
-    margin: 5px 0;
-}
-
-.navbar-left h1 {
-    margin: 0;
-}
-
-.navbar-right {
-    display: flex;
-    align-items: center;
-}
-
-.navbar-links {
+.menu {
     display: flex;
 }
 
-.navbar-link {
-    color: #fff;
+.menu a {
+    color: white;
     text-decoration: none;
-    margin-left: 20px;
+    padding: 10px 20px;
 }
 
-/* Media Query für Responsive Design */
-@media (max-width: 768px) {
-    .navbar-left h1 {
-        font-size: 1.5rem; /* Kleinere Schriftgröße für Überschrift */
-    }
-    
-    .navbar-right {
-        display: none; /* Rechter Navbar-Teil für Desktop ausblenden */
+.menu a:hover {
+    background-color: #555;
+}
+
+@media screen and (max-width: 600px) {
+    .logo {
+        font-size: 18px;
     }
 
-    .menu-icon {
-        display: block; /* Menüsymbol für Mobile anzeigen */
-    }
-
-    .navbar-links {
-        flex-direction: column; /* Menüpunkte für Mobile untereinander anordnen */
-        position: absolute;
-        top: 60px; /* Höhe der Navbar anpassen */
-        right: 0;
-        background-color: #000;
-        width: 100%;
-        padding: 10px 20px;
-        box-sizing: border-box;
+    .menu {
         display: none;
     }
 
-    .navbar-links.active {
-        display: block; /* Menüpunkte anzeigen, wenn Menüsymbol geklickt wird */
+    .menu-toggle {
+        display: block;
     }
 
-    .navbar-link {
-        margin: 10px 0; /* Abstand zwischen den Menüpunkten */
+    .menu.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        z-index: 1000;
+    }
+
+    .menu.active a {
+        padding: 10px;
+        border-bottom: 1px solid white;
     }
 }
