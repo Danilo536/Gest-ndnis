@@ -3,48 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeitstrahl</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Quiz</title>
     <style>
-        /* Zusätzliches CSS für das Styling der Zeitstrahl-Seite */
-        .timeline-container {
-            max-width: 800px;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .answers {
+            margin-bottom: 20px;
+        }
+        .answer {
+            margin-right: 10px;
+        }
+        #result {
+            margin-bottom: 20px;
+        }
+        #result.correct {
+            color: green;
+        }
+        #result.incorrect {
+            color: red;
+        }
+        .quiz-container {
+            max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f2f2f2;
+            background-color: #333;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             text-align: center;
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="navbar-left">
-        <h1>Martin Luther</h1>
+<div class="quiz-container">
+    <div class="question" id="question">Frage 1: Was ist die Hauptstadt von Frankreich?</div>
+
+    <div class="answers" id="answers">
+        <label class="answer"><input type="radio" name="answer" value="a"> a) Berlin</label>
+        <label class="answer"><input type="radio" name="answer" value="b"> b) London</label>
+        <label class="answer"><input type="radio" name="answer" value="c"> c) Paris</label>
+        <label class="answer"><input type="radio" name="answer" value="d"> d) Rom</label>
     </div>
-    <div class="navbar-right">
-        <button class="navbar-btn" onclick="window.history.back()">Zurück</button>
-    </div>
-</nav>
 
-<div class="content">
-    hallo
+    <button onclick="checkAnswer()">Weiter</button>
+
+    <div id="result"></div>
 </div>
-
-<div class="question" id="question">Frage 1: Was ist die Hauptstadt von Frankreich?</div>
-
-<div class="answers" id="answers">
-    <label class="answer"><input type="radio" name="answer" value="a"> a) Berlin</label>
-    <label class="answer"><input type="radio" name="answer" value="b"> b) London</label>
-    <label class="answer"><input type="radio" name="answer" value="c"> c) Paris</label>
-    <label class="answer"><input type="radio" name="answer" value="d"> d) Rom</label>
-</div>
-
-<button onclick="checkAnswer()">Weiter</button>
-
-<div id="result"></div>
 
 <script>
     // Array mit Fragen und Antworten
