@@ -38,9 +38,14 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             text-align: center;
         }
+        .button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+
+<button class="button" onclick="window.history.back()">Zurück</button>
 
 <div class="quiz-container">
     <div class="question" id="question">Frage 1: Was ist die Hauptstadt von Frankreich?</div>
@@ -52,10 +57,12 @@
         <label class="answer"><input type="radio" name="answer" value="d"> d) Rom</label>
     </div>
 
-    <button onclick="checkAnswer()">Weiter</button>
+    <button class="button" onclick="checkAnswer()">Weiter</button>
 
     <div id="result"></div>
 </div>
+
+<button class="button" onclick="restartQuiz()">Quiz noch einmal spielen</button>
 
 <script>
     // Array mit Fragen und Antworten
@@ -105,6 +112,16 @@
         document.getElementById("answers").style.display = "none";
         document.querySelector("button").style.display = "none";
         document.getElementById("result").textContent = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+    }
+
+    function restartQuiz() {
+        currentQuestion = 0;
+        correctAnswers = 0;
+        displayQuestion();
+        document.getElementById("result").textContent = "";
+        document.querySelector("button").style.display = "block";
+        document.getElementById("question").style.display = "block";
+        document.getElementById("answers").style.display = "block";
     }
 
     // Zufällige Anordnung der Fragen
