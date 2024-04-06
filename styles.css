@@ -2,14 +2,6 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-.text {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-.imgage {
-    max-width: 50%; /* Anpassen der Bildbreite */
-    height: auto;
 
 .navbar {
     background-color: #000;
