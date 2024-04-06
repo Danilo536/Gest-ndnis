@@ -28,6 +28,11 @@ body {
     display: flex;
 }
 
+.navbar-link {
+    color: white;
+    text-decoration: none;
+    padding: 0 10px;
+}
 .navbar-btn {
     background-color: transparent;
     border: none;
