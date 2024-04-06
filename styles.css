@@ -29,7 +29,6 @@ body {
     padding: 0 10px;
 }
 .navbar-link:hover {
-    color: red;
     text-decoration: underline;
 }
 .navbar-btn {
