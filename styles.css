@@ -3,6 +3,14 @@ body {
     font-family: Arial, sans-serif;
 }
 
+content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+.content img {
+    max-width: 50%; /* Anpassen der Bildbreite */
+    height: auto;
 
 .navbar {
     background-color: #000;
