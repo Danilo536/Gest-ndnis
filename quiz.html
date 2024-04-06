@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+    <title>Zeitstrahl</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Zusätzliches CSS für das Styling der Zeitstrahl-Seite */
@@ -15,28 +15,6 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-        }
-        /* Zusätzliche CSS-Stile für das Quiz */
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .answers {
-            margin-bottom: 20px;
-        }
-        .answer {
-            margin-right: 10px;
-        }
-        #result {
-            margin-bottom: 20px;
-        }
-        #result.correct {
-            color: green;
-        }
-        #result.incorrect {
-            color: red;
         }
     </style>
 </head>
@@ -52,89 +30,80 @@
 </nav>
 
 <div class="content">
-    <!-- Hier kommt der Inhalt der Zeitstrahl-Seite -->
-    <div class="timeline-container">
-        <h2>Willkommen zum Zeitstrahl</h2>
-        <!-- Hier können Sie den Inhalt für Ihren Zeitstrahl einfügen -->
-    </div>
-    
-    <!-- Hier kommt der Inhalt des Quiz -->
-    <div class="question" id="question">Frage 1: Was ist die Hauptstadt von Frankreich?</div>
-
-    <div class="answers" id="answers">
-        <label class="answer"><input type="radio" name="answer" value="a"> a) Berlin</label>
-        <label class="answer"><input type="radio" name="answer" value="b"> b) London</label>
-        <label class="answer"><input type="radio" name="answer" value="c"> c) Paris</label>
-        <label class="answer"><input type="radio" name="answer" value="d"> d) Rom</label>
-    </div>
-
-    <button onclick="checkAnswer()">Weiter</button>
-
-    <div id="result"></div>
-
-    <script>
-        // Array mit Fragen und Antworten
-var questions = [
-    { question: "Was ist die Hauptstadt von Frankreich?", answer: "c", a: "Berlin", b: "London", c: "Paris", d: "Rom" },
-    { question: "Was ist die Hauptstadt von Deutschland?", answer: "a", a: "Berlin", b: "London", c: "Paris", d: "Rom" },
-    // Weitere Fragen hier hinzufügen
-];
-
-            // Fügen Sie hier weitere Fragen hinzu
-        ];
-
-        var currentQuestion = 0;
-        var correctAnswers = 0;
-
-        function displayQuestion() {
-            document.getElementById("question").textContent = "Frage " + (currentQuestion + 1) + ": " + questions[currentQuestion].question;
-            var answersHTML = "";
-            var answers = ["a", "b", "c", "d"];
-            answers.forEach(function(option) {
-                answersHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
-            });
-            document.getElementById("answers").innerHTML = answersHTML;
-        }
-
-        function checkAnswer() {
-            var selectedAnswer = document.querySelector('input[name="answer"]:checked');
-            if (!selectedAnswer) {
-                alert("Bitte wählen Sie eine Antwort aus.");
-                return;
-            }
-            if (selectedAnswer.value === questions[currentQuestion].answer) {
-                document.getElementById("result").textContent = "Richtig!";
-                document.getElementById("result").className = "correct";
-                correctAnswers++;
-            } else {
-                document.getElementById("result").textContent = "Falsch! Die richtige Antwort ist: " + questions[currentQuestion][questions[currentQuestion].answer];
-                document.getElementById("result").className = "incorrect";
-            }
-            currentQuestion++;
-            if (currentQuestion < questions.length) {
-                displayQuestion();
-            } else {
-                showResults();
-            }
-        }
-
-        function showResults() {
-            document.getElementById("question").style.display = "none";
-            document.getElementById("answers").style.display = "none";
-            document.querySelector("button").style.display = "none";
-            document.getElementById("result").textContent = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
-        }
-
-        // Zufällige Anordnung der Fragen
-        questions.sort(function() {
-            return 0.5 - Math.random();
-        });
-
-        // Anzeige der ersten Frage
-        displayQuestion();
-    </script>
+    hallo
 </div>
+
+<div class="question" id="question">Frage 1: Was ist die Hauptstadt von Frankreich?</div>
+
+<div class="answers" id="answers">
+    <label class="answer"><input type="radio" name="answer" value="a"> a) Berlin</label>
+    <label class="answer"><input type="radio" name="answer" value="b"> b) London</label>
+    <label class="answer"><input type="radio" name="answer" value="c"> c) Paris</label>
+    <label class="answer"><input type="radio" name="answer" value="d"> d) Rom</label>
+</div>
+
+<button onclick="checkAnswer()">Weiter</button>
+
+<div id="result"></div>
+
+<script>
+    // Array mit Fragen und Antworten
+    var questions = [
+        { question: "Was ist die Hauptstadt von Frankreich?", answer: "c", a: "Berlin", b: "London", c: "Paris", d: "Rom" },
+        { question: "Was ist die Hauptstadt von Deutschland?", answer: "a", a: "Berlin", b: "London", c: "Paris", d: "Rom" },
+        // Fügen Sie hier weitere Fragen hinzu
+    ];
+
+    var currentQuestion = 0;
+    var correctAnswers = 0;
+
+    function displayQuestion() {
+        document.getElementById("question").textContent = "Frage " + (currentQuestion + 1) + ": " + questions[currentQuestion].question;
+        var answersHTML = "";
+        var answers = ["a", "b", "c", "d"];
+        answers.forEach(function(option) {
+            answersHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
+        });
+        document.getElementById("answers").innerHTML = answersHTML;
+    }
+
+    function checkAnswer() {
+        var selectedAnswer = document.querySelector('input[name="answer"]:checked');
+        if (!selectedAnswer) {
+            alert("Bitte wählen Sie eine Antwort aus.");
+            return;
+        }
+        if (selectedAnswer.value === questions[currentQuestion].answer) {
+            document.getElementById("result").textContent = "Richtig!";
+            document.getElementById("result").className = "correct";
+            correctAnswers++;
+        } else {
+            document.getElementById("result").textContent = "Falsch! Die richtige Antwort ist: " + questions[currentQuestion][questions[currentQuestion].answer];
+            document.getElementById("result").className = "incorrect";
+        }
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            displayQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        document.getElementById("question").style.display = "none";
+        document.getElementById("answers").style.display = "none";
+        document.querySelector("button").style.display = "none";
+        document.getElementById("result").textContent = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+    }
+
+    // Zufällige Anordnung der Fragen
+    questions.sort(function() {
+        return 0.5 - Math.random();
+    });
+
+    // Anzeige der ersten Frage
+    displayQuestion();
+</script>
 
 </body>
 </html>
-
