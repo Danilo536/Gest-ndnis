@@ -21,7 +21,7 @@ body {
 .hallo a {
     border: 1px solid black;
     margin-top: 50px;
-    margin-right: 1000px;
+    margin-left: 1000px;
       padding: 50px;
 }
 .hallo b{
@@ -33,7 +33,7 @@ body {
 .hallo c{
     border: 1px solid black;
         margin-top: 50px;
-    margin-right: 1000px;
+    margin-left: 1000px;
       padding: 50px;
 }
 .hallo d{
@@ -45,7 +45,7 @@ body {
 .hallo e{
     border: 1px solid black;
         margin-top: 50px;
-    margin-right: 1000px;
+    margin-left: 1000px;
       padding: 50px;
 }
 .navbar-left {
