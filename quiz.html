@@ -7,6 +7,20 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .quiz-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
         .question {
             margin-bottom: 20px;
@@ -30,32 +44,26 @@
 </head>
 <body>
 
-<div class="question" id="question">Frage 1: Wann wurde Martin Luther geboren?</div>
+<div class="quiz-container">
+    <div class="question" id="question">Frage 1: Wann wurde Martin Luther geboren?</div>
 
-<div class="answers" id="answers">
-    <label class="answer"><input type="radio" name="answer" value="a"> a) 10. November 1483</label>
-    <label class="answer"><input type="radio" name="answer" value="b"> b) 18. Februar 1546</label>
-    <label class="answer"><input type="radio" name="answer" value="c"> c) 31. Oktober 1517</label>
-    <label class="answer"><input type="radio" name="answer" value="d"> d) 1. Januar 1500</label>
+    <div class="answers" id="answers">
+        <label class="answer"><input type="radio" name="answer" value="a"> a) 10. November 1483</label>
+        <label class="answer"><input type="radio" name="answer" value="b"> b) 18. Februar 1546</label>
+        <label class="answer"><input type="radio" name="answer" value="c"> c) 31. Oktober 1517</label>
+        <label class="answer"><input type="radio" name="answer" value="d"> d) 1. Januar 1500</label>
+    </div>
+
+    <button onclick="checkAnswer()">Weiter</button>
+
+    <div id="result"></div>
 </div>
-
-<button onclick="checkAnswer()">Weiter</button>
-
-<div id="result"></div>
 
 <script>
     // Array mit Fragen und Antworten
     var questions = [
         { question: "Wann wurde Martin Luther geboren?", a: "10. November 1483", b: "18. Februar 1546", c: "31. Oktober 1517", d: "1. Januar 1500", answer: "a" },
-        { question: "Welche Ausbildung hat Martin Luther genossen?", a: "Jura", b: "Theologie", c: "Medizin", d: "Philosophie", answer: "a" },
-        { question: "Wo trat Martin Luther als Mönch ein?", a: "Worms", b: "Erfurt", c: "Wittenberg", d: "München", answer: "b" },
-        { question: "Wo nagelte Luther seine 95 Thesen?", a: "Erfurt", b: "Worms", c: "Wittenberg", d: "Leipzig", answer: "c" },
-        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", a: "Fehlinterpretation der Bibel", b: "Moralische Verfehlungen der Geistlichen", c: "Ungerechte Verteilung der Einnahmen", d: "Verkauf von Ablassbriefen", answer: "d" },
-        { question: "Was betonte Luther in Bezug auf die Erlösung?", a: "Werke verdienen Heil", b: "Glaube alleinig", c: "Zahlungen leisten", d: "Fasten und Beten", answer: "b" },
-        { question: "Was war Luthers Haltung zur Bibel?", a: "Nur Priester dürfen sie lesen", b: "Alle Gläubigen sollen sie lesen", c: "Sie ist irrelevant", d: "Nur in Latein verfügbar", answer: "b" },
-        { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", a: "Geringe politische Auswirkungen", b: "Weltkrieg", c: "Religiöse und politische Unruhen", d: "Politische Reformen", answer: "c" },
-        { question: "Was war Luthers Beitrag zur deutschen Literatur?", a: "Geschichte schreiben", b: "Bibelübersetzung", c: "Dramen schreiben", d: "Lyrik", answer: "b" },
-        { question: "Wann und wo starb Martin Luther?", a: "31. Oktober 1517 in Wittenberg", b: "18. Februar 1546 in Eisleben", c: "1. Januar 1500 in Worms", d: "10. November 1483 in Erfurt", answer: "b" }
+        // Weitere Fragen hier einfügen
     ];
 
     var currentQuestion = 0;
