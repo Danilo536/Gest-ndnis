@@ -15,7 +15,17 @@ body {
 .hallo {
     border: 1px solid black;
 }
-
+.hallo a {
+    border: 1px solid black;
+}.hallo b{
+    border: 1px solid black;
+}.hallo c{
+    border: 1px solid black;
+}.hallo d{
+    border: 1px solid black;
+}.hallo e{
+    border: 1px solid black;
+}
 .navbar-left {
     flex-grow: 1;
 }
