@@ -1,4 +1,4 @@
-body {
+lemenbody {
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -12,37 +12,37 @@ body {
     padding: 10px 20px;
 }
 
-.hallo {
+.elemet {
     border: 1px solid black;
     margin-top: 50px;
     margin-right: 1000px;
     padding: 50px;
 }
-.hallo a {
+.elemet{
     border: 1px solid black;
     margin-top: 50px;
     margin-left: 1000px;
       padding: 50px;
 }
-.hallo b{
+.elemet{
     border: 1px solid black;
         margin-top: 50px;
     margin-right: 1000px;
       padding: 50px;
 }
-.hallo c{
+.elemet{
     border: 1px solid black;
         margin-top: 50px;
     margin-left: 1000px;
       padding: 50px;
 }
-.hallo d{
+.elemet{
     border: 1px solid black;
         margin-top: 50px;
     margin-right: 1000px;
       padding: 50px;
 }
-.hallo e{
+.elemet{
     border: 1px solid black;
         margin-top: 50px;
     margin-left: 1000px;
