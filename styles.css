@@ -21,33 +21,10 @@ lemenbody {
 .element a{
     border: 1px solid black;
     margin-top: 50px;
-    margin-left: 1000px;
-      padding: 50px;
-}
-.element{
-    border: 1px solid black;
-        margin-top: 50px;
     margin-right: 1000px;
       padding: 50px;
 }
-.element{
-    border: 1px solid black;
-        margin-top: 50px;
-    margin-left: 1000px;
-      padding: 50px;
-}
-.element{
-    border: 1px solid black;
-        margin-top: 50px;
-    margin-right: 1000px;
-      padding: 50px;
-}
-.element{
-    border: 1px solid black;
-        margin-top: 50px;
-    margin-left: 1000px;
-      padding: 50px;
-}
+
 .navbar-left {
     flex-grow: 1;
 }
