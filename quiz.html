@@ -46,16 +46,16 @@
 <script>
     // Array mit Fragen und Antworten
     var questions = [
-        { question: "Wann wurde Martin Luther geboren?", answer: "a" },
-        { question: "Welche Ausbildung hat Martin Luther genossen?", answer: "b" },
-        { question: "Wo trat Martin Luther als Mönch ein?", answer: "b" },
-        { question: "Wo nagelte Luther seine 95 Thesen?", answer: "b" },
-        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", answer: "d" },
-        { question: "Was betonte Luther in Bezug auf die Erlösung?", answer: "b" },
-        { question: "Was war Luthers Haltung zur Bibel?", answer: "b" },
-        { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", answer: "c" },
-        { question: "Was war Luthers Beitrag zur deutschen Literatur?", answer: "c" },
-        { question: "Wann und wo starb Martin Luther?", answer: "c" }
+        { question: "Wann wurde Martin Luther geboren?", a: "10. November 1483", b: "18. Februar 1546", c: "31. Oktober 1517", d: "1. Januar 1500", answer: "a" },
+        { question: "Welche Ausbildung hat Martin Luther genossen?", a: "Jura", b: "Theologie", c: "Medizin", d: "Philosophie", answer: "a" },
+        { question: "Wo trat Martin Luther als Mönch ein?", a: "Worms", b: "Erfurt", c: "Wittenberg", d: "München", answer: "b" },
+        { question: "Wo nagelte Luther seine 95 Thesen?", a: "Erfurt", b: "Worms", c: "Wittenberg", d: "Leipzig", answer: "c" },
+        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", a: "Fehlinterpretation der Bibel", b: "Moralische Verfehlungen der Geistlichen", c: "Ungerechte Verteilung der Einnahmen", d: "Verkauf von Ablassbriefen", answer: "d" },
+        { question: "Was betonte Luther in Bezug auf die Erlösung?", a: "Werke verdienen Heil", b: "Glaube alleinig", c: "Zahlungen leisten", d: "Fasten und Beten", answer: "b" },
+        { question: "Was war Luthers Haltung zur Bibel?", a: "Nur Priester dürfen sie lesen", b: "Alle Gläubigen sollen sie lesen", c: "Sie ist irrelevant", d: "Nur in Latein verfügbar", answer: "b" },
+        { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", a: "Geringe politische Auswirkungen", b: "Weltkrieg", c: "Religiöse und politische Unruhen", d: "Politische Reformen", answer: "c" },
+        { question: "Was war Luthers Beitrag zur deutschen Literatur?", a: "Geschichte schreiben", b: "Bibelübersetzung", c: "Dramen schreiben", d: "Lyrik", answer: "b" },
+        { question: "Wann und wo starb Martin Luther?", a: "31. Oktober 1517 in Wittenberg", b: "18. Februar 1546 in Eisleben", c: "1. Januar 1500 in Worms", d: "10. November 1483 in Erfurt", answer: "b" }
     ];
 
     var currentQuestion = 0;
@@ -64,8 +64,8 @@
     function displayQuestion() {
         document.getElementById("question").textContent = "Frage " + (currentQuestion + 1) + ": " + questions[currentQuestion].question;
         var answersHTML = "";
-        var answers = ["a", "b", "c", "d"];
-        answers.forEach(function(option) {
+        var options = ["a", "b", "c", "d"];
+        options.forEach(function(option) {
             answersHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
         });
         document.getElementById("answers").innerHTML = answersHTML;
@@ -98,6 +98,19 @@
         document.getElementById("answers").style.display = "none";
         document.querySelector("button").style.display = "none";
         document.getElementById("result").textContent = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+        var playAgainButton = document.createElement("button");
+        playAgainButton.textContent = "Quiz noch einmal spielen";
+        playAgainButton.onclick = function() {
+            currentQuestion = 0;
+            correctAnswers = 0;
+            document.getElementById("result").textContent = "";
+            displayQuestion();
+            document.getElementById("question").style.display = "block";
+            document.getElementById("answers").style.display = "block";
+            document.querySelector("button").style.display = "block";
+            this.style.display = "none";
+        };
+        document.body.appendChild(playAgainButton);
     }
 
     // Zufällige Anordnung der Fragen
