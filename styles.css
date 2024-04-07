@@ -14,27 +14,33 @@ body {
 
 .hallo {
     border: 1px solid black;
-    margin-top: 10px;
+    margin-top: 50px;
+    padding: 50px;
 }
 .hallo a {
     border: 1px solid black;
-    margin-top: 10px;
+    margin-top: 50px;
+      padding: 50px;
 }
 .hallo b{
     border: 1px solid black;
-        margin-top: 10px;
+        margin-top: 50px;
+      padding: 50px;
 }
 .hallo c{
     border: 1px solid black;
-        margin-top: 10px;
+        margin-top: 50px;
+      padding: 50px;
 }
 .hallo d{
     border: 1px solid black;
-        margin-top: 10px;
+        margin-top: 50px;
+      padding: 50px;
 }
 .hallo e{
     border: 1px solid black;
-        margin-top: 10px;
+        margin-top: 50px;
+      padding: 50px;
 }
 .navbar-left {
     flex-grow: 1;
