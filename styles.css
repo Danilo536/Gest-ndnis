@@ -2,7 +2,9 @@ lemenbody {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-
+h2{
+    font-size: x-largge
+}
 .navbar {
     background-color: #000;
     color: #fff;
