@@ -17,14 +17,19 @@ body {
 }
 .hallo a {
     border: 1px solid black;
+    margin-top: 10px;
 }.hallo b{
     border: 1px solid black;
+        margin-top: 10px;
 }.hallo c{
     border: 1px solid black;
+        margin-top: 10px;
 }.hallo d{
     border: 1px solid black;
+        margin-top: 10px;
 }.hallo e{
     border: 1px solid black;
+        margin-top: 10px;
 }
 .navbar-left {
     flex-grow: 1;
