@@ -40,21 +40,21 @@
         #result.incorrect {
             color: red;
         }
+        #nextButton {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
 <div class="quiz-container">
-    <div class="question" id="question">Frage 1: Wann wurde Martin Luther geboren?</div>
+    <div class="question" id="question"></div>
 
-    <div class="answers" id="answers">
-        <label class="answer"><input type="radio" name="answer" value="a"> a) 10. November 1483</label>
-        <label class="answer"><input type="radio" name="answer" value="b"> b) 18. Februar 1546</label>
-        <label class="answer"><input type="radio" name="answer" value="c"> c) 31. Oktober 1517</label>
-        <label class="answer"><input type="radio" name="answer" value="d"> d) 1. Januar 1500</label>
-    </div>
+    <div class="answers" id="answers"></div>
 
     <button onclick="checkAnswer()">Weiter</button>
+
+    <button id="nextButton" onclick="nextQuestion()">Nächste Frage</button>
 
     <div id="result"></div>
 </div>
@@ -70,13 +70,13 @@
     var correctAnswers = 0;
 
     function displayQuestion() {
-        document.getElementById("question").textContent = "Frage " + (currentQuestion + 1) + ": " + questions[currentQuestion].question;
-        var answersHTML = "";
+        var questionHTML = "";
         var options = ["a", "b", "c", "d"];
+        questionHTML += "<div class='question'>Frage " + (currentQuestion + 1) + ": " + questions[currentQuestion].question + "</div>";
         options.forEach(function(option) {
-            answersHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
+            questionHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
         });
-        document.getElementById("answers").innerHTML = answersHTML;
+        document.getElementById("question").innerHTML = questionHTML;
     }
 
     function checkAnswer() {
@@ -86,16 +86,18 @@
             return;
         }
         if (selectedAnswer.value === questions[currentQuestion].answer) {
-            document.getElementById("result").textContent = "Richtig!";
-            document.getElementById("result").className = "correct";
             correctAnswers++;
-        } else {
-            document.getElementById("result").textContent = "Falsch! Die richtige Antwort ist: " + questions[currentQuestion][questions[currentQuestion].answer];
-            document.getElementById("result").className = "incorrect";
         }
+        document.querySelector("button").style.display = "none";
+        document.getElementById("nextButton").style.display = "block";
+    }
+
+    function nextQuestion() {
         currentQuestion++;
         if (currentQuestion < questions.length) {
             displayQuestion();
+            document.querySelector("button").style.display = "block";
+            document.getElementById("nextButton").style.display = "none";
         } else {
             showResults();
         }
@@ -105,20 +107,9 @@
         document.getElementById("question").style.display = "none";
         document.getElementById("answers").style.display = "none";
         document.querySelector("button").style.display = "none";
-        document.getElementById("result").textContent = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
-        var playAgainButton = document.createElement("button");
-        playAgainButton.textContent = "Quiz noch einmal spielen";
-        playAgainButton.onclick = function() {
-            currentQuestion = 0;
-            correctAnswers = 0;
-            document.getElementById("result").textContent = "";
-            displayQuestion();
-            document.getElementById("question").style.display = "block";
-            document.getElementById("answers").style.display = "block";
-            document.querySelector("button").style.display = "block";
-            this.style.display = "none";
-        };
-        document.body.appendChild(playAgainButton);
+        document.getElementById("nextButton").style.display = "none";
+        var resultText = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+        document.getElementById("result").textContent = resultText;
     }
 
     // Zufällige Anordnung der Fragen
