@@ -12,6 +12,10 @@ body {
     padding: 10px 20px;
 }
 
+.hallo {
+    border: 1px solid black;
+}
+
 .navbar-left {
     flex-grow: 1;
 }
