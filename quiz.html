@@ -81,6 +81,7 @@
 
     var currentQuestion = 0;
     var correctAnswers = 0;
+    var incorrectQuestions = [];
 
     function displayQuestion() {
         var questionHTML = "";
@@ -100,6 +101,8 @@
         }
         if (selectedAnswer.value === questions[currentQuestion].answer) {
             correctAnswers++;
+        } else {
+            incorrectQuestions.push(currentQuestion + 1);
         }
         currentQuestion++;
         if (currentQuestion < questions.length) {
@@ -120,14 +123,19 @@
         document.getElementById("answers").style.display = "none";
         document.querySelector("button").style.display = "none";
         document.getElementById("nextButton").style.display = "none";
-        var resultText = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
-        document.getElementById("result").textContent = resultText;
+        var resultText = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.<br>";
+        resultText += "Fragen, die falsch beantwortet wurden:<br>";
+        incorrectQuestions.forEach(function(question) {
+            resultText += "Frage " + question + "<br>";
+        });
+        document.getElementById("result").innerHTML = resultText;
         document.getElementById("restartButton").style.display = "block";
     }
 
     function restartQuiz() {
         currentQuestion = 0;
         correctAnswers = 0;
+        incorrectQuestions = [];
         questions.sort(function() {
             return 0.5 - Math.random();
         });
@@ -135,7 +143,7 @@
         document.getElementById("question").style.display = "block";
         document.getElementById("answers").style.display = "block";
         document.querySelector("button").style.display = "block";
-        document.getElementById("result").textContent = "";
+        document.getElementById("result").innerHTML = "";
         document.getElementById("restartButton").style.display = "none";
     }
 
