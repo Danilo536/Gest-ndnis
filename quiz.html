@@ -7,9 +7,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            text-align: center;
         }
         .question {
             margin-bottom: 20px;
@@ -29,47 +26,36 @@
         #result.incorrect {
             color: red;
         }
-        .quiz-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #333;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-        .button {
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
 
-<button class="button" onclick="window.history.back()">Zurück</button>
+<div class="question" id="question">Frage 1: Wann wurde Martin Luther geboren?</div>
 
-<div class="quiz-container">
-    <div class="question" id="question">Frage 1: Was ist die Hauptstadt von Frankreich?</div>
-
-    <div class="answers" id="answers">
-        <label class="answer"><input type="radio" name="answer" value="a"> a) Berlin</label>
-        <label class="answer"><input type="radio" name="answer" value="b"> b) London</label>
-        <label class="answer"><input type="radio" name="answer" value="c"> c) Paris</label>
-        <label class="answer"><input type="radio" name="answer" value="d"> d) Rom</label>
-    </div>
-
-    <button class="button" onclick="checkAnswer()">Weiter</button>
-
-    <div id="result"></div>
+<div class="answers" id="answers">
+    <label class="answer"><input type="radio" name="answer" value="a"> a) 10. November 1483</label>
+    <label class="answer"><input type="radio" name="answer" value="b"> b) 18. Februar 1546</label>
+    <label class="answer"><input type="radio" name="answer" value="c"> c) 31. Oktober 1517</label>
+    <label class="answer"><input type="radio" name="answer" value="d"> d) 1. Januar 1500</label>
 </div>
 
-<button class="button" onclick="restartQuiz()">Quiz noch einmal spielen</button>
+<button onclick="checkAnswer()">Weiter</button>
+
+<div id="result"></div>
 
 <script>
     // Array mit Fragen und Antworten
     var questions = [
-        { question: "Was ist die Hauptstadt von Frankreich?", answer: "c", a: "Berlin", b: "London", c: "Paris", d: "Rom" },
-        { question: "Was ist die Hauptstadt von Deutschland?", answer: "a", a: "Berlin", b: "London", c: "Paris", d: "Rom" },
-        // Fügen Sie hier weitere Fragen hinzu
+        { question: "Wann wurde Martin Luther geboren?", answer: "a" },
+        { question: "Welche Ausbildung hat Martin Luther genossen?", answer: "b" },
+        { question: "Wo trat Martin Luther als Mönch ein?", answer: "b" },
+        { question: "Wo nagelte Luther seine 95 Thesen?", answer: "b" },
+        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", answer: "d" },
+        { question: "Was betonte Luther in Bezug auf die Erlösung?", answer: "b" },
+        { question: "Was war Luthers Haltung zur Bibel?", answer: "b" },
+        { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", answer: "c" },
+        { question: "Was war Luthers Beitrag zur deutschen Literatur?", answer: "c" },
+        { question: "Wann und wo starb Martin Luther?", answer: "c" }
     ];
 
     var currentQuestion = 0;
@@ -112,16 +98,6 @@
         document.getElementById("answers").style.display = "none";
         document.querySelector("button").style.display = "none";
         document.getElementById("result").textContent = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
-    }
-
-    function restartQuiz() {
-        currentQuestion = 0;
-        correctAnswers = 0;
-        displayQuestion();
-        document.getElementById("result").textContent = "";
-        document.querySelector("button").style.display = "block";
-        document.getElementById("question").style.display = "block";
-        document.getElementById("answers").style.display = "block";
     }
 
     // Zufällige Anordnung der Fragen
