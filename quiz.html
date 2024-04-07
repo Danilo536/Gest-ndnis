@@ -43,6 +43,9 @@
         #nextButton {
             display: none;
         }
+        #restartButton {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -56,6 +59,8 @@
 
     <button id="nextButton" onclick="nextQuestion()">Nächste Frage</button>
 
+    <button id="restartButton" onclick="restartQuiz()">Quiz neu starten</button>
+
     <div id="result"></div>
 </div>
 
@@ -63,7 +68,15 @@
     // Array mit Fragen und Antworten
     var questions = [
         { question: "Wann wurde Martin Luther geboren?", a: "10. November 1483", b: "18. Februar 1546", c: "31. Oktober 1517", d: "1. Januar 1500", answer: "a" },
-        // Weitere Fragen hier einfügen
+        { question: "Welche Ausbildung hat Martin Luther genossen?", a: "Medizin", b: "Jura", c: "Theologie", d: "Philosophie", answer: "b" },
+        { question: "Wo trat Martin Luther als Mönch ein?", a: "Kloster in Wittenberg", b: "Kloster in Erfurt", c: "Kloster in Rom", d: "Kloster in Paris", answer: "b" },
+        { question: "Wo nagelte Luther seine 95 Thesen?", a: "Dom zu Köln", b: "Schlosskirche in Wittenberg", c: "Petersdom in Rom", d: "Westminster Abbey in London", answer: "b" },
+        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", a: "Er war zu teuer", b: "Er war ineffektiv", c: "Er war ungerecht", d: "Er war unmoralisch", answer: "d" },
+        { question: "Was betonte Luther in Bezug auf die Erlösung?", a: "Werke und Zahlungen", b: "Glauben", c: "Buße", d: "Zeremonien", answer: "b" },
+        { question: "Was war Luthers Haltung zur Bibel?", a: "Sie war irrelevant", b: "Sie war die ultimative Autorität", c: "Sie war fehlerhaft", d: "Sie war überbewertet", answer: "b" },
+        { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", a: "Keine", b: "Religiöse Einheit", c: "Politische und religiöse Unruhen", d: "Frieden und Stabilität", answer: "c" },
+        { question: "Was war Luthers Beitrag zur deutschen Literatur?", a: "Er schrieb Romane", b: "Er verfasste Gedichte", c: "Er übersetzte die Bibel", d: "Er schrieb Theaterstücke", answer: "c" },
+        { question: "Wann und wo starb Martin Luther?", a: "10. November 1483 in Rom", b: "31. Oktober 1517 in Wittenberg", c: "18. Februar 1546 in Eisleben", d: "1. Januar 1500 in Paris", answer: "c" }
     ];
 
     var currentQuestion = 0;
@@ -88,19 +101,18 @@
         if (selectedAnswer.value === questions[currentQuestion].answer) {
             correctAnswers++;
         }
-        document.querySelector("button").style.display = "none";
-        document.getElementById("nextButton").style.display = "block";
-    }
-
-    function nextQuestion() {
         currentQuestion++;
         if (currentQuestion < questions.length) {
             displayQuestion();
-            document.querySelector("button").style.display = "block";
-            document.getElementById("nextButton").style.display = "none";
         } else {
             showResults();
         }
+    }
+
+    function nextQuestion() {
+        document.querySelector("button").style.display = "block";
+        document.getElementById("nextButton").style.display = "none";
+        displayQuestion();
     }
 
     function showResults() {
@@ -110,6 +122,21 @@
         document.getElementById("nextButton").style.display = "none";
         var resultText = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
         document.getElementById("result").textContent = resultText;
+        document.getElementById("restartButton").style.display = "block";
+    }
+
+    function restartQuiz() {
+        currentQuestion = 0;
+        correctAnswers = 0;
+        questions.sort(function() {
+            return 0.5 - Math.random();
+        });
+        displayQuestion();
+        document.getElementById("question").style.display = "block";
+        document.getElementById("answers").style.display = "block";
+        document.querySelector("button").style.display = "block";
+        document.getElementById("result").textContent = "";
+        document.getElementById("restartButton").style.display = "none";
     }
 
     // Zufällige Anordnung der Fragen
