@@ -19,12 +19,14 @@ h2{
     margin-top: 50px;
     padding: 50px;
      position: left;
+    width: 500px;
 }
 .element a{
     border: 1px solid black;
     margin-top: 50px;
       padding: 50px;
     position: right;
+    width: 500px;
 }
 
 .navbar-left {
