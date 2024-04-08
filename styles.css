@@ -23,11 +23,13 @@ h2{
     margin-top: 50px;
     margin-left: 960px;
     padding: 50px;
+    border: 5px
 }
 .döner{
    widht: 960px;
     margin-top: 50px;
     padding: 50px; 
+    border: 5px
 }
 .navbar-left {
     flex-grow: 1;
