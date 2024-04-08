@@ -17,14 +17,12 @@ h2{
 .element {
     border: 1px solid black;
     margin-top: 50px;
-    margin-right: 1000px;
     padding: 50px;
      position: left;
 }
 .element a{
     border: 1px solid black;
     margin-top: 50px;
-    margin-right: 50px;
       padding: 50px;
     position: right;
 }
