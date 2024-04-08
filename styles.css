@@ -2,6 +2,9 @@ lemenbody {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+body{
+    background: black;
+}
 h2{
     font-size: x-largge
 }
