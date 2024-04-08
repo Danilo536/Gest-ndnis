@@ -5,6 +5,9 @@ lemenbody {
 h2{
     font-size: x-largge
 }
+p{
+    color: white;
+}
 .navbar {
     background-color: #000;
     color: #fff;
