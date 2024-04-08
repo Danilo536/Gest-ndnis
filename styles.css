@@ -15,17 +15,16 @@ h2{
 }
 
 .element {
-    border: 1px solid black;
     margin-right: auto; /* Kasten 1 ganz links */
+    border: 1px solid black;
     padding: 50px;
     width: 500px;
 }
 .element a{
-    border: 1px solid black;
+    
     margin-left: auto; /* Kasten 2 ganz rechts */
     margin-top: -1px; /* Ausrichten der oberen Linie von Kasten 2 mit der Unterseite von Kasten 1 */
-      padding: 50px;
-    width: 500px;
+    
 }
 
 .navbar-left {
