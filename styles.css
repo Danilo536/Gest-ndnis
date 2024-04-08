@@ -19,6 +19,7 @@ h2{
     margin-top: 50px;
     padding: 50px;
      position: left;
+    left: 0px;
     width: 500px;
 }
 .element a{
@@ -26,6 +27,7 @@ h2{
     margin-top: 50px;
       padding: 50px;
     position: right;
+    right: 1000px;
     width: 500px;
 }
 
