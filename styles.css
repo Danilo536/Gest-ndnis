@@ -37,6 +37,17 @@ p{
     padding: 50px; 
     border: 5px solid black;
      background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.con{
+    position: relative;
+}
+img{
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .navbar-left {
     flex-grow: 1;
