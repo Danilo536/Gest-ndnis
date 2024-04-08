@@ -17,8 +17,7 @@ h2{
 .element {
     margin-right: auto; /* Kasten 1 ganz links */
     border: 1px solid black;
-    padding: 50px;
-    width: 500px;
+  
 }
 .element a{
     
