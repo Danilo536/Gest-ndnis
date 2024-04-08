@@ -18,16 +18,14 @@ h2{
     border: 1px solid black;
     margin-top: 50px;
     padding: 50px;
-     position: left;
-    left: 0px;
+    transform: 0px
     width: 500px;
 }
 .element a{
     border: 1px solid black;
     margin-top: 50px;
       padding: 50px;
-    position: right;
-    right: 1000px;
+      transform: 1000px
     width: 500px;
 }
 
