@@ -15,17 +15,11 @@ h2{
 }
 
 .element {
-    margin-right: auto; /* Kasten 1 ganz links */
-    border: 1px solid black;
-  
+   widht: 1000px;
+    margin-top: 50px;
+    margin-left: 1000px;
+    padding: 50px;
 }
-.element a{
-    
-    margin-left: auto; /* Kasten 2 ganz rechts */
-    margin-top: -1px; /* Ausrichten der oberen Linie von Kasten 2 mit der Unterseite von Kasten 1 */
-    
-}
-
 .navbar-left {
     flex-grow: 1;
 }
