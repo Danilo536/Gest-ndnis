@@ -20,6 +20,11 @@ h2{
     margin-left: 1000px;
     padding: 50px;
 }
+.döner{
+   widht: 1000px;
+    margin-top: 50px;
+    padding: 50px; 
+}
 .navbar-left {
     flex-grow: 1;
 }
