@@ -98,6 +98,11 @@
             questionHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
         });
         document.getElementById("question").innerHTML = questionHTML;
+        if (currentQuestion === 0) {
+            document.getElementById("backButton").style.display = "block"; // Zeige den Zurück-Button für die erste Frage an
+        } else {
+            document.getElementById("backButton").style.display = "none"; // Verstecke den Zurück-Button für die folgenden Fragen
+        }
     }
 
     function checkAnswer() {
@@ -128,7 +133,6 @@
         document.getElementById("result").innerHTML = resultText;
         document.getElementById("nextButton").style.display = "none";
         document.getElementById("restartButton").style.display = "block";
-        document.getElementById("backButton").style.display = "block"; // Zeige den Zurück-Button an
     }
 
     function nextQuestion() {
