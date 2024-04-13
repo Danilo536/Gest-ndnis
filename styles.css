@@ -49,9 +49,10 @@ nav {
 .navbar-left {
     flex-grow: 1;
 }
-img{
+.a{
     width: 1000px;
-    height: 500px;
+    height: 1080px;
+    margin-right: 0px;
 }
 
 .navbar h1 {
