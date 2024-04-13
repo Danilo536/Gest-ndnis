@@ -47,9 +47,9 @@ nav {
     flex-grow: 1;
 }
 .a{
-    hight: 750px;
-    widht: 500px;
-    float:right;
+    hight: 1000px;
+    widht: 750px;
+    float: right;
 }
 
 .navbar h1 {
