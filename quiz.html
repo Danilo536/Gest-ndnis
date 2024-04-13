@@ -20,8 +20,13 @@
 <div class="content">
     <form id="quiz-form">
         <div class="quiz-question">
-            <h2 id="question"></h2>
-            <div class="quiz-options" id="options"></div>
+            <h2 id="question">Frage: Wann wurde Martin Luther geboren?</h2>
+            <div class="quiz-options" id="options">
+                <label><input type="radio" name="option" value="a"> 10. November 1483</label><br>
+                <label><input type="radio" name="option" value="b"> 18. Februar 1546</label><br>
+                <label><input type="radio" name="option" value="c"> 31. Oktober 1517</label><br>
+                <label><input type="radio" name="option" value="d"> 1. Januar 1500</label><br>
+            </div>
         </div>
         <button type="button" id="next-btn">Nächste Frage</button>
         <div id="result"></div>
@@ -29,72 +34,41 @@
 </div>
 
 <script>
-    const questions = [
-        {
-            question: "Frage 1: Wann wurde Martin Luther geboren?",
-            options: ["10. November 1483", "18. Februar 1546", "31. Oktober 1517", "1. Januar 1500"],
-            answer: "10. November 1483"
-        },
-        {
-            question: "Frage 2: Welche Ausbildung hat Martin Luther genossen?",
-            options: ["Medizin", "Jura", "Theologie", "Philosophie"],
-            answer: "Jura"
-        },
-        // Weitere Fragen hier hinzufügen...
-    ];
-
-    let currentQuestion = 0;
+    const correctAnswer = "a"; // Set the correct answer option here
     let score = 0;
 
-    const quizForm = document.getElementById("quiz-form");
-    const questionElement = document.getElementById("question");
-    const optionsElement = document.getElementById("options");
-    const nextButton = document.getElementById("next-btn");
-    const resultElement = document.getElementById("result");
-
-    function showQuestion() {
-        const question = questions[currentQuestion];
-        questionElement.textContent = question.question;
-        optionsElement.innerHTML = "";
-
-        question.options.forEach(option => {
-            const optionButton = document.createElement("button");
-            optionButton.textContent = option;
-            optionButton.addEventListener("click", () => selectAnswer(option));
-            optionsElement.appendChild(optionButton);
-        });
-    }
-
-    function selectAnswer(selectedOption) {
-        const question = questions[currentQuestion];
-        if (selectedOption === question.answer) {
-            score++;
+    document.getElementById("next-btn").addEventListener("click", () => {
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        if (selectedOption) {
+            if (selectedOption.value === correctAnswer) {
+                score++;
+            }
+            showNextQuestion();
+        } else {
+            alert("Bitte wählen Sie eine Antwort aus.");
         }
-    }
-
-    function showResult() {
-        resultElement.textContent = `Ergebnis: ${score}/${questions.length}`;
-        if (score === questions.length) {
-            resultElement.textContent += " - Perfekt!";
-        } else if (score === 0) {
-            resultElement.textContent += " - Keine richtigen Antworten!";
-        }
-    }
+    });
 
     function showNextQuestion() {
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
-            showQuestion();
+        const options = document.querySelectorAll('input[name="option"]');
+        options.forEach(option => {
+            option.checked = false;
+        });
+
+        const resultElement = document.getElementById("result");
+        resultElement.textContent = `Ergebnis: ${score}/10`;
+
+        // Show next question or result
+        if (score === 10) {
+            resultElement.textContent += " - Perfekt!";
+            document.getElementById("next-btn").remove();
         } else {
-            quizForm.remove();
-            showResult();
+            const questions = ["Frage 2: Welche Ausbildung hat Martin Luther genossen?", "Frage 3: Wo trat Martin Luther als Mönch ein?", /* Weitere Fragen hier hinzufügen */];
+            const nextQuestion = questions[score];
+            document.getElementById("question").textContent = nextQuestion;
         }
     }
-
-    nextButton.addEventListener("click", showNextQuestion);
-
-    // Initial Question
-    showQuestion();
 </script>
+
 </body>
 </html>
