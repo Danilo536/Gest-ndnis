@@ -1,5 +1,4 @@
- <style>
-        body {
+body {
             background-color: #222;
             color: #fff;
             font-family: Arial, sans-serif;
@@ -54,4 +53,4 @@
         #back-btn:hover {
             color: #ddd;
         }
-    </style>
+
