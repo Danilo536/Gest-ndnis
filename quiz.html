@@ -1,132 +1,138 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="quiz.css">
-    <link rel="Javasheet" href="quiz.js"
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000; /* Hintergrund dunkel machen */
+            color: #ffffff; /* Textfarbe auf Weiß ändern */
+            text-align: center; /* Text zentrieren */
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .answers {
+            margin-bottom: 20px;
+        }
+        .answer {
+            margin-right: 10px;
+        }
+        #result {
+            margin-bottom: 20px;
+        }
+        #result.correct {
+            color: green;
+        }
+        #result.incorrect {
+            color: red;
+        }
+        #quiz-restart {
+            display: none; /* Quiz neu starten Button am Anfang ausblenden */
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
-<a href="index.html" id="back-btn">Zurück</a>
+<div class="question" id="question">Frage 1: Wann wurde Martin Luther geboren?</div>
 
-<div id="quiz-container">
-    <h1>Quiz über Martin Luther</h1>
+<div class="answers" id="answers">
+    <label class="answer"><input type="radio" name="answer" value="a"> a) 10. November 1483</label>
+    <label class="answer"><input type="radio" name="answer" value="b"> b) 18. Februar 1546</label>
+    <label class="answer"><input type="radio" name="answer" value="c"> c) 31. Oktober 1517</label>
+    <label class="answer"><input type="radio" name="answer" value="d"> d) 1. Januar 1500</label>
+</div>
 
-    <div class="question" id="question1">
-        <h2>Frage 1: Wann wurde Martin Luther geboren?</h2>
-        <div class="answers">
-            <label class="answer">
-                <input type="radio" name="q1" value="a"> a) 10. November 1483
-            </label>
-            <label class="answer">
-                <input type="radio" name="q1" value="b"> b) 18. Februar 1546
-            </label>
-            <label class="answer">
-                <input type="radio" name="q1" value="c"> c) 31. Oktober 1517
-            </label>
-            <label class="answer">
-                <input type="radio" name="q1" value="d"> d) 1. Januar 1500
-            </label>
-        </div>
-    </div>
+<button onclick="checkAnswer()">Weiter</button>
 
-    <!-- Weitere Fragen hier einfügen -->
+<div id="result"></div>
 
-    <button class="btn" id="next-btn">Weiter</button>
-    <button class="btn" id="result-btn" style="display: none;">Auswertung anzeigen</button>
-    <button class="btn" id="restart-btn" style="display: none;">Quiz neu starten</button>
-
+<div id="quiz-restart">
+    <button onclick="restartQuiz()">Quiz neu starten</button>
 </div>
 
 <script>
-    // Funktion zum Mischen eines Arrays (Fisher-Yates Algorithmus)
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
+    var questions = [
+        { question: "Wann wurde Martin Luther geboren?", answer: "a" },
+        { question: "In welcher Stadt wurde Martin Luther geboren?", answer: "c" },
+        { question: "Welche Ausbildung hat Martin Luther genossen?", answer: "b" },
+        { question: "Wo trat Martin Luther als Mönch ein?", answer: "b" },
+        { question: "Wo nagelte Luther seine 95 Thesen?", answer: "b" },
+        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", answer: "d" },
+        { question: "Was betonte Luther in Bezug auf die Erlösung?", answer: "b" },
+        { question: "Was war Luthers Haltung zur Bibel?", answer: "b" },
+        { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", answer: "c" },
+        { question: "Wann und wo starb Martin Luther?", answer: "c" }
+    ];
 
-// Fragen-Array mit Fragen und den richtigen Antworten
-const questions = [
-    {
-        question: "Wann wurde Martin Luther geboren?",
-        answers: [
-            { text: "a) 10. November 1483", correct: true },
-            { text: "b) 18. Februar 1546", correct: false },
-            { text: "c) 31. Oktober 1517", correct: false },
-            { text: "d) 1. Januar 1500", correct: false }
-        ]
-    },
-    // Weitere Fragen hier hinzufügen
-];
+    var currentQuestion = 0;
+    var correctAnswers = 0;
 
-// Zufällige Anordnung der Fragen
-shuffleArray(questions);
-
-// Aktuelle Frage
-let currentQuestionIndex = 0;
-
-const questionElement = document.getElementById("question");
-const answerElements = Array.from(document.getElementsByClassName("answer"));
-const nextButton = document.getElementById("next-btn");
-const resultButton = document.getElementById("result-btn");
-const restartButton = document.getElementById("restart-btn");
-
-function showQuestion(question) {
-    questionElement.innerText = question.question;
-    question.answers.forEach((answer, index) => {
-        answerElements[index].innerText = answer.text;
-        answerElements[index].dataset.correct = answer.correct;
-    });
-}
-
-function showNextQuestion() {
-    const selectedAnswer = answerElements.find(answer => answer.checked);
-    if (!selectedAnswer) {
-        alert("Bitte wähle eine Antwort aus.");
-        return;
+    function displayQuestion() {
+        document.getElementById("question").textContent = questions[currentQuestion].question;
+        var answersHTML = "";
+        var answers = ["a", "b", "c", "d"];
+        answers.forEach(function(option) {
+            answersHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
+        });
+        document.getElementById("answers").innerHTML = answersHTML;
     }
 
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion(questions[currentQuestionIndex]);
-    } else {
-        nextButton.style.display = "none";
-        resultButton.style.display = "block";
-    }
-}
-
-function showResult() {
-    let correctAnswers = 0;
-    let resultText = "Auswertung:\n\n";
-
-    questions.forEach((question, index) => {
-        const selectedAnswer = answerElements.find(answer => answer.checked);
-        if (selectedAnswer && selectedAnswer.dataset.correct === "true") {
-            correctAnswers++;
+    function checkAnswer() {
+        var selectedAnswer = document.querySelector('input[name="answer"]:checked');
+        if (!selectedAnswer) {
+            alert("Bitte wählen Sie eine Antwort aus.");
+            return;
         }
-        resultText += "Frage " + (index + 1) + ": " + (selectedAnswer.dataset.correct === "true" ? "Richtig" : "Falsch") + "\n";
-    });
+        if (selectedAnswer.value === questions[currentQuestion].answer) {
+            document.getElementById("result").textContent = "Richtig!";
+            document.getElementById("result").className = "correct";
+            correctAnswers++;
+        } else {
+            document.getElementById("result").textContent = "Falsch! Die richtige Antwort ist: " + questions[currentQuestion][questions[currentQuestion].answer];
+            document.getElementById("result").className = "incorrect";
+        }
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            displayQuestion();
+        } else {
+            showResults();
+        }
+    }
 
-    resultText += "\nDu hast " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+    function showResults() {
+        document.getElementById("question").style.display = "none";
+        document.getElementById("answers").style.display = "none";
+        document.querySelector("button").style.display = "none";
+        document.getElementById("result").textContent = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+        var wrongAnswers = questions.length - correctAnswers;
+        if (wrongAnswers > 0) {
+            var wrongQuestions = "Folgende Fragen waren falsch:";
+            questions.forEach(function(question, index) {
+                if (question.answer !== document.querySelector('input[name="answer"]:checked').value) {
+                    wrongQuestions += "<br>Frage " + (index + 1) + ": " + question.question + "<br>Richtige Antwort: " + question[question.answer];
+                }
+            });
+            document.getElementById("result").innerHTML += "<br><br>" + wrongQuestions;
+        }
+        document.getElementById("quiz-restart").style.display = "block"; // Quiz neu starten Button anzeigen
+    }
 
-    alert(resultText);
+    function restartQuiz() {
+        currentQuestion = 0;
+        correctAnswers = 0;
+        displayQuestion();
+        document.getElementById("question").style.display = "block";
+        document.getElementById("answers").style.display = "block";
+        document.getElementById("result").textContent = "";
+        document.querySelector("button").style.display = "block";
+        document.getElementById("quiz-restart").style.display = "none"; // Quiz neu starten Button ausblenden
+    }
 
-    restartButton.style.display = "block";
-    resultButton.style.display = "none";
-}
-
-showQuestion(questions[currentQuestionIndex]);
-
-nextButton.addEventListener("click", showNextQuestion);
-resultButton.addEventListener("click", showResult);
-restartButton.addEventListener("click", () => {
-    window.location.reload();
-});
+    displayQuestion();
 </script>
 
 </body>
