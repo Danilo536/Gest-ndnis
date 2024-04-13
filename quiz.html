@@ -4,70 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        #quiz-container {
+            background-color: #333;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .answers {
+            display: flex;
+            flex-direction: column;
+        }
+        .answer {
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #222;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #ddd;
+        }
+        #back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 5px 10px;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        #back-btn:hover {
+            color: #ddd;
+        }
+    </style>
 </head>
-<body class="gt">
+<body>
 
-<nav class="navbar">
-    <div class="navbar-left">
-        <h1>Martin Luther Quiz</h1>
-    </div>
-    <div class="navbar-right">
-        <a href="index.html" class="navbar-link">Zurück</a>
-    </div>
-</nav>
+<a href="index.html" id="back-btn">Zurück</a>
 
-<div class="content">
-    <form id="quiz-form">
-        <div class="quiz-question">
-            <h2 id="question">Frage: Wann wurde Martin Luther geboren?</h2>
-            <div class="quiz-options" id="options">
-                <label><input type="radio" name="option" value="a"> 10. November 1483</label><br>
-                <label><input type="radio" name="option" value="b"> 18. Februar 1546</label><br>
-                <label><input type="radio" name="option" value="c"> 31. Oktober 1517</label><br>
-                <label><input type="radio" name="option" value="d"> 1. Januar 1500</label><br>
-            </div>
+<div id="quiz-container">
+    <h1>Quiz über Martin Luther</h1>
+
+    <div class="question" id="question1">
+        <h2>Frage 1: Wann wurde Martin Luther geboren?</h2>
+        <div class="answers">
+            <label class="answer">
+                <input type="radio" name="q1" value="a"> a) 10. November 1483
+            </label>
+            <label class="answer">
+                <input type="radio" name="q1" value="b"> b) 18. Februar 1546
+            </label>
+            <label class="answer">
+                <input type="radio" name="q1" value="c"> c) 31. Oktober 1517
+            </label>
+            <label class="answer">
+                <input type="radio" name="q1" value="d"> d) 1. Januar 1500
+            </label>
         </div>
-        <button type="button" id="next-btn">Nächste Frage</button>
-        <div id="result"></div>
-    </form>
+    </div>
+
+    <!-- Weitere Fragen hier einfügen -->
+
+    <button class="btn" id="next-btn">Weiter</button>
+    <button class="btn" id="result-btn" style="display: none;">Auswertung anzeigen</button>
+    <button class="btn" id="restart-btn" style="display: none;">Quiz neu starten</button>
+
 </div>
 
 <script>
-    const correctAnswer = "a"; // Set the correct answer option here
-    let score = 0;
+    const questions = document.querySelectorAll('.question');
+    let currentQuestion = 0;
+    let correctAnswers = 0;
 
-    document.getElementById("next-btn").addEventListener("click", () => {
-        const selectedOption = document.querySelector('input[name="option"]:checked');
-        if (selectedOption) {
-            if (selectedOption.value === correctAnswer) {
-                score++;
+    document.getElementById('next-btn').addEventListener('click', () => {
+        const selectedAnswer = document.querySelector('input[name=q' + (currentQuestion + 1) + ']:checked');
+        if (selectedAnswer) {
+            if (selectedAnswer.value === 'a') {
+                correctAnswers++;
             }
-            showNextQuestion();
+            questions[currentQuestion].style.display = 'none';
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                questions[currentQuestion].style.display = 'block';
+            } else {
+                document.getElementById('next-btn').style.display = 'none';
+                document.getElementById('result-btn').style.display = 'block';
+            }
         } else {
-            alert("Bitte wählen Sie eine Antwort aus.");
+            alert('Bitte wählen Sie eine Antwort aus.');
         }
     });
 
-    function showNextQuestion() {
-        const options = document.querySelectorAll('input[name="option"]');
-        options.forEach(option => {
-            option.checked = false;
+    document.getElementById('result-btn').addEventListener('click', () => {
+        let results = "";
+        questions.forEach((question, index) => {
+            const selectedAnswer = question.querySelector('input[name=q' + (index + 1) + ']:checked');
+            if (!selectedAnswer) {
+                results += `<p>Frage ${index + 1} ist nicht beantwortet</p>`;
+            } else if (selectedAnswer.value !== 'a') {
+                results += `<p>Frage ${index + 1} ist falsch</p>`;
+            }
         });
 
-        const resultElement = document.getElementById("result");
-        resultElement.textContent = `Ergebnis: ${score}/10`;
+        const resultMessage = `Du hast ${correctAnswers}/${questions.length} Fragen richtig beantwortet. <br><br> Folgende waren falsch oder nicht beantwortet: <br>${results}`;
+        document.body.innerHTML += `<div id="result-container">${resultMessage}</div>`;
+        document.getElementById('restart-btn').style.display = 'block';
+    });
 
-        // Show next question or result
-        if (score === 10) {
-            resultElement.textContent += " - Perfekt!";
-            document.getElementById("next-btn").remove();
-        } else {
-            const questions = ["Frage 2: Welche Ausbildung hat Martin Luther genossen?", "Frage 3: Wo trat Martin Luther als Mönch ein?", /* Weitere Fragen hier hinzufügen */];
-            const nextQuestion = questions[score];
-            document.getElementById("question").textContent = nextQuestion;
-        }
-    }
+    document.getElementById('restart-btn').addEventListener('click', () => {
+        window.location.reload();
+    });
 </script>
 
 </body>
