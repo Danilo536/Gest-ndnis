@@ -43,6 +43,11 @@
 <script>
     // Funktion zum Mischen eines Arrays (Fisher-Yates Algorithmus)
 function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
 
 // Fragen-Array mit Fragen und den richtigen Antworten
@@ -80,6 +85,12 @@ function showQuestion(question) {
 }
 
 function showNextQuestion() {
+    const selectedAnswer = answerElements.find(answer => answer.checked);
+    if (!selectedAnswer) {
+        alert("Bitte wähle eine Antwort aus.");
+        return;
+    }
+
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion(questions[currentQuestionIndex]);
@@ -95,7 +106,7 @@ function showResult() {
 
     questions.forEach((question, index) => {
         const selectedAnswer = answerElements.find(answer => answer.checked);
-        if (selectedAnswer.dataset.correct === "true") {
+        if (selectedAnswer && selectedAnswer.dataset.correct === "true") {
             correctAnswers++;
         }
         resultText += "Frage " + (index + 1) + ": " + (selectedAnswer.dataset.correct === "true" ? "Richtig" : "Falsch") + "\n";
