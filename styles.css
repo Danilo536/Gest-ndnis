@@ -25,7 +25,6 @@ nav {
     margin: 0px;
 }
 
-}
 
 .döner {
     margin-top: 50px;
@@ -51,6 +50,7 @@ nav {
     width: 1000px;
     height: 1080px;
     margin-right: 0px;
+    margin-left: 920px;
 }
 
 .navbar h1 {
