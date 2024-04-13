@@ -5,140 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Zusätzliches CSS für das Quiz */
-        .quiz-container {
-            max-width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f2f2f2;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .question {
-            margin-bottom: 20px;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .option {
-            margin-bottom: 10px;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .quiz-btn {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
-<body>
+<body class="gt">
 
 <nav class="navbar">
     <div class="navbar-left">
-        <h1>Quiz</h1>
+        <h1>Martin Luther Quiz</h1>
     </div>
     <div class="navbar-right">
-        <button class="navbar-btn" onclick="window.history.back()">Zurück</button>
+        <a href="index.html" class="navbar-link">Zurück</a>
     </div>
 </nav>
 
 <div class="content">
-    <div class="quiz-container">
-        <h2 class="question">Frage: Wann wurde Martin Luther geboren?</h2>
-        <div class="options">
-            <button class="option" onclick="checkAnswer('a')">a) 10. November 1483</button>
-            <button class="option" onclick="checkAnswer('b')">b) 18. Februar 1546</button>
-            <button class="option" onclick="checkAnswer('c')">c) 31. Oktober 1517</button>
-            <button class="option" onclick="checkAnswer('d')">d) 1. Januar 1500</button>
+    <form id="quiz-form">
+        <div class="quiz-question">
+            <h2 id="question"></h2>
+            <div class="quiz-options" id="options"></div>
         </div>
-        <button id="nextBtn" class="quiz-btn" style="display: none;" onclick="nextQuestion()">Nächste Frage</button>
-        <button id="showResultBtn" class="quiz-btn" style="display: none;" onclick="showResult()">Auswertung anzeigen</button>
-        <div id="result" style="display: none;"></div>
-    </div>
+        <button type="button" id="next-btn">Nächste Frage</button>
+        <div id="result"></div>
+    </form>
 </div>
 
 <script>
-    // Array mit Fragen und Antworten
-    var questions = [
+    const questions = [
         {
-            question: "Frage: Wann wurde Martin Luther geboren?",
-            options: [
-                "a) 10. November 1483",
-                "b) 18. Februar 1546",
-                "c) 31. Oktober 1517",
-                "d) 1. Januar 1500"
-            ],
-            correctAnswer: "a"
+            question: "Frage 1: Wann wurde Martin Luther geboren?",
+            options: ["10. November 1483", "18. Februar 1546", "31. Oktober 1517", "1. Januar 1500"],
+            answer: "10. November 1483"
+        },
+        {
+            question: "Frage 2: Welche Ausbildung hat Martin Luther genossen?",
+            options: ["Medizin", "Jura", "Theologie", "Philosophie"],
+            answer: "Jura"
         },
         // Weitere Fragen hier hinzufügen...
     ];
 
-    var currentQuestionIndex = 0;
-    var correctAnswers = 0;
+    let currentQuestion = 0;
+    let score = 0;
 
-    // Funktion, um die Antwort zu überprüfen
-    function checkAnswer(answer) {
-        if (answer === questions[currentQuestionIndex].correctAnswer) {
-            correctAnswers++;
-        }
-        document.getElementById("nextBtn").style.display = "block";
-        document.getElementById("showResultBtn").style.display = "none";
+    const quizForm = document.getElementById("quiz-form");
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const nextButton = document.getElementById("next-btn");
+    const resultElement = document.getElementById("result");
+
+    function showQuestion() {
+        const question = questions[currentQuestion];
+        questionElement.textContent = question.question;
+        optionsElement.innerHTML = "";
+
+        question.options.forEach(option => {
+            const optionButton = document.createElement("button");
+            optionButton.textContent = option;
+            optionButton.addEventListener("click", () => selectAnswer(option));
+            optionsElement.appendChild(optionButton);
+        });
     }
 
-    // Funktion, um zur nächsten Frage zu gehen
-    function nextQuestion() {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
-            displayQuestion();
-        } else {
-            document.getElementById("nextBtn").style.display = "none";
-            document.getElementById("showResultBtn").style.display = "block";
+    function selectAnswer(selectedOption) {
+        const question = questions[currentQuestion];
+        if (selectedOption === question.answer) {
+            score++;
         }
     }
 
-    // Funktion, um die Ergebnisse anzuzeigen
     function showResult() {
-        var resultText = "Ergebnis: " + correctAnswers + "/" + questions.length + "<br>";
-        resultText += "Folgende Fragen waren falsch:<br>";
-        for (var i = 0; i < questions.length; i++) {
-            if (questions[i].correctAnswer !== userAnswers[i]) {
-                resultText += "Frage " + (i + 1) + ": " + questions[i].question + "<br>";
-                resultText += "Richtige Antwort: " + questions[i].options[questions[i].correctAnswer.charCodeAt(0) - 97] + "<br>";
-            }
+        resultElement.textContent = `Ergebnis: ${score}/${questions.length}`;
+        if (score === questions.length) {
+            resultElement.textContent += " - Perfekt!";
+        } else if (score === 0) {
+            resultElement.textContent += " - Keine richtigen Antworten!";
         }
-        document.getElementById("result").innerHTML = resultText;
-document.getElementById(“result”).style.display = “block”;
-document.getElementById(“showResultBtn”).style.display = “none”;
-document.getElementById(“quiz-btn”).style.display = “block”;
-}
-
-// Funktion, um eine Frage anzuzeigen
-function displayQuestion() {
-    var question = questions[currentQuestionIndex];
-    document.querySelector(".question").innerHTML = question.question;
-    var optionsHtml = "";
-    for (var i = 0; i < question.options.length; i++) {
-        optionsHtml += "<button class='option' onclick='checkAnswer(\"" + String.fromCharCode(97 + i) + "\")'>" + question.options[i] + "</button>";
     }
-        document.querySelector(".options").innerHTML = optionsHtml;
-    document.getElementById("nextBtn").style.display = "none";
-    document.getElementById("showResultBtn").style.display = "none";
-}
 
-displayQuestion();
+    function showNextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            showQuestion();
+        } else {
+            quizForm.remove();
+            showResult();
+        }
+    }
+
+    nextButton.addEventListener("click", showNextQuestion);
+
+    // Initial Question
+    showQuestion();
 </script>
 </body>
 </html>
-
