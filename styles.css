@@ -52,6 +52,7 @@ nav {
     margin-right: 0px;
     margin-left: 920px;
     margin-top: 0px;
+    position: relative;
 }
 
 .navbar h1 {
