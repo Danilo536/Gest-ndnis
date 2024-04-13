@@ -46,11 +46,15 @@
         #restartButton {
             display: none;
         }
+        #backButton {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
 <div class="quiz-container">
+    <button id="backButton" onclick="history.back()">Zurück</button>
     <div class="question" id="question"></div>
 
     <div class="answers" id="answers"></div>
@@ -88,69 +92,4 @@
         var options = ["a", "b", "c", "d"];
         questionHTML += "<div class='question'>Frage " + (currentQuestion + 1) + ": " + questions[currentQuestion].question + "</div>";
         options.forEach(function(option) {
-            questionHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
-        });
-        document.getElementById("question").innerHTML = questionHTML;
-    }
-
-    function checkAnswer() {
-        var selectedAnswer = document.querySelector('input[name="answer"]:checked');
-        if (!selectedAnswer) {
-            alert("Bitte wählen Sie eine Antwort aus.");
-            return;
-        }
-        if (selectedAnswer.value === questions[currentQuestion].answer) {
-            correctAnswers++;
-        } else {
-            incorrectQuestions.push({ question: currentQuestion + 1, answer: selectedAnswer.value });
-        }
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
-            displayQuestion();
-        } else {
-            showResults();
-        }
-    }
-
-    function showResults() {
-        var resultText = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.<br>";
-        resultText += "Fragen, die falsch beantwortet wurden:<br>";
-        incorrectQuestions.forEach(function(question) {
-            resultText += "Frage " + question.question + ": Ihre Antwort - " + question.answer.toUpperCase() + ", Richtige Antwort - " + questions[question.question - 1][questions[question.question - 1].answer] + "<br>";
-        });
-        document.getElementById("result").innerHTML = resultText;
-        document.getElementById("nextButton").style.display = "none";
-        document.getElementById("restartButton").style.display = "block";
-        document.getElementById("answers").innerHTML = ""; // Clear answers
-    }
-
-    function nextQuestion() {
-        displayQuestion();
-        document.getElementById("result").innerHTML = ""; // Clear result
-        document.getElementById("nextButton").style.display = "none";
-        document.getElementById("answers").innerHTML = ""; // Clear answers
-    }
-
-    function restartQuiz() {
-        currentQuestion = 0;
-        correctAnswers = 0;
-        incorrectQuestions = [];
-        questions.sort(function() {
-            return 0.5 - Math.random();
-        });
-        displayQuestion();
-        document.getElementById("result").innerHTML = ""; // Clear result
-        document.getElementById("restartButton").style.display = "none";
-    }
-
-    // Zufällige Anordnung der Fragen
-    questions.sort(function() {
-        return 0.5 - Math.random();
-    });
-
-    // Anzeige der ersten Frage
-    displayQuestion();
-</script>
-
-</body>
-</html>
+            questionHTML += '<label class="answer"><input type="radio" name="
