@@ -35,6 +35,7 @@ nav {
     padding: 50px;
     border: 5px solid black;
     background: white;
+    width: 960px;
 }
 
 .element {
