@@ -27,18 +27,17 @@ shuffleArray(questions);
 // Aktuelle Frage
 let currentQuestionIndex = 0;
 
-const questionElement = document.getElementById("question1");
-const answerElements = questionElement.getElementsByClassName("answer");
+const questionElement = document.getElementById("question");
+const answerElements = Array.from(document.getElementsByClassName("answer"));
 const nextButton = document.getElementById("next-btn");
 const resultButton = document.getElementById("result-btn");
 const restartButton = document.getElementById("restart-btn");
 
 function showQuestion(question) {
-    questionElement.querySelector("h2").innerText = question.question;
+    questionElement.innerText = question.question;
     question.answers.forEach((answer, index) => {
-        answerElements[index].querySelector("input").value = answer.text;
-        answerElements[index].querySelector("input").checked = false;
-        answerElements[index].querySelector("label").innerText = answer.text;
+        answerElements[index].innerText = answer.text;
+        answerElements[index].dataset.correct = answer.correct;
     });
 }
 
@@ -57,13 +56,11 @@ function showResult() {
     let resultText = "Auswertung:\n\n";
 
     questions.forEach((question, index) => {
-        const selectedAnswer = Array.from(answerElements).find(answer => answer.querySelector("input").checked);
-        if (selectedAnswer && selectedAnswer.querySelector("input").value === question.answers.find(answer => answer.correct).text) {
+        const selectedAnswer = answerElements.find(answer => answer.checked);
+        if (selectedAnswer.dataset.correct === "true") {
             correctAnswers++;
-            resultText += "Frage " + (index + 1) + ": Richtig\n";
-        } else {
-            resultText += "Frage " + (index + 1) + ": Falsch\n";
         }
+        resultText += "Frage " + (index + 1) + ": " + (selectedAnswer.dataset.correct === "true" ? "Richtig" : "Falsch") + "\n";
     });
 
     resultText += "\nDu hast " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
