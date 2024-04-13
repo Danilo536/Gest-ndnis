@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="quiz.css"  
+    <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
 
-<div class="question" id="question">Frage 1: Wann wurde Martin Luther geboren?</div>
+<div id="quiz-container">
+    <div class="question" id="question">Frage 1: Wann wurde Martin Luther geboren?</div>
 
-<div class="answers" id="answers">
-    <label class="answer"><input type="radio" name="answer" value="a"> a) 10. November 1483</label>
-    <label class="answer"><input type="radio" name="answer" value="b"> b) 18. Februar 1546</label>
-    <label class="answer"><input type="radio" name="answer" value="c"> c) 31. Oktober 1517</label>
-    <label class="answer"><input type="radio" name="answer" value="d"> d) 1. Januar 1500</label>
+    <div class="answers" id="answers">
+        <label class="answer"><input type="radio" name="answer" value="a"> a) 10. November 1483</label>
+        <label class="answer"><input type="radio" name="answer" value="b"> b) 18. Februar 1546</label>
+        <label class="answer"><input type="radio" name="answer" value="c"> c) 31. Oktober 1517</label>
+        <label class="answer"><input type="radio" name="answer" value="d"> d) 1. Januar 1500</label>
+    </div>
+
+    <button onclick="checkAnswer()">Weiter</button>
+
+    <div id="result"></div>
+
+    <div id="quiz-restart">
+        <button onclick="restartQuiz()">Quiz neu starten</button>
+    </div>
 </div>
 
-<button onclick="checkAnswer()">Weiter</button>
-
-<div id="result"></div>
-
-<div id="quiz-restart">
-    <button onclick="restartQuiz()">Quiz neu starten</button>
-</div>
+<a id="back-btn" href="timeline.html">Zurück</a>
 
 <script>
     var questions = [
