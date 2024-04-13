@@ -61,4 +61,5 @@ h1, h2 {
 
 #back-btn:hover {
     color: #ddd;
+    text-decoration: underline;
 }
