@@ -46,9 +46,6 @@
         #restartButton {
             display: none;
         }
-        #backButton {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -62,23 +59,19 @@
 
     <button id="nextButton" onclick="nextQuestion()">Nächste Frage</button>
 
-    <button id="restartButton" onclick="restartQuiz()">Quiz neu starten</button>
-
     <div id="result"></div>
-    
-    <div class="navbar-right">
-        <button id="backButton" class="navbar-btn" onclick="window.history.back()">Zurück</button>
-    </div>
+
+    <button id="restartButton" onclick="restartQuiz()">Quiz neu starten</button>
 </div>
 
 <script>
     // Array mit Fragen und Antworten
     var questions = [
         { question: "Wann wurde Martin Luther geboren?", a: "10. November 1483", b: "18. Februar 1546", c: "31. Oktober 1517", d: "1. Januar 1500", answer: "a" },
-        { question: "Welche Ausbildung hat Martin Luther neben Theologie genossen?", a: "Medizin", b: "Jura", c: "Architektur", d: "Philosophie", answer: "b" },
+        { question: "Welche Ausbildung hat Martin Luther genossen?", a: "Medizin", b: "Jura", c: "Theologie", d: "Philosophie", answer: "b" },
         { question: "Wo trat Martin Luther als Mönch ein?", a: "Kloster in Wittenberg", b: "Kloster in Erfurt", c: "Kloster in Rom", d: "Kloster in Paris", answer: "b" },
         { question: "Wo nagelte Luther seine 95 Thesen?", a: "Dom zu Köln", b: "Schlosskirche in Wittenberg", c: "Petersdom in Rom", d: "Westminster Abbey in London", answer: "b" },
-        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", a: "Er war zu teuer", b: "Er war ineffektiv", c: "Er war ungesetzlich", d: "Er war unmoralisch", answer: "d" },
+        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", a: "Er war zu teuer", b: "Er war ineffektiv", c: "Er war ungerecht", d: "Er war unmoralisch", answer: "d" },
         { question: "Was betonte Luther in Bezug auf die Erlösung?", a: "Werke und Zahlungen", b: "Glauben", c: "Buße", d: "Zeremonien", answer: "b" },
         { question: "Was war Luthers Haltung zur Bibel?", a: "Sie war irrelevant", b: "Sie war die ultimative Autorität", c: "Sie war fehlerhaft", d: "Sie war überbewertet", answer: "b" },
         { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", a: "Keine", b: "Religiöse Einheit", c: "Politische und religiöse Unruhen", d: "Frieden und Stabilität", answer: "c" },
@@ -98,11 +91,6 @@
             questionHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
         });
         document.getElementById("question").innerHTML = questionHTML;
-        if (currentQuestion === 0) {
-            document.getElementById("backButton").style.display = "block"; // Zeige den Zurück-Button für die erste Frage an
-        } else {
-            document.getElementById("backButton").style.display = "none"; // Verstecke den Zurück-Button für die folgenden Fragen
-        }
     }
 
     function checkAnswer() {
@@ -133,10 +121,14 @@
         document.getElementById("result").innerHTML = resultText;
         document.getElementById("nextButton").style.display = "none";
         document.getElementById("restartButton").style.display = "block";
+        document.getElementById("answers").innerHTML = ""; // Clear answers
     }
 
     function nextQuestion() {
         displayQuestion();
+        document.getElementById("result").innerHTML = ""; // Clear result
+        document.getElementById("nextButton").style.display = "none";
+        document.getElementById("answers").innerHTML = ""; // Clear answers
     }
 
     function restartQuiz() {
@@ -147,9 +139,8 @@
             return 0.5 - Math.random();
         });
         displayQuestion();
-        document.getElementById("result").innerHTML = "";
+        document.getElementById("result").innerHTML = ""; // Clear result
         document.getElementById("restartButton").style.display = "none";
-        document.getElementById("backButton").style.display = "none"; // Verstecke den Zurück-Button beim Neustart des Quiz
     }
 
     // Zufällige Anordnung der Fragen
