@@ -133,22 +133,21 @@
 
     function showQuestion(index) {
         var question = questions[index];
-        document.querySelector(".question").textContent = question.question;
+        document.querySelector(".question ").textContent = question.question;
         var optionsHtml = "";
-        for (var i = 0; i < question.options.length; i++) {
-            optionsHtml += "<button class='option' data-answer='" + question.options[i][1] + "' onclick='checkAnswer(" + i + ")'>" + question.options[i][0] + "</button>";
-        }
+        question.options.forEach(function(option, i) {
+            optionsHtml += "<button class='option' onclick='checkAnswer(" + i + ")'>" + option[0] + "</button>";
+        });
         document.querySelector(".options").innerHTML = optionsHtml;
     }
 
-    function checkAnswer(optionIndex) {
-        var question = questions[currentQuestion];
-        var selectedOption = question.options[optionIndex];
+    function checkAnswer(index) {
+        var selectedOption = questions[currentQuestion].options[index];
         if (selectedOption[1]) {
             score++;
-            document.querySelector(".option:nth-child(" + (optionIndex + 1) + ")").classList.add("correct");
+            document.querySelector(".option:nth-child(" + (index + 1) + ")").classList.add("correct");
         } else {
-            document.querySelector(".option:nth-child(" + (optionIndex + 1) + ")").classList.add("wrong");
+            document.querySelector(".option:nth-child(" + (index + 1) + ")").classList.add("wrong");
         }
         document.querySelectorAll(".option").forEach(function(option) {
             option.disabled = true;
