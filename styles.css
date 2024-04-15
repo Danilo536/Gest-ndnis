@@ -49,7 +49,7 @@ nav {
 .image{
     hight: 1000px;
     widht: 750px;
-    float: center-right;
+    float:right;
 }
 
 .navbar h1 {
