@@ -1,4 +1,4 @@
-body {
+terbody {
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -49,7 +49,7 @@ nav {
 .image{
     hight: 1000px;
     widht: 750px;
-    float: right;
+    float: center-right;
 }
 
 .navbar h1 {
