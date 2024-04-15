@@ -7,6 +7,20 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .quiz-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
         .question {
             margin-bottom: 20px;
@@ -26,49 +40,57 @@
         #result.incorrect {
             color: red;
         }
+        #nextButton {
+            display: none;
+        }
+        #restartButton {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-<div class="question" id="question">Frage 1: Wann wurde Martin Luther geboren?</div>
+<div class="quiz-container">
+    <div class="question" id="question"></div>
 
-<div class="answers" id="answers">
-    <label class="answer"><input type="radio" name="answer" value="a"> a) 10. November 1483</label>
-    <label class="answer"><input type="radio" name="answer" value="b"> b) 18. Februar 1546</label>
-    <label class="answer"><input type="radio" name="answer" value="c"> c) 31. Oktober 1517</label>
-    <label class="answer"><input type="radio" name="answer" value="d"> d) 1. Januar 1500</label>
+    <div class="answers" id="answers"></div>
+
+    <button onclick="checkAnswer()">Weiter</button>
+
+    <button id="nextButton" onclick="nextQuestion()">Nächste Frage</button>
+
+    <div id="result"></div>
+
+    <button id="restartButton" onclick="restartQuiz()">Quiz neu starten</button>
 </div>
-
-<button onclick="checkAnswer()">Weiter</button>
-
-<div id="result"></div>
 
 <script>
     // Array mit Fragen und Antworten
     var questions = [
-        { question: "Wann wurde Martin Luther geboren?", answer: "a" },
-        { question: "Welche Ausbildung hat Martin Luther genossen?", answer: "b" },
-        { question: "Wo trat Martin Luther als Mönch ein?", answer: "b" },
-        { question: "Wo nagelte Luther seine 95 Thesen?", answer: "b" },
-        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", answer: "d" },
-        { question: "Was betonte Luther in Bezug auf die Erlösung?", answer: "b" },
-        { question: "Was war Luthers Haltung zur Bibel?", answer: "b" },
-        { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", answer: "c" },
-        { question: "Was war Luthers Beitrag zur deutschen Literatur?", answer: "c" },
-        { question: "Wann und wo starb Martin Luther?", answer: "c" }
+        { question: "Wann wurde Martin Luther geboren?", a: "10. November 1483", b: "18. Februar 1546", c: "31. Oktober 1517", d: "1. Januar 1500", answer: "a" },
+        { question: "Welche Ausbildung hat Martin Luther genossen?", a: "Medizin", b: "Jura", c: "Theologie", d: "Philosophie", answer: "b" },
+        { question: "Wo trat Martin Luther als Mönch ein?", a: "Kloster in Wittenberg", b: "Kloster in Erfurt", c: "Kloster in Rom", d: "Kloster in Paris", answer: "b" },
+        { question: "Wo nagelte Luther seine 95 Thesen?", a: "Dom zu Köln", b: "Schlosskirche in Wittenberg", c: "Petersdom in Rom", d: "Westminster Abbey in London", answer: "b" },
+        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", a: "Er war zu teuer", b: "Er war ineffektiv", c: "Er war ungerecht", d: "Er war unmoralisch", answer: "d" },
+        { question: "Was betonte Luther in Bezug auf die Erlösung?", a: "Werke und Zahlungen", b: "Glauben", c: "Buße", d: "Zeremonien", answer: "b" },
+        { question: "Was war Luthers Haltung zur Bibel?", a: "Sie war irrelevant", b: "Sie war die ultimative Autorität", c: "Sie war fehlerhaft", d: "Sie war überbewertet", answer: "b" },
+        { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", a: "Keine", b: "Religiöse Einheit", c: "Politische und religiöse Unruhen", d: "Frieden und Stabilität", answer: "c" },
+        { question: "Was war Luthers Beitrag zur deutschen Literatur?", a: "Er schrieb Romane", b: "Er verfasste Gedichte", c: "Er übersetzte die Bibel", d: "Er schrieb Theaterstücke", answer: "c" },
+        { question: "Wann und wo starb Martin Luther?", a: "10. November 1483 in Rom", b: "31. Oktober 1517 in Wittenberg", c: "18. Februar 1546 in Eisleben", d: "1. Januar 1500 in Paris", answer: "c" }
     ];
 
     var currentQuestion = 0;
     var correctAnswers = 0;
+    var incorrectQuestions = [];
 
     function displayQuestion() {
-        document.getElementById("question").textContent = "Frage " + (currentQuestion + 1) + ": " + questions[currentQuestion].question;
-        var answersHTML = "";
-        var answers = ["a", "b", "c", "d"];
-        answers.forEach(function(option) {
-            answersHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
+        var questionHTML = "";
+        var options = ["a", "b", "c", "d"];
+        questionHTML += "<div class='question'>Frage " + (currentQuestion + 1) + ": " + questions[currentQuestion].question + "</div>";
+        options.forEach(function(option) {
+            questionHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
         });
-        document.getElementById("answers").innerHTML = answersHTML;
+        document.getElementById("question").innerHTML = questionHTML;
     }
 
     function checkAnswer() {
@@ -78,12 +100,9 @@
             return;
         }
         if (selectedAnswer.value === questions[currentQuestion].answer) {
-            document.getElementById("result").textContent = "Richtig!";
-            document.getElementById("result").className = "correct";
             correctAnswers++;
         } else {
-            document.getElementById("result").textContent = "Falsch! Die richtige Antwort ist: " + questions[currentQuestion][questions[currentQuestion].answer];
-            document.getElementById("result").className = "incorrect";
+            incorrectQuestions.push({ question: currentQuestion + 1, answer: selectedAnswer.value });
         }
         currentQuestion++;
         if (currentQuestion < questions.length) {
@@ -94,10 +113,34 @@
     }
 
     function showResults() {
-        document.getElementById("question").style.display = "none";
-        document.getElementById("answers").style.display = "none";
-        document.querySelector("button").style.display = "none";
-        document.getElementById("result").textContent = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+        var resultText = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.<br>";
+        resultText += "Fragen, die falsch beantwortet wurden:<br>";
+        incorrectQuestions.forEach(function(question) {
+            resultText += "Frage " + question.question + ": Ihre Antwort - " + question.answer.toUpperCase() + ", Richtige Antwort - " + questions[question.question - 1][questions[question.question - 1].answer] + "<br>";
+        });
+        document.getElementById("result").innerHTML = resultText;
+        document.getElementById("nextButton").style.display = "none";
+        document.getElementById("restartButton").style.display = "block";
+        document.getElementById("answers").innerHTML = ""; // Clear answers
+    }
+
+    function nextQuestion() {
+        displayQuestion();
+        document.getElementById("result").innerHTML = ""; // Clear result
+        document.getElementById("nextButton").style.display = "none";
+        document.getElementById("answers").innerHTML = ""; // Clear answers
+    }
+
+    function restartQuiz() {
+        currentQuestion = 0;
+        correctAnswers = 0;
+        incorrectQuestions = [];
+        questions.sort(function() {
+            return 0.5 - Math.random();
+        });
+        displayQuestion();
+        document.getElementById("result").innerHTML = ""; // Clear result
+        document.getElementById("restartButton").style.display = "none";
     }
 
     // Zufällige Anordnung der Fragen
