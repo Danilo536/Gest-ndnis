@@ -45,6 +45,7 @@ nav {
 
 .navbar-left {
     flex-grow: 1;
+    font-size: xxx-large;
 }
 .image{
     hight: 1000px;
