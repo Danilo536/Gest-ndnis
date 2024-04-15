@@ -88,6 +88,9 @@ nav {
 .content {
     padding: 20px;
 }
+h1{
+    font-size: xxx-large
+}
 
 /* Responsive Design */
 @media only screen and (max-width: 768px) {
