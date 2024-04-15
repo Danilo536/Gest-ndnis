@@ -80,7 +80,7 @@
 
 <nav class="navbar">
     <h1>Quiz</h1>
-    <button class="navbar-btn" onclick="restartQuiz()">Quiz neu starten</button>
+    <button class="navbar-btn" onclick="window.history.back()">Zurück</button>
 </nav>
 
 <div class="content">
@@ -131,9 +131,9 @@
         showQuestion(currentQuestion);
     }
 
-    function showQuestion(index) {
+    function showQuestion(index ) {
         var question = questions[index];
-        document.querySelector(".question ").textContent = question.question;
+        document.querySelector(".question").textContent = question.question;
         var optionsHtml = "";
         question.options.forEach(function(option, i) {
             optionsHtml += "<button class='option' onclick='checkAnswer(" + i + ")'>" + option[0] + "</button>";
