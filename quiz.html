@@ -168,4 +168,31 @@
     function showResult() {
         var resultText = "Ergebnis: " + correctAnswers + "/" + questions.length + "<br>";
         resultText += "Folgende Fragen waren falsch:<br>";
-        for (var i = 0
+        for (var i = 0; i < questions.length; i++) {
+            if (questions[i].correctAnswer !== userAnswers[i]) {
+                resultText += "Frage " + (i + 1) + ": " + questions[i].question + "<br>";
+                resultText += "Richtige Antwort: " + questions[i].options[questions[i].correctAnswer.charCodeAt(0) - 97] + "<br>";
+            }
+        }
+        document.getElementById("result").innerHTML = resultText;
+        document.getElementById("result").style.display = "block";
+        document.getElementById("showResultBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "block";
+    }
+
+    function displayQuestion() {
+        var question = questions[currentQuestionIndex];
+        document.querySelector(".question").innerHTML = question.question;
+        var optionsHtml = "";
+        for (var i = 0; i < question.options.length; i++) {
+            optionsHtml += "<button class='option' onclick='checkAnswer(\"" + String.fromCharCode(97 + i) + "\")'>" + question.options[i] + "</button>";
+        }
+        document.querySelector(".options").innerHTML = optionsHtml;
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("showResultBtn").style.display = "none";
+    }
+
+    displayQuestion();
+</script>
+</body>
+</html>
