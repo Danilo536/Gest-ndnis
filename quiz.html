@@ -58,7 +58,7 @@
         }
 
         .option:hover {
-            background-color: #444;
+            background-color: #666;
         }
 
         .correct {
@@ -111,7 +111,7 @@
             correctAnswer: "a"
         },
 
-	{
+        {
            question: "Frage:Was studierte er neben Theologie?",
            options: [
                 "a) Medizin",
@@ -119,20 +119,10 @@
                 "c) Er studierte nichts anderes",
                 "d) Philosopie"
             ],
-            correctAnswer: b
-	},
-
-	{
-            question: "Frage: Welche öffentliche Kritik äußerte Luther, die letztlich den Ablasshandel der katholischen Kirche betraf?",
-            options: [
-                "a) Er kritisierte die Papstwahl.",
-                "b) Seine Kritik bezog sich auf die Liturgie der Messe.",
-                "c) Luther kritisierte den Ablasshandel der katholischen Kirche öffentlich, insbesondere durch seine 95 Thesen.",
-                "d) Luther kritisierte die Heiligenverehrung der katholischen Kirche."
-            ],
-            correctAnswer: "c"
+            correctAnswer: "b"
         },
 
+        // Weitere Fragen hier hinzufügen...
     ];
 
     var currentQuestionIndex = 0;
@@ -159,7 +149,7 @@
         currentQuestionIndex++;
         if (currentQuestionIndex < questions.length) {
             displayQuestion();
-        } else {
+	}  else {
             document.getElementById("nextBtn").style.display = "none";
             document.getElementById("showResultBtn").style.display = "block";
         }
@@ -195,4 +185,4 @@
     displayQuestion();
 </script>
 </body>
-</html>
+</html> 
