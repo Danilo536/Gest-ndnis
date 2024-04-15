@@ -65,7 +65,7 @@ nav {
     color: white;
     text-decoration: none;
     padding: 0 10px;
-    font-size: xx-large;
+    font-size: x-large;
 }
 
 .navbar-link:hover {
@@ -89,7 +89,7 @@ nav {
 .content {
     padding: 20px;
 }
-h1{
+.se{
     font-size: xxx-large
 }
 
