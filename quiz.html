@@ -80,21 +80,14 @@
 
 <nav class="navbar">
     <h1>Quiz</h1>
-    <button class="navbar-btn" onclick="window.history.back()">Zurück</button>
+    <button class="navbar-btn" onclick="restartQuiz()">Quiz neu starten</button>
 </nav>
 
 <div class="content">
     <div class="quiz-container">
-        <h2 class="question">Frage: Wann wurde Martin Luther geboren?</h2>
-        <div class="options">
-            <button class="option" onclick="checkAnswer('a')">a) 10. November 1483</button>
-            <button class="option" onclick="checkAnswer('b')">b) 18. Februar 1546</button>
-            <button class="option" onclick="checkAnswer('c')">c) 31. Oktober 1517</button>
-            <button class="option" onclick="checkAnswer('d')">d) 1. Januar 1500</button>
-        </div>
+        <h2 class="question"></h2>
+        <div class="options"></div>
         <button id="nextBtn" class="quiz-btn" style="display: none;" onclick="nextQuestion()">Nächste Frage</button>
-        <button id="showResultBtn" class="quiz-btn" style="display: none;" onclick="showResult()">Auswertung anzeigen</button>
-        <button id="restartBtn" class="quiz-btn" style="display: none;" onclick="restartQuiz()">Quiz neu starten</button>
         <div id="result"></div>
     </div>
 </div>
@@ -102,171 +95,39 @@
 <script>
     var questions = [
         {
-            question: "Frage: Wann wurde Martin Luther geboren?",
+            question: "Welche historische Handlung markierte den Beginn der Reformation, an der Martin Luther maßgeblich beteiligt war?",
             options: [
-                "a) 10. November 1483",
-                "b) 18. Februar 1546",
-                "c) 31. Oktober 1517",
-                "d) 1. Januar 1500"
-            ],
-            correctAnswer: "a",
-            incorrectOptions: [
-                "Luthers Geburtsdatum ist unbekannt.",
-                "Er wurde am 1. Januar 1500 geboren.",
-                "Martin Luther wurde am 31. Oktober 1517 geboren."
+                ["Die 95 Thesen", true],
+                ["Luthers Buch “Die Freiheit eines Christenmenschen” war der Auslöser für die Reformation.", false],
+                ["Martin Luther startete die Reformation mit einer öffentlichen Rede vor dem Papst in Rom.", false],
+                ["Die Reformation begann mit einer Geheimkonferenz zwischen Martin Luther und anderen Gelehrten in Deutschland.", false]
             ]
         },
-
         {
-            question: "Frage: Was studierte er neben Theologie?",
+            question: "Welche Rolle spielte Martin Luther in der Reformation?",
             options: [
-                "a) Medizin",
-                "b) Jura",
-                "c) Er studierte nichts anderes",
-                "d) Philosophie"
-            ],
-            correctAnswer: "b",
-            incorrectOptions: [
-                "Er studierte Medizin.",
-                "Luther hatte keine akademische Ausbildung.",
-                "Martin Luther war ein Autodidakt und studierte nicht an einer Universität."
+                ["Eine zentrale Rolle", true],
+                ["Martin Luther war nur ein Randfiguren in der Reformation und hatte wenig Einfluss.", false],
+                ["Luther war in erster Linie ein politischer Aktivist und spielte keine bedeutende Rolle in der religiösen Reform.", false],
+                ["Martin Luther war nicht wirklich an der Reformation beteiligt und wurde erst später als Held stilisiert.", false]
             ]
         },
-
         {
-            question: "Frage: Welche historische Handlung markierte den Beginn der Reformation, an der Martin Luther maßgeblich beteiligt war?",
+            question: "Was kritisierte Luther öffentlich, was letztlich den Ablasshandel der katholischen Kirche betraf?",
             options: [
-                "a) Die 95 Thesen",
-                "b) Die Konfessionskriege",
-                "c) Der Augsburger Reichstag",
-                "d) Das Konzil von Trient"
-            ],
-            correctAnswer: "a",
-            incorrectOptions: [
-                "Luthers Buch 'Die Freiheit eines Christenmenschen' war der Auslöser für die Reformation.",
-                "Martin Luther startete die Reformation mit einer öffentlichen Rede vor dem Papst in Rom.",
-                "Die Reformation begann mit einer Geheimkonferenz zwischen Martin Luther und anderen Gelehrten in Deutschland."
+                ["Luther kritisierte den Ablasshandel der katholischen Kirche öffentlich, insbesondere durch seine 95 Thesen.", true],
+                ["Er kritisierte die Papstwahl.", false],
+                ["Seine Kritik bezog sich auf die Liturgie der Messe.", false],
+                ["Luther kritisierte die Heiligenverehrung der katholischen Kirche.", false]
             ]
         },
-
-        {
-            question: "Frage: Welche Rolle spielte Martin Luther in der Reformation?",
-            options: [
-                "a) Eine unterstützende Rolle",
-                "b) Eine zentrale Rolle",
-                "c) Eine neutrale Rolle",
-                "d) Keine Rolle"
-            ],
-            correctAnswer: "b",
-            incorrectOptions: [
-                "Martin Luther war nur ein Randfiguren in der Reformation und hatte wenig Einfluss.",
-                "Luther war in erster Linie ein politischer Aktivist und spielte keine bedeutende Rolle in der religiösen Reform.",
-                "Martin Luther war nicht wirklich an der Reformation beteiligt und wurde erst später als Held stilisiert."
-            ]
-        },
-
-        {
-            question: "Frage: Was kritisierte Luther öffentlich, was letztlich den Ablasshandel der katholischen Kirche betraf?",
-            options: [
-                "a) Die Rolle der Päpste",
-                "b) Die Liturgie der Messe",
-                "c) Die Bibelübersetzung",
-                "d) Den Ablasshandel"
-            ],
-            correctAnswer: "d",
-            incorrectOptions: [
-                "Luther kritisierte in erster Linie die Praxis der Ehe in der katholischen Kirche.",
-                "Martin Luther hatte keinerlei Probleme mit dem Ablasshandel der katholischen Kirche und unterstützte ihn sogar.",
-                "Luther war der Meinung, dass der Ablasshandel der katholischen Kirche eine positive Entwicklung für die Gläubigen sei."
-            ]
-        },
-
-        {
-            question: "Frage: Was betonte Martin Luther in Bezug auf die Erlösung und den Glauben?",
-            options: [
-                "a) Luther lehrte, dass gute Taten allein ausreichen, um ins Paradies zu gelangen.",
-                "b) Luther war der Meinung, dass Geldspenden an die Kirche der Schlüssel zur Erlösung seien.",
-                "c) Martin Luther betonte die Wichtigkeit von Ritualen und Zeremonien für die Rettung der Seele.",
-                "d) Luther betonte die zentrale Rolle des Glaubens in der Erlösung und argumentierte gegen die Idee, dass man sich durch Werke oder Zahlungen (wie den Ablass) das Heil verdienen könne."
-            ],
-            correctAnswer: "d",
-            incorrectOptions: [
-                "Luther lehrte, dass gute Taten allein ausreichen, um ins Paradies zu gelangen.",
-                "Luther war der Meinung, dass Geldspenden an die Kirche der Schlüssel zur Erlösung seien.",
-                "Martin Luther betonte die Wichtigkeit von Ritualen und Zeremonien für die Rettung der Seele."
-            ]
-        },
-
-        {
-            question: "Frage: Welche Ansicht vertrat Luther hinsichtlich der Autorität in Glaubensfragen?",
-            options: [
-                "a) Luther glaubte, dass die Kirche und der Papst die einzige Quelle für religiöse Wahrheit seien.",
-                "b) Luther war der Ansicht, dass jeder Mensch sein eigener Papst sein sollte und selbst über Glaubensfragen entscheiden könne.",
-                "c) Martin Luther lehrte, dass nur die Mönche und Priester das Recht hatten, die Bibel zu interpretieren.",
-                "d) Luther lehrte, dass die Bibel die ultimative Autorität für den Glauben und die Praxis sein sollte."
-            ],
-            correctAnswer: "d",
-            incorrectOptions: [
-                "Luther glaubte, dass die Kirche und der Papst die einzige Quelle für religiöse Wahrheit seien.",
-                "Luther war der Ansicht, dass jeder Mensch sein eigener Papst sein sollte und selbst über Glaubensfragen entscheiden könne.",
-                "Martin Luther lehrte, dass nur die Mönche und Priester das Recht hatten, die Bibel zu interpretieren."
-            ]
-        },
-
-        {
-            question: "Frage: Welche Folgen hatten Luthers Lehren auf Europa?",
-            options: [
-                "a) Die Lehren Luthers hatten kaum Auswirkungen auf Europa und wurden schnell vergessen.",
-                "b) Luthers Lehren führten zu einer sofortigen Einheit der europäischen Länder.",
-                "c) Europa war bereits zu Luthers Zeit religiös stabil, und seine Lehren hatten keinen Einfluss auf die politische Landschaft.",
-                "d) Luthers Lehren fanden weit verbreitete Zustimmung und lösten politische und religiöse Unruhen aus, die das soziale und politische Gefüge Europas beeinflussten."
-            ],
-            correctAnswer: "d",
-            incorrectOptions: [
-                "Die Lehren Luthers hatten kaum Auswirkungen auf Europa und wurden schnell vergessen.",
-                "Luthers Lehren führten zu einer sofortigen Einheit der europäischen Länder.",
-                "Europa war bereits zu Luthers Zeit religiös stabil, und seine Lehren hatten keinen Einfluss auf die politische Landschaft."
-            ]
-        },
-
-        {
-            question: "Frage: Welchen Einfluss hatte Luthers Übersetzung der Bibel ins Deutsche auf die deutsche Sprache und Literatur?",
-            options: [
-                "a) Luthers Übersetzung hatte keinen Einfluss auf die deutsche Sprache und Literatur, da sie kaum verbreitet wurde.",
-                "b) Luthers Übersetzung hatte nur einen geringen Einfluss auf die deutsche Sprache, da sie kaum gelesen wurde.",
-                "c) Luthers Übersetzung der Bibel ins Deutsche war eigentlich ein Misserfolg und hatte keinen Einfluss auf die Literatur.",
-                "d) Luthers Übersetzung der Bibel ins Deutsche hatte einen immensen Einfluss auf die deutsche Sprache und Literatur, da sie einem breiteren Publikum zugänglich wurde."
-            ],
-            correctAnswer: "d",
-            incorrectOptions: [
-                "Luthers Übersetzung hatte keinen Einfluss auf die deutsche Sprache und Literatur, da sie kaum verbreitet wurde.",
-                "Luthers Übersetzung hatte nur einen geringen Einfluss auf die deutsche Sprache, da sie kaum gelesen wurde.",
-                "Luthers Übersetzung der Bibel ins Deutsche war eigentlich ein Misserfolg und hatte keinen Einfluss auf die Literatur."
-            ]
-        },
-
-        {
-            question: "Frage: Welche öffentliche Kritik äußerte Luther, die letztlich den Ablasshandel der katholischen Kirche betraf?",
-            options: [
-                "a) Er kritisierte die Papstwahl.",
-                "b) Seine Kritik bezog sich auf die Liturgie der Messe.",
-                "c ) Luther kritisierte die Heiligenverehrung der katholischen Kirche.",
-                "d) Luther kritisierte den Ablasshandel der katholischen Kirche öffentlich, insbesondere durch seine 95 Thesen."
-            ],
-            correctAnswer: "d",
-            incorrectOptions: [
-                "Er kritisierte die Papstwahl.",
-                "Seine Kritik bezog sich auf die Liturgie der Messe.",
-                "Luther kritisierte die Heiligenverehrung der katholischen Kirche."
-            ]
-        }
+        // Weitere Fragen hier einfügen...
     ];
 
     var currentQuestion = 0;
     var score = 0;
 
     function startQuiz() {
-        document.getElementById("nextBtn").style.display = "inline-block";
         showQuestion(currentQuestion);
     }
 
@@ -275,63 +136,63 @@
         document.querySelector(".question").textContent = question.question;
         var optionsHtml = "";
         for (var i = 0; i < question.options.length; i++) {
-            optionsHtml += "<button class='option' onclick='checkAnswer(\"" + question.options[i][0] + "\")'>" + question.options[i] + "</button>";
+            optionsHtml += "<button class='option' data-answer='" + question.options[i][1] + "' onclick='checkAnswer(" + i + ")'>" + question.options[i][0] + "</button>";
         }
         document.querySelector(".options").innerHTML = optionsHtml;
     }
 
-    function checkAnswer(option) {
+    function checkAnswer(optionIndex) {
         var question = questions[currentQuestion];
-        if (option === question.correctAnswer) {
+        var selectedOption = question.options[optionIndex];
+        if (selectedOption[1]) {
             score++;
-            document.querySelector(".option[data-answer='" + question.correctAnswer + "']").classList.add("correct");
+            document.querySelector(".option:nth-child(" + (optionIndex + 1) + ")").classList.add("correct");
         } else {
-            document.querySelector(".option[data-answer='" + option + "']").classList.add("wrong");
-            document.querySelector(".option[data-answer='" + question.correctAnswer + "']").classList.add("correct");
+            document.querySelector(".option:nth-child(" + (optionIndex + 1) + ")").classList.add("wrong");
         }
-        document.querySelectorAll(".option").forEach(function (button) {
-            button.disabled = true;
+        document.querySelectorAll(".option").forEach(function(option) {
+            option.disabled = true;
         });
-        document.getElementById("nextBtn").style.display = "inline-block";
+        document.getElementById("nextBtn").style.display = "block";
     }
 
     function nextQuestion() {
         currentQuestion++;
         if (currentQuestion < questions.length) {
             showQuestion(currentQuestion);
-            document.querySelectorAll(".option").forEach(function (button) {
-                button.classList.remove("correct", "wrong");
-                button.disabled = false;
-            });
             document.getElementById("nextBtn").style.display = "none";
+            document.querySelectorAll(".option").forEach(function(option) {
+                option.classList.remove("correct", "wrong");
+                option.disabled = false;
+            });
         } else {
             showResult();
         }
     }
 
     function showResult() {
-        var resultHtml = "<h2>Ergebnis:</h2>";
-        resultHtml += "<p>Du hast " + score + " von " + questions.length + " Fragen richtig beantwortet.</p>";
-        document.getElementById("result").innerHTML = resultHtml;
+        var resultText = "Ergebnis: " + score + "/" + questions.length + "<br>";
+        resultText += "Folgende Fragen waren falsch:<br>";
+        for (var i = 0; i < questions.length; i++) {
+            if (!questions[i].options.some(function(option) { return option[1]; })) {
+                resultText += "Frage " + (i + 1) + ": " + questions[i].question + "<br>";
+            }
+        }
+        document.getElementById("result").innerHTML = resultText;
         document.getElementById("result").style.display = "block";
-        document.getElementById("restartBtn").style.display = "inline-block";
-        document.getElementById("showResultBtn").style.display = "none";
-        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("nextBtn").textContent = "Quiz neu starten";
+        document.getElementById("nextBtn").setAttribute("onclick", "restartQuiz()");
     }
 
     function restartQuiz() {
         currentQuestion = 0;
         score = 0;
+        showQuestion(currentQuestion);
         document.getElementById("result").style.display = "none";
-        document.getElementById("restartBtn").style.display = "none";
-        document.getElementById("showResultBtn").style.display = "inline-block";
-        startQuiz();
+        document.getElementById("nextBtn").style.display = "none";
     }
 
-    window.onload = function () {
-        startQuiz();
-    };
+    startQuiz();
 </script>
-
 </body>
 </html>
