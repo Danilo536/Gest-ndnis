@@ -112,17 +112,81 @@
         },
 
         {
-           question: "Frage:Was studierte er neben Theologie?",
+           question: "Frage: Was studierte Martin Luther neben Theologie?",
            options: [
                 "a) Medizin",
                 "b) Jura",
                 "c) Er studierte nichts anderes",
-                "d) Philosopie"
+                "d) Philosophie"
             ],
             correctAnswer: "b"
         },
 
-        // Weitere Fragen hier hinzufügen...
+        {
+           question: "Frage: Was kritisierte Luther öffentlich, was letztlich den Ablasshandel der katholischen Kirche betraf?",
+           options: [
+                "a) Die Papstwahl",
+                "b) Die Bibelübersetzungen",
+                "c) Die Unfehlbarkeit des Papstes",
+                "d) Die Reichsverfassung"
+            ],
+            correctAnswer: "c"
+        },
+
+        {
+           question: "Frage: Was betonte Martin Luther in Bezug auf die Erlösung und den Glauben?",
+           options: [
+                "a) Die Bedeutung der Heiligen Schriften",
+                "b) Die Rolle der Tradition",
+                "c) Die Macht der Heiligen",
+                "d) Die Anbetung von Bildern"
+            ],
+            correctAnswer: "a"
+        },
+
+        {
+           question: "Frage: Welche Ansicht vertrat Luther hinsichtlich der Autorität in Glaubensfragen?",
+           options: [
+                "a) Die Autorität des Papstes",
+                "b) Die Autorität der Tradition",
+                "c) Die Autorität der Kirche",
+                "d) Die Autorität der Bibel"
+            ],
+            correctAnswer: "d"
+        },
+
+        {
+           question: "Frage: Welche Folgen hatten Luthers Lehren auf Europa?",
+           options: [
+                "a) Einheit und Stabilität",
+                "b) Politische und religiöse Unruhen",
+                "c) Kulturelle Vereinheitlichung",
+                "d) Rückkehr zum Katholizismus"
+            ],
+            correctAnswer: "b"
+        },
+
+        {
+           question: "Frage: Welchen Einfluss hatte Luthers Übersetzung der Bibel ins Deutsche auf die deutsche Sprache und Literatur?",
+           options: [
+                "a) Wenig bis gar keinen Einfluss",
+                "b) Verlust der deutschen Kultur",
+                "c) Stärkung der lateinischen Sprache",
+                "d) Großen Einfluss auf die deutsche Sprache und Literatur"
+            ],
+            correctAnswer: "d"
+        },
+
+        {
+           question: "Frage: Wann und wo verstarb Martin Luther?",
+           options: [
+                "a) 10. November 1546 in Eisleben",
+                "b) 18. Februar 1546 in Wittenberg",
+                "c) 31. Oktober 1517 in Rom",
+                "d) 1. Januar 1500 in Erfurt"
+            ],
+            correctAnswer: "a"
+        }
     ];
 
     var currentQuestionIndex = 0;
@@ -149,8 +213,10 @@
         currentQuestionIndex++;
         if (currentQuestionIndex < questions.length) {
             displayQuestion();
-	}  else {
+        } else {
             document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("showResultBtn").innerHTML = "Quiz neu starten";
+            document.getElementById("showResultBtn").setAttribute("onclick", "restartQuiz()");
             document.getElementById("showResultBtn").style.display = "block";
         }
     }
@@ -182,7 +248,20 @@
         document.getElementById("showResultBtn").style.display = "none";
     }
 
-    displayQuestion();
+    function restartQuiz() {
+        currentQuestionIndex = 0;
+        correctAnswers = 0;
+        userAnswers = [];
+        displayQuestion();
+        document.getElementById("result").style.display = "none";
+        document.getElementById("nextBtn”).style.display = “none”;
+document.getElementById(“showResultBtn”).innerHTML = “Auswertung anzeigen”;
+document.getElementById(“showResultBtn”).setAttribute(“onclick”, “showResult()”);
+document.getElementById(“showResultBtn”).style.display = “none”;
+}
+
+displayQuestion();
+
 </script>
 </body>
-</html> 
+</html>
