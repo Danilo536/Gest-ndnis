@@ -1,156 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .quiz-container {
             background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .quiz-container {
+            max-width: 80%;
+            margin: 20px auto;
             padding: 20px;
+            background-color: #555;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #222;
+            padding: 10px 20px;
+        }
+
+        .navbar-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         .question {
             margin-bottom: 20px;
         }
-        .answers {
-            margin-bottom: 20px;
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .answer {
-            margin-right: 10px;
+
+        .option {
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
         }
+
+        .option:hover {
+            background-color: #444;
+        }
+
+        .correct {
+            background-color: #4caf50;
+        }
+
+        .wrong {
+            background-color: #f44336;
+        }
+
         #result {
-            margin-bottom: 20px;
-        }
-        #result.correct {
-            color: green;
-        }
-        #result.incorrect {
-            color: red;
-        }
-        #nextButton {
-            display: none;
-        }
-        #restartButton {
+            margin-top: 20px;
+            text-align: left;
             display: none;
         }
     </style>
 </head>
 <body>
 
-<div class="quiz-container">
-    <div class="question" id="question"></div>
+<nav class="navbar">
+    <h1>Quiz</h1>
+    <button class="navbar-btn" onclick="window.history.back()">Zurück</button>
+</nav>
 
-    <div class="answers" id="answers"></div>
-
-    <button onclick="checkAnswer()">Weiter</button>
-
-    <button id="nextButton" onclick="nextQuestion()">Nächste Frage</button>
-
-    <div id="result"></div>
-
-    <button id="restartButton" onclick="restartQuiz()">Quiz neu starten</button>
+<div class="content">
+    <div class="quiz-container">
+        <h2 class="question">Frage: Wann wurde Martin Luther geboren?</h2>
+        <div class="options">
+            <button class="option" onclick="checkAnswer('a')">a) 10. November 1483</button>
+            <button class="option" onclick="checkAnswer('b')">b) 18. Februar 1546</button>
+            <button class="option" onclick="checkAnswer('c')">c) 31. Oktober 1517</button>
+            <button class="option" onclick="checkAnswer('d')">d) 1. Januar 1500</button>
+        </div>
+        <button id="nextBtn" class="quiz-btn" style="display: none;" onclick="nextQuestion()">Nächste Frage</button>
+        <button id="showResultBtn" class="quiz-btn" style="display: none;" onclick="showResult()">Auswertung anzeigen</button>
+        <div id="result"></div>
+    </div>
 </div>
 
 <script>
-    // Array mit Fragen und Antworten
     var questions = [
-        { question: "Wann wurde Martin Luther geboren?", a: "10. November 1483", b: "18. Februar 1546", c: "31. Oktober 1517", d: "1. Januar 1500", answer: "a" },
-        { question: "Welche Ausbildung hat Martin Luther genossen?", a: "Medizin", b: "Jura", c: "Theologie", d: "Philosophie", answer: "b" },
-        { question: "Wo trat Martin Luther als Mönch ein?", a: "Kloster in Wittenberg", b: "Kloster in Erfurt", c: "Kloster in Rom", d: "Kloster in Paris", answer: "b" },
-        { question: "Wo nagelte Luther seine 95 Thesen?", a: "Dom zu Köln", b: "Schlosskirche in Wittenberg", c: "Petersdom in Rom", d: "Westminster Abbey in London", answer: "b" },
-        { question: "Was war Luthers Kritikpunkt am Ablasshandel?", a: "Er war zu teuer", b: "Er war ineffektiv", c: "Er war ungerecht", d: "Er war unmoralisch", answer: "d" },
-        { question: "Was betonte Luther in Bezug auf die Erlösung?", a: "Werke und Zahlungen", b: "Glauben", c: "Buße", d: "Zeremonien", answer: "b" },
-        { question: "Was war Luthers Haltung zur Bibel?", a: "Sie war irrelevant", b: "Sie war die ultimative Autorität", c: "Sie war fehlerhaft", d: "Sie war überbewertet", answer: "b" },
-        { question: "Welche politischen Auswirkungen hatten Luthers Lehren?", a: "Keine", b: "Religiöse Einheit", c: "Politische und religiöse Unruhen", d: "Frieden und Stabilität", answer: "c" },
-        { question: "Was war Luthers Beitrag zur deutschen Literatur?", a: "Er schrieb Romane", b: "Er verfasste Gedichte", c: "Er übersetzte die Bibel", d: "Er schrieb Theaterstücke", answer: "c" },
-        { question: "Wann und wo starb Martin Luther?", a: "10. November 1483 in Rom", b: "31. Oktober 1517 in Wittenberg", c: "18. Februar 1546 in Eisleben", d: "1. Januar 1500 in Paris", answer: "c" }
+        {
+            question: "Frage: Wann wurde Martin Luther geboren?",
+            options: [
+                "a) 10. November 1483",
+                "b) 18. Februar 1546",
+                "c) 31. Oktober 1517",
+                "d) 1. Januar 1500"
+            ],
+            correctAnswer: "a"
+        },
+
+	{
+           question: "Frage:Was studierte er neben Theologie?",
+           options: [
+                "a) Medizin",
+                "b) Jura",
+                "c) Er studierte nichts anderes",
+                "d) Philosopie"
+            ],
+            correctAnswer: b
+	},
+
+	{
+            question: "Frage: Welche öffentliche Kritik äußerte Luther, die letztlich den Ablasshandel der katholischen Kirche betraf?",
+            options: [
+                "a) Er kritisierte die Papstwahl.",
+                "b) Seine Kritik bezog sich auf die Liturgie der Messe.",
+                "c) Luther kritisierte den Ablasshandel der katholischen Kirche öffentlich, insbesondere durch seine 95 Thesen.",
+                "d) Luther kritisierte die Heiligenverehrung der katholischen Kirche."
+            ],
+            correctAnswer: "c"
+        },
+
     ];
 
-    var currentQuestion = 0;
+    var currentQuestionIndex = 0;
     var correctAnswers = 0;
-    var incorrectQuestions = [];
+    var userAnswers = [];
 
-    function displayQuestion() {
-        var questionHTML = "";
-        var options = ["a", "b", "c", "d"];
-        questionHTML += "<div class='question'>Frage " + (currentQuestion + 1) + ": " + questions[currentQuestion].question + "</div>";
-        options.forEach(function(option) {
-            questionHTML += '<label class="answer"><input type="radio" name="answer" value="' + option + '"> ' + option + ') ' + questions[currentQuestion][option] + '</label>';
-        });
-        document.getElementById("question").innerHTML = questionHTML;
-    }
-
-    function checkAnswer() {
-        var selectedAnswer = document.querySelector('input[name="answer"]:checked');
-        if (!selectedAnswer) {
-            alert("Bitte wählen Sie eine Antwort aus.");
-            return;
+    function checkAnswer(answer) {
+        userAnswers[currentQuestionIndex] = answer;
+        var options = document.querySelectorAll('.option');
+        for (var i = 0; i < options.length; i++) {
+            options[i].classList.remove('correct', 'wrong');
         }
-        if (selectedAnswer.value === questions[currentQuestion].answer) {
+        if (answer === questions[currentQuestionIndex].correctAnswer) {
             correctAnswers++;
+            document.querySelector('.option:nth-child(' + (answer.charCodeAt(0) - 96) + ')').classList.add('correct');
         } else {
-            incorrectQuestions.push({ question: currentQuestion + 1, answer: selectedAnswer.value });
+            document.querySelector('.option:nth-child(' + (answer.charCodeAt(0) - 96) + ')').classList.add('wrong');
         }
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
-            displayQuestion();
-        } else {
-            showResults();
-        }
-    }
-
-    function showResults() {
-        var resultText = "Sie haben " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.<br>";
-        resultText += "Fragen, die falsch beantwortet wurden:<br>";
-        incorrectQuestions.forEach(function(question) {
-            resultText += "Frage " + question.question + ": Ihre Antwort - " + question.answer.toUpperCase() + ", Richtige Antwort - " + questions[question.question - 1][questions[question.question - 1].answer] + "<br>";
-        });
-        document.getElementById("result").innerHTML = resultText;
-        document.getElementById("nextButton").style.display = "none";
-        document.getElementById("restartButton").style.display = "block";
-        document.getElementById("answers").innerHTML = ""; // Clear answers
+        document.getElementById("nextBtn").style.display = "block";
+        document.getElementById("showResultBtn").style.display = "none";
     }
 
     function nextQuestion() {
-        displayQuestion();
-        document.getElementById("result").innerHTML = ""; // Clear result
-        document.getElementById("nextButton").style.display = "none";
-        document.getElementById("answers").innerHTML = ""; // Clear answers
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+        } else {
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("showResultBtn").style.display = "block";
+        }
     }
 
-    function restartQuiz() {
-        currentQuestion = 0;
-        correctAnswers = 0;
-        incorrectQuestions = [];
-        questions.sort(function() {
-            return 0.5 - Math.random();
-        });
-        displayQuestion();
-        document.getElementById("result").innerHTML = ""; // Clear result
-        document.getElementById("restartButton").style.display = "none";
-    }
-
-    // Zufällige Anordnung der Fragen
-    questions.sort(function() {
-        return 0.5 - Math.random();
-    });
-
-    // Anzeige der ersten Frage
-    displayQuestion();
-</script>
-
-</body>
-</html>
+    function showResult() {
+        var resultText = "Ergebnis: " + correctAnswers + "/" + questions.length + "<br>";
+        resultText += "Folgende Fragen waren falsch:<br>";
+        for (var i = 0
