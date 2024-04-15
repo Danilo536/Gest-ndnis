@@ -58,7 +58,7 @@
         }
 
         .option:hover {
-            background-color: #666;
+            background-color: #444;
         }
 
         .correct {
@@ -94,6 +94,7 @@
         </div>
         <button id="nextBtn" class="quiz-btn" style="display: none;" onclick="nextQuestion()">Nächste Frage</button>
         <button id="showResultBtn" class="quiz-btn" style="display: none;" onclick="showResult()">Auswertung anzeigen</button>
+        <button id="restartBtn" class="quiz-btn" style="display: none;" onclick="restartQuiz()">Quiz neu starten</button>
         <div id="result"></div>
     </div>
 </div>
@@ -108,160 +109,229 @@
                 "c) 31. Oktober 1517",
                 "d) 1. Januar 1500"
             ],
-            correctAnswer: "a"
+            correctAnswer: "a",
+            incorrectOptions: [
+                "Luthers Geburtsdatum ist unbekannt.",
+                "Er wurde am 1. Januar 1500 geboren.",
+                "Martin Luther wurde am 31. Oktober 1517 geboren."
+            ]
         },
 
         {
-           question: "Frage: Was studierte Martin Luther neben Theologie?",
-           options: [
+            question: "Frage: Was studierte er neben Theologie?",
+            options: [
                 "a) Medizin",
                 "b) Jura",
                 "c) Er studierte nichts anderes",
                 "d) Philosophie"
             ],
-            correctAnswer: "b"
+            correctAnswer: "b",
+            incorrectOptions: [
+                "Er studierte Medizin.",
+                "Luther hatte keine akademische Ausbildung.",
+                "Martin Luther war ein Autodidakt und studierte nicht an einer Universität."
+            ]
         },
 
         {
-           question: "Frage: Was kritisierte Luther öffentlich, was letztlich den Ablasshandel der katholischen Kirche betraf?",
-           options: [
-                "a) Die Papstwahl",
-                "b) Die Bibelübersetzungen",
-                "c) Die Unfehlbarkeit des Papstes",
-                "d) Die Reichsverfassung"
+            question: "Frage: Welche historische Handlung markierte den Beginn der Reformation, an der Martin Luther maßgeblich beteiligt war?",
+            options: [
+                "a) Die 95 Thesen",
+                "b) Die Konfessionskriege",
+                "c) Der Augsburger Reichstag",
+                "d) Das Konzil von Trient"
             ],
-            correctAnswer: "c"
+            correctAnswer: "a",
+            incorrectOptions: [
+                "Luthers Buch 'Die Freiheit eines Christenmenschen' war der Auslöser für die Reformation.",
+                "Martin Luther startete die Reformation mit einer öffentlichen Rede vor dem Papst in Rom.",
+                "Die Reformation begann mit einer Geheimkonferenz zwischen Martin Luther und anderen Gelehrten in Deutschland."
+            ]
         },
 
         {
-           question: "Frage: Was betonte Martin Luther in Bezug auf die Erlösung und den Glauben?",
-           options: [
-                "a) Die Bedeutung der Heiligen Schriften",
-                "b) Die Rolle der Tradition",
-                "c) Die Macht der Heiligen",
-                "d) Die Anbetung von Bildern"
+            question: "Frage: Welche Rolle spielte Martin Luther in der Reformation?",
+            options: [
+                "a) Eine unterstützende Rolle",
+                "b) Eine zentrale Rolle",
+                "c) Eine neutrale Rolle",
+                "d) Keine Rolle"
             ],
-            correctAnswer: "a"
+            correctAnswer: "b",
+            incorrectOptions: [
+                "Martin Luther war nur ein Randfiguren in der Reformation und hatte wenig Einfluss.",
+                "Luther war in erster Linie ein politischer Aktivist und spielte keine bedeutende Rolle in der religiösen Reform.",
+                "Martin Luther war nicht wirklich an der Reformation beteiligt und wurde erst später als Held stilisiert."
+            ]
         },
 
         {
-           question: "Frage: Welche Ansicht vertrat Luther hinsichtlich der Autorität in Glaubensfragen?",
-           options: [
-                "a) Die Autorität des Papstes",
-                "b) Die Autorität der Tradition",
-                "c) Die Autorität der Kirche",
-                "d) Die Autorität der Bibel"
+            question: "Frage: Was kritisierte Luther öffentlich, was letztlich den Ablasshandel der katholischen Kirche betraf?",
+            options: [
+                "a) Die Rolle der Päpste",
+                "b) Die Liturgie der Messe",
+                "c) Die Bibelübersetzung",
+                "d) Den Ablasshandel"
             ],
-            correctAnswer: "d"
+            correctAnswer: "d",
+            incorrectOptions: [
+                "Luther kritisierte in erster Linie die Praxis der Ehe in der katholischen Kirche.",
+                "Martin Luther hatte keinerlei Probleme mit dem Ablasshandel der katholischen Kirche und unterstützte ihn sogar.",
+                "Luther war der Meinung, dass der Ablasshandel der katholischen Kirche eine positive Entwicklung für die Gläubigen sei."
+            ]
         },
 
         {
-           question: "Frage: Welche Folgen hatten Luthers Lehren auf Europa?",
-           options: [
-                "a) Einheit und Stabilität",
-                "b) Politische und religiöse Unruhen",
-                "c) Kulturelle Vereinheitlichung",
-                "d) Rückkehr zum Katholizismus"
+            question: "Frage: Was betonte Martin Luther in Bezug auf die Erlösung und den Glauben?",
+            options: [
+                "a) Luther lehrte, dass gute Taten allein ausreichen, um ins Paradies zu gelangen.",
+                "b) Luther war der Meinung, dass Geldspenden an die Kirche der Schlüssel zur Erlösung seien.",
+                "c) Martin Luther betonte die Wichtigkeit von Ritualen und Zeremonien für die Rettung der Seele.",
+                "d) Luther betonte die zentrale Rolle des Glaubens in der Erlösung und argumentierte gegen die Idee, dass man sich durch Werke oder Zahlungen (wie den Ablass) das Heil verdienen könne."
             ],
-            correctAnswer: "b"
+            correctAnswer: "d",
+            incorrectOptions: [
+                "Luther lehrte, dass gute Taten allein ausreichen, um ins Paradies zu gelangen.",
+                "Luther war der Meinung, dass Geldspenden an die Kirche der Schlüssel zur Erlösung seien.",
+                "Martin Luther betonte die Wichtigkeit von Ritualen und Zeremonien für die Rettung der Seele."
+            ]
         },
 
         {
-           question: "Frage: Welchen Einfluss hatte Luthers Übersetzung der Bibel ins Deutsche auf die deutsche Sprache und Literatur?",
-           options: [
-                "a) Wenig bis gar keinen Einfluss",
-                "b) Verlust der deutschen Kultur",
-                "c) Stärkung der lateinischen Sprache",
-                "d) Großen Einfluss auf die deutsche Sprache und Literatur"
+            question: "Frage: Welche Ansicht vertrat Luther hinsichtlich der Autorität in Glaubensfragen?",
+            options: [
+                "a) Luther glaubte, dass die Kirche und der Papst die einzige Quelle für religiöse Wahrheit seien.",
+                "b) Luther war der Ansicht, dass jeder Mensch sein eigener Papst sein sollte und selbst über Glaubensfragen entscheiden könne.",
+                "c) Martin Luther lehrte, dass nur die Mönche und Priester das Recht hatten, die Bibel zu interpretieren.",
+                "d) Luther lehrte, dass die Bibel die ultimative Autorität für den Glauben und die Praxis sein sollte."
             ],
-            correctAnswer: "d"
+            correctAnswer: "d",
+            incorrectOptions: [
+                "Luther glaubte, dass die Kirche und der Papst die einzige Quelle für religiöse Wahrheit seien.",
+                "Luther war der Ansicht, dass jeder Mensch sein eigener Papst sein sollte und selbst über Glaubensfragen entscheiden könne.",
+                "Martin Luther lehrte, dass nur die Mönche und Priester das Recht hatten, die Bibel zu interpretieren."
+            ]
         },
 
         {
-           question: "Frage: Wann und wo verstarb Martin Luther?",
-           options: [
-                "a) 10. November 1546 in Eisleben",
-                "b) 18. Februar 1546 in Wittenberg",
-                "c) 31. Oktober 1517 in Rom",
-                "d) 1. Januar 1500 in Erfurt"
+            question: "Frage: Welche Folgen hatten Luthers Lehren auf Europa?",
+            options: [
+                "a) Die Lehren Luthers hatten kaum Auswirkungen auf Europa und wurden schnell vergessen.",
+                "b) Luthers Lehren führten zu einer sofortigen Einheit der europäischen Länder.",
+                "c) Europa war bereits zu Luthers Zeit religiös stabil, und seine Lehren hatten keinen Einfluss auf die politische Landschaft.",
+                "d) Luthers Lehren fanden weit verbreitete Zustimmung und lösten politische und religiöse Unruhen aus, die das soziale und politische Gefüge Europas beeinflussten."
             ],
-            correctAnswer: "a"
+            correctAnswer: "d",
+            incorrectOptions: [
+                "Die Lehren Luthers hatten kaum Auswirkungen auf Europa und wurden schnell vergessen.",
+                "Luthers Lehren führten zu einer sofortigen Einheit der europäischen Länder.",
+                "Europa war bereits zu Luthers Zeit religiös stabil, und seine Lehren hatten keinen Einfluss auf die politische Landschaft."
+            ]
+        },
+
+        {
+            question: "Frage: Welchen Einfluss hatte Luthers Übersetzung der Bibel ins Deutsche auf die deutsche Sprache und Literatur?",
+            options: [
+                "a) Luthers Übersetzung hatte keinen Einfluss auf die deutsche Sprache und Literatur, da sie kaum verbreitet wurde.",
+                "b) Luthers Übersetzung hatte nur einen geringen Einfluss auf die deutsche Sprache, da sie kaum gelesen wurde.",
+                "c) Luthers Übersetzung der Bibel ins Deutsche war eigentlich ein Misserfolg und hatte keinen Einfluss auf die Literatur.",
+                "d) Luthers Übersetzung der Bibel ins Deutsche hatte einen immensen Einfluss auf die deutsche Sprache und Literatur, da sie einem breiteren Publikum zugänglich wurde."
+            ],
+            correctAnswer: "d",
+            incorrectOptions: [
+                "Luthers Übersetzung hatte keinen Einfluss auf die deutsche Sprache und Literatur, da sie kaum verbreitet wurde.",
+                "Luthers Übersetzung hatte nur einen geringen Einfluss auf die deutsche Sprache, da sie kaum gelesen wurde.",
+                "Luthers Übersetzung der Bibel ins Deutsche war eigentlich ein Misserfolg und hatte keinen Einfluss auf die Literatur."
+            ]
+        },
+
+        {
+            question: "Frage: Welche öffentliche Kritik äußerte Luther, die letztlich den Ablasshandel der katholischen Kirche betraf?",
+            options: [
+                "a) Er kritisierte die Papstwahl.",
+                "b) Seine Kritik bezog sich auf die Liturgie der Messe.",
+                "c ) Luther kritisierte die Heiligenverehrung der katholischen Kirche.",
+                "d) Luther kritisierte den Ablasshandel der katholischen Kirche öffentlich, insbesondere durch seine 95 Thesen."
+            ],
+            correctAnswer: "d",
+            incorrectOptions: [
+                "Er kritisierte die Papstwahl.",
+                "Seine Kritik bezog sich auf die Liturgie der Messe.",
+                "Luther kritisierte die Heiligenverehrung der katholischen Kirche."
+            ]
         }
     ];
 
-    var currentQuestionIndex = 0;
-    var correctAnswers = 0;
-    var userAnswers = [];
+    var currentQuestion = 0;
+    var score = 0;
 
-    function checkAnswer(answer) {
-        userAnswers[currentQuestionIndex] = answer;
-        var options = document.querySelectorAll('.option');
-        for (var i = 0; i < options.length; i++) {
-            options[i].classList.remove('correct', 'wrong');
+    function startQuiz() {
+        document.getElementById("nextBtn").style.display = "inline-block";
+        showQuestion(currentQuestion);
+    }
+
+    function showQuestion(index) {
+        var question = questions[index];
+        document.querySelector(".question").textContent = question.question;
+        var optionsHtml = "";
+        for (var i = 0; i < question.options.length; i++) {
+            optionsHtml += "<button class='option' onclick='checkAnswer(\"" + question.options[i][0] + "\")'>" + question.options[i] + "</button>";
         }
-        if (answer === questions[currentQuestionIndex].correctAnswer) {
-            correctAnswers++;
-            document.querySelector('.option:nth-child(' + (answer.charCodeAt(0) - 96) + ')').classList.add('correct');
+        document.querySelector(".options").innerHTML = optionsHtml;
+    }
+
+    function checkAnswer(option) {
+        var question = questions[currentQuestion];
+        if (option === question.correctAnswer) {
+            score++;
+            document.querySelector(".option[data-answer='" + question.correctAnswer + "']").classList.add("correct");
         } else {
-            document.querySelector('.option:nth-child(' + (answer.charCodeAt(0) - 96) + ')').classList.add('wrong');
+            document.querySelector(".option[data-answer='" + option + "']").classList.add("wrong");
+            document.querySelector(".option[data-answer='" + question.correctAnswer + "']").classList.add("correct");
         }
-        document.getElementById("nextBtn").style.display = "block";
-        document.getElementById("showResultBtn").style.display = "none";
+        document.querySelectorAll(".option").forEach(function (button) {
+            button.disabled = true;
+        });
+        document.getElementById("nextBtn").style.display = "inline-block";
     }
 
     function nextQuestion() {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
-            displayQuestion();
-        } else {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            showQuestion(currentQuestion);
+            document.querySelectorAll(".option").forEach(function (button) {
+                button.classList.remove("correct", "wrong");
+                button.disabled = false;
+            });
             document.getElementById("nextBtn").style.display = "none";
-            document.getElementById("showResultBtn").innerHTML = "Quiz neu starten";
-            document.getElementById("showResultBtn").setAttribute("onclick", "restartQuiz()");
-            document.getElementById("showResultBtn").style.display = "block";
+        } else {
+            showResult();
         }
     }
 
     function showResult() {
-        var resultText = "Ergebnis: " + correctAnswers + "/" + questions.length + "<br>";
-        resultText += "Folgende Fragen waren falsch:<br>";
-        for (var i = 0; i < questions.length; i++) {
-            if (questions[i].correctAnswer !== userAnswers[i]) {
-                resultText += "Frage " + (i + 1) + ": " + questions[i].question + "<br>";
-                resultText += "Richtige Antwort: " + questions[i].options[questions[i].correctAnswer.charCodeAt(0) - 97] + "<br>";
-            }
-        }
-        document.getElementById("result").innerHTML = resultText;
+        var resultHtml = "<h2>Ergebnis:</h2>";
+        resultHtml += "<p>Du hast " + score + " von " + questions.length + " Fragen richtig beantwortet.</p>";
+        document.getElementById("result").innerHTML = resultHtml;
         document.getElementById("result").style.display = "block";
+        document.getElementById("restartBtn").style.display = "inline-block";
         document.getElementById("showResultBtn").style.display = "none";
-        document.getElementById("nextBtn").style.display = "block";
-    }
-
-    function displayQuestion() {
-        var question = questions[currentQuestionIndex];
-        document.querySelector(".question").innerHTML = question.question;
-        var optionsHtml = "";
-        for (var i = 0; i < question.options.length; i++) {
-            optionsHtml += "<button class='option' onclick='checkAnswer(\"" + String.fromCharCode(97 + i) + "\")'>" + question.options[i] + "</button>";
-        }
-        document.querySelector(".options").innerHTML = optionsHtml;
         document.getElementById("nextBtn").style.display = "none";
-        document.getElementById("showResultBtn").style.display = "none";
     }
 
     function restartQuiz() {
-        currentQuestionIndex = 0;
-        correctAnswers = 0;
-        userAnswers = [];
-        displayQuestion();
+        currentQuestion = 0;
+        score = 0;
         document.getElementById("result").style.display = "none";
-        document.getElementById("nextBtn”).style.display = “none”;
-document.getElementById(“showResultBtn”).innerHTML = “Auswertung anzeigen”;
-document.getElementById(“showResultBtn”).setAttribute(“onclick”, “showResult()”);
-document.getElementById(“showResultBtn”).style.display = “none”;
-}
+        document.getElementById("restartBtn").style.display = "none";
+        document.getElementById("showResultBtn").style.display = "inline-block";
+        startQuiz();
+    }
 
-displayQuestion();
-
+    window.onload = function () {
+        startQuiz();
+    };
 </script>
+
 </body>
 </html>
