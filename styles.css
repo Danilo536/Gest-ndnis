@@ -31,6 +31,8 @@ nav {
 
 .navbar-left {
     font-size: x-large;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-right {
@@ -49,7 +51,7 @@ nav {
 }
 
 .dropdown {
-    display: none;
+    position: relative;
 }
 
 .dropdown-symbol {
@@ -60,15 +62,15 @@ nav {
 
 .dropdown-content {
     display: none;
-    flex-direction: column;
-    background-color: #000;
     position: absolute;
-    top: 50px;
+    background-color: #000;
+    top: 100%;
     right: 0;
     z-index: 1;
 }
 
 .dropdown-content a {
+    display: block;
     padding: 10px;
 }
 
@@ -77,7 +79,7 @@ nav {
 }
 
 .dropdown:hover .dropdown-content {
-    display: flex;
+    display: block;
 }
 
 /* Responsive Design */
@@ -87,12 +89,11 @@ nav {
     }
 
     .navbar-right {
-        display: block;
+        display: none;
     }
 
     .dropdown-symbol {
         display: block;
-        margin-left: auto;
     }
 
     .dropdown-content {
