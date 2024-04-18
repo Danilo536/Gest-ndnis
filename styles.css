@@ -3,35 +3,25 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.de {
-    font-size: large;
-}
-
 .navbar {
     background-color: #000;
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px;
-    margin: 0;
+    padding: 10px 20px;
 }
 
-.navbar-left {
-    flex-grow: 1;
-    font-size: x-large;
+.navbar-left h1 {
+    margin: 0;
+    font-size: 24px;
 }
 
 .navbar-right {
     display: none;
 }
 
-.dropdown {
-    position: relative;
-}
-
 .dropdown-symbol {
-    display: none;
     font-size: 24px;
     cursor: pointer;
 }
@@ -40,14 +30,60 @@ body {
     display: none;
     position: absolute;
     background-color: #000;
-    top: 60px;
-    right: 0;
+    top: 40px;
+    right: 20px;
 }
 
 .navbar-link {
     color: #fff;
     text-decoration: none;
-    padding: 10px;
+    padding: 10px 20px;
+    display: block;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: columnbody {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.navbar-left h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.navbar-right {
+    display: none;
+}
+
+.dropdown-symbol {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #000;
+    top: 40px;
+    right: 20px;
+}
+
+.navbar-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
     display: block;
 }
 
@@ -56,29 +92,31 @@ body {
     .navbar {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    .navbar-left {
-        margin-bottom: 10px;
-    }
-
-    .dropdown-symbol {
-        display: block;
-    }
-
-    .navbar-right {
-        display: none;
-    }
-
-    input[type=checkbox] {
-        display: none;
-    }
-
-    input[type=checkbox]:checked + .navbar-right .dropdown-content {
-        display: block;
-    }
-
-    .navbar-link {
-        padding: 10px 20px;
-    }
 }
+
+.navbar-left {
+    margin-bottom: 10px;
+}
+
+.navbar-right {
+    display: block;
+}
+
+.dropdown-content {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    margin-top: 10px;
+}
+
+.navbar-link {
+    padding: 10px 0;
+}
+
+.dropdown-symbol {
+    display: block;
+    margin-left: auto;
+}
+}
+
