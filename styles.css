@@ -1,8 +1,9 @@
-terbody {
+body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-.de{
+
+.de {
     font-size: large;
 }
 
@@ -28,7 +29,6 @@ nav {
     margin: 0px;
 }
 
-
 .döner {
     margin-top: 50px;
     margin-left: 960px;
@@ -50,7 +50,8 @@ nav {
     flex-grow: 1;
     font-size: x-large;
 }
-.image{
+
+.image {
     hight: 1000px;
     widht: 750px;
     float:right;
@@ -93,8 +94,9 @@ nav {
 .content {
     padding: 20px;
 }
-.se{
-    font-size: xxx-large
+
+.se {
+    font-size: xxx-large;
 }
 
 /* Responsive Design */
