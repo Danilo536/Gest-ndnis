@@ -7,43 +7,14 @@ body {
     font-size: large;
 }
 
-.gt {
-    background: grey;
-}
-
-h2 {
-    font-size: x-large;
-}
-
-p {
-    color: white;
-}
-
-nav {
+.navbar {
     background-color: #000;
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 10px;
-    margin: 0px;
-}
-
-.döner {
-    margin-top: 50px;
-    margin-left: 960px;
-    padding: 50px;
-    border: 5px solid black;
-    background: white;
-    width: 960px;
-}
-
-.element {
-    width: 960px;
-    margin-top: 50px;
-    padding: 50px;
-    border: 5px solid black;
-    background: white;
+    margin: 0;
 }
 
 .navbar-left {
@@ -51,52 +22,33 @@ nav {
     font-size: x-large;
 }
 
-.image {
-    hight: 1000px;
-    widht: 750px;
-    float:right;
-}
-
-.navbar h1 {
-    margin: 0;
-    font-size: xx-large;
-}
-
 .navbar-right {
-    display: flex;
+    display: none;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-symbol {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #000;
+    top: 60px;
+    right: 0;
 }
 
 .navbar-link {
-    color: white;
-    text-decoration: none;
-    padding: 0 10px;
-    font-size: large;
-}
-
-.navbar-link:hover {
-    text-decoration: underline;
-}
-
-.navbar-btn {
-    background-color: transparent;
-    border: none;
     color: #fff;
-    padding: 10px 20px;
-    margin-left: 10px;
-    cursor: pointer;
     text-decoration: none;
-}
-
-.navbar-btn:hover {
-    text-decoration: underline;
-}
-
-.content {
-    padding: 20px;
-}
-
-.se {
-    font-size: xxx-large;
+    padding: 10px;
+    display: block;
 }
 
 /* Responsive Design */
@@ -106,24 +58,27 @@ nav {
         align-items: flex-start;
     }
 
+    .navbar-left {
+        margin-bottom: 10px;
+    }
+
+    .dropdown-symbol {
+        display: block;
+    }
+
     .navbar-right {
-        margin-top: 10px;
-        margin-left: auto;
+        display: none;
     }
 
-    .navbar-btn {
-        margin-left: 0;
-        margin-top: 5px;
+    input[type=checkbox] {
+        display: none;
     }
 
-    .image {
-        margin-left: 0;
+    input[type=checkbox]:checked + .navbar-right .dropdown-content {
+        display: block;
     }
 
-    .döner,
-    .element {
-        width: auto;
-        margin-left: 20px;
-        margin-right: 20px;
+    .navbar-link {
+        padding: 10px 20px;
     }
 }
