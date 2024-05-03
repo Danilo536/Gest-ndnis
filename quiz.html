@@ -5,193 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <style>
+        /* CSS-Stile hier einfügen */
         body {
-            background-color: #333;
-            color: #fff;
             font-family: Arial, sans-serif;
-        }
-
-        .quiz-container {
-            max-width: 80%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #555;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            text-align: center;
+            margin: 0;
+            padding: 0;
         }
 
         .navbar {
+            background-color: #333;
+            color: #fff;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #222;
-            padding: 10px 20px;
+            padding: 10px;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: xx-large;
         }
 
         .navbar-btn {
-            background-color: #007bff;
-            color: #fff;
+            background-color: transparent;
             border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
+            color: #fff;
+            padding: 10px 20px;
+            margin-left: 10px;
             cursor: pointer;
+            text-decoration: none;
         }
 
-        .question {
-            margin-bottom: 20px;
+        .navbar-btn:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .quiz-container {
+            margin-top: 20px;
         }
 
         .options {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-top: 10px;
         }
 
-        .option {
-            margin-bottom: 10px;
-            width: 100%;
-            max-width: 300px;
-            padding: 10px;
-            border-radius: 5px;
+        .quiz-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
             cursor: pointer;
         }
 
-        .option:hover {
-            background-color: #444;
+        .quiz-btn:hover {
+            background-color: #555;
         }
 
-        .correct {
-            background-color: #4caf50;
-        }
-
-        .wrong {
-            background-color: #f44336;
-        }
-
-        #result {
-            margin-top: 20px;
-            text-align: left;
+        #restartBtn {
             display: none;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <h1>Quiz</h1>
+        <button class="navbar-btn" onclick="window.location.reload()">Neustarten</button>
+    </nav>
 
-<nav class="navbar">
-    <h1>Quiz</h1>
-    <button class="navbar-btn" onclick="window.history.back()">Zurück</button>
-</nav>
-
-<div class="content">
-    <div class="quiz-container">
-        <h2 class="question"></h2>
-        <div class="options"></div>
-        <button id="nextBtn" class="quiz-btn" style="display: none;" onclick="nextQuestion()">Nächste Frage</button>
-        <div id="result"></div>
+    <div class="content">
+        <div class="quiz-container">
+            <h2 class="question"></h2>
+            <div class="options"></div>
+            <button id="nextBtn" class="quiz-btn" style="display: none;" onclick="nextQuestion()">Nächste Frage</button>
+            <div id="result"></div>
+        </div>
     </div>
-</div>
 
-<script>
-    var questions = [
-        {
-            question: "Welche historische Handlung markierte den Beginn der Reformation, an der Martin Luther maßgeblich beteiligt war?",
-            options: [
-                ["Die 95 Thesen", true],
-                ["Luthers Buch “Die Freiheit eines Christenmenschen” war der Auslöser für die Reformation.", false],
-                ["Martin Luther startete die Reformation mit einer öffentlichen Rede vor dem Papst in Rom.", false],
-                ["Die Reformation begann mit einer Geheimkonferenz zwischen Martin Luther und anderen Gelehrten in Deutschland.", false]
-            ]
-        },
-        {
-            question: "Welche Rolle spielte Martin Luther in der Reformation?",
-            options: [
-                ["Eine zentrale Rolle", true],
-                ["Martin Luther war nur ein Randfiguren in der Reformation und hatte wenig Einfluss.", false],
-                ["Luther war in erster Linie ein politischer Aktivist und spielte keine bedeutende Rolle in der religiösen Reform.", false],
-                ["Martin Luther war nicht wirklich an der Reformation beteiligt und wurde erst später als Held stilisiert.", false]
-            ]
-        },
-        {
-            question: "Was kritisierte Luther öffentlich, was letztlich den Ablasshandel der katholischen Kirche betraf?",
-            options: [
-                ["Luther kritisierte den Ablasshandel der katholischen Kirche öffentlich, insbesondere durch seine 95 Thesen.", true],
-                ["Er kritisierte die Papstwahl.", false],
-                ["Seine Kritik bezog sich auf die Liturgie der Messe.", false],
-                ["Luther kritisierte die Heiligenverehrung der katholischen Kirche.", false]
-            ]
-        },
-        // Weitere Fragen hier einfügen...
-    ];
+    <script>
+        // JavaScript-Code hier einfügen
+        const questions = [
+            {
+                question: "Was markierte den Beginn der Reformation durch Martin Luther?",
+                options: ["Seine 95 Thesen", "Seine Predigten", "Seine Übersetzung der Bibel ins Deutsche", "Sein Eintritt in das Augustinerkloster"],
+                answer: "Seine 95 Thesen"
+            },
+            {
+                question: "Was betonte Martin Luther in seinen Lehren?",
+                options: ["Die Bedeutung von Ritualen", "Die Zentralität des Glaubens", "Die Autorität des Papstes", "Die Notwendigkeit von Ablassbriefen"],
+                answer: "Die Zentralität des Glaubens"
+            },
+            {
+                question: "Was war eine politische Auswirkung der Lehren von Martin Luther?",
+                options: ["Die Stärkung der päpstlichen Autorität", "Die Entstehung des Calvinismus", "Die Spaltung des Heiligen Römischen Reiches", "Die Annexion von Wittenberg durch den Papst"],
+                answer: "Die Spaltung des Heiligen Römischen Reiches"
+            },
+            {
+                question: "Was war ein Ergebnis von Luthers Übersetzung der Bibel ins Deutsche?",
+                options: ["Die Verbreitung von Luthers Schriften in ganz Europa", "Die Verdrängung des Lateinischen als Kirchensprache", "Die Einschränkung des Zugangs zur Bibel", "Die Verschärfung der religiösen Intoleranz"],
+                answer: "Die Verdrängung des Lateinischen als Kirchensprache"
+            },
+            {
+                question: "Wo starb Martin Luther?",
+                options: ["In Rom", "In Eisleben", "In Wittenberg", "In Paris"],
+                answer: "In Eisleben"
+            }
+        ];
 
-    var currentQuestion = 0;
-    var score = 0;
+        let currentQuestion = 0;
+        const totalQuestions = questions.length;
+        const quizContainer = document.querySelector('.quiz-container');
+        const questionElement = document.querySelector('.question');
+        const optionsElement = document.querySelector('.options');
+        const nextBtn = document.getElementById('nextBtn');
+        const resultElement = document.getElementById('result');
 
-    function startQuiz() {
-        showQuestion(currentQuestion);
-    }
-
-    function showQuestion(index ) {
-        var question = questions[index];
-        document.querySelector(".question").textContent = question.question;
-        var optionsHtml = "";
-        question.options.forEach(function(option, i) {
-            optionsHtml += "<button class='option' onclick='checkAnswer(" + i + ")'>" + option[0] + "</button>";
-        });
-        document.querySelector(".options").innerHTML = optionsHtml;
-    }
-
-    function checkAnswer(index) {
-        var selectedOption = questions[currentQuestion].options[index];
-        if (selectedOption[1]) {
-            score++;
-            document.querySelector(".option:nth-child(" + (index + 1) + ")").classList.add("correct");
-        } else {
-            document.querySelector(".option:nth-child(" + (index + 1) + ")").classList.add("wrong");
-        }
-        document.querySelectorAll(".option").forEach(function(option) {
-            option.disabled = true;
-        });
-        document.getElementById("nextBtn").style.display = "block";
-    }
-
-    function nextQuestion() {
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
-            showQuestion(currentQuestion);
-            document.getElementById("nextBtn").style.display = "none";
-            document.querySelectorAll(".option").forEach(function(option) {
-                option.classList.remove("correct", "wrong");
-                option.disabled = false;
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            questionElement.textContent = q.question;
+            optionsElement.innerHTML = '';
+            q.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.textContent = option;
+                optionElement.className = 'option';
+                optionElement.onclick = () => checkAnswer(option);
+                optionsElement.appendChild(optionElement);
             });
-        } else {
-            showResult();
         }
-    }
 
-    function showResult() {
-        var resultText = "Ergebnis: " + score + "/" + questions.length + "<br>";
-        resultText += "Folgende Fragen waren falsch:<br>";
-        for (var i = 0; i < questions.length; i++) {
-            if (!questions[i].options.some(function(option) { return option[1]; })) {
-                resultText += "Frage " + (i + 1) + ": " + questions[i].question + "<br>";
+        function checkAnswer(option) {
+            if (option === questions[currentQuestion].answer) {
+                resultElement.textContent = 'Richtig!';
+            } else {
+                resultElement.textContent = 'Falsch!';
+            }
+            currentQuestion++;
+            if (currentQuestion < totalQuestions) {
+                nextBtn.style.display = 'block';
+            } else {
+                resultElement.textContent += ` Quiz beendet. Du hast ${currentQuestion} von ${totalQuestions} Fragen richtig beantwortet.`;
+                nextBtn.style.display = 'none';
+                document.getElementById('restartBtn').style.display = 'block';
             }
         }
-        document.getElementById("result").innerHTML = resultText;
-        document.getElementById("result").style.display = "block";
-        document.getElementById("nextBtn").textContent = "Quiz neu starten";
-        document.getElementById("nextBtn").setAttribute("onclick", "restartQuiz()");
-    }
 
-    function restartQuiz() {
-        currentQuestion = 0;
-        score = 0;
-        showQuestion(currentQuestion);
-        document.getElementById("result").style.display = "none";
-        document.getElementById("nextBtn").style.display = "none";
-    }
+        function nextQuestion() {
+            resultElement.textContent = '';
+            loadQuestion();
+            nextBtn.style.display = 'none';
+        }
 
-    startQuiz();
-</script>
+        loadQuestion();
+    </script>
 </body>
 </html>
