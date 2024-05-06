@@ -72,12 +72,16 @@ body {
 }
 
 @media only screen and (min-width: 601px) {
-  <ul>
-      <li><a href="timeline.html" class="dropdown-link">Zeitsrahl</a></li>
-      <li><a href="Info.html" class="dropdown-link">Information</a></li>
-      <li><a href="quiz.html" class="dropdown-link">Quiz</a></li>
-    </ul>
+    #hamburger {
+    display: block;
+  }
+
+  .dropdown.active {
+    display: block;
+    position: absolute;
+  }
 }
+ 
 
 
 
