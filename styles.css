@@ -21,6 +21,9 @@ body {
   font-weight: normal;
   margin: 0;
 }
+.dropdown.active:hover{
+  src=script.js;
+}
 
 #hamburger {
   display: none;
