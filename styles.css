@@ -135,7 +135,7 @@ p {
     display: flex;
 }
 
-.navbar-link {
+.dropdown-link {
     color: white;
     text-decoration: none;
     padding: 0 10px;
