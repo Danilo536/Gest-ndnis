@@ -71,8 +71,12 @@ body {
 }
 
 @media only screen and (min-width: 601px) {
-  .navbar-links {
-    display: flex;
+  .dropdown-links {
+    color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 5px;
+  margin: 5px 0;
   }
 }
 
