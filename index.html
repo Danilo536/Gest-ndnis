@@ -40,8 +40,14 @@
         Heute ist Martin Luther als Reformator und Begründer des Protestantismus weltbekannt. <br>
     </div>
 </div>
- <script>
-     src=script.js
+ <script class="gut">
+        var hamburger = document.getElementById("hamburger");
+var dropdown = document.querySelector('.dropdown');
+
+hamburger.addEventListener('click', function() {
+  dropdown.classList.toggle('active');
+});
+
  </script>
 </body>
 </html>
