@@ -22,4 +22,3 @@ document.getElementById("menu-trigger").addEventListener("mouseenter", function(
 document.getElementById("menu-container").addEventListener("mouseleave", function() {
   document.getElementById("menu-options").style.display = "none";
 });
-
