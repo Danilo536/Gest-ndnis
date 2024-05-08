@@ -5,6 +5,38 @@ body {
   margin: 0;
   padding: 0;
 }
+#menu-container {
+  position: relative;
+}
+
+#menu-trigger {
+  cursor: pointer;
+}
+
+#hamburger-icon {
+  font-size: 24px;
+}
+
+#menu-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.menu-option {
+  display: block;
+  padding: 5px 0;
+  color: #333;
+  text-decoration: none;
+}
+
+.menu-option:hover {
+  background-color: #f0f0f0;
+}
 
 .navbar {
   background-color: black;
@@ -83,14 +115,6 @@ body {
     position: absolute;
   }
 }
- 
-
-
-
-
-
-
-
 .de {
     font-size: x-large;
 }
