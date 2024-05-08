@@ -13,11 +13,11 @@
   <h1 class="navbar-title">Martin Luther</h1>
   <div id="hamburger">&#9776;</div>
   <div class="dropdown">
-    <ul>
-      <li><a href="timeline.html" class="dropdown-link">Zeitsrahl</a></li>
-      <li><a href="Info.html" class="dropdown-link">Information</a></li>
-      <li><a href="quiz.html" class="dropdown-link">Quiz</a></li>
-    </ul>
+    <div class="menu" id="dropdown">
+        <div class="menu-item"><a href="#">Zeitstrahl</a></div>
+        <div class="menu-item"><a href="#">Information</a></div>
+        <div class="menu-item"><a href="#">Quiz</a></div>
+    </div>
   </div>
 </div>
 
@@ -40,14 +40,28 @@
         Heute ist Martin Luther als Reformator und Begründer des Protestantismus weltbekannt. <br>
     </div>
 </div>
- <script>
-        var hamburger = document.getElementById("hamburger");
-var dropdown = document.querySelector('.dropdown');
 
-hamburger.addEventListener('click', function() {
-  dropdown.classList.toggle('active');
+<script>
+var menuToggle = document.getElementById("menu-toggle");
+var menu = document.getElementById("dropdown");
+
+menuToggle.addEventListener("mouseenter", function() {
+  menu.classList.add("active");
 });
 
- </script>
+menuToggle.addEventListener("mouseleave", function() {
+  menu.classList.remove("active");
+});
+
+menu.addEventListener("click", function() {
+  menu.classList.toggle("clicked");
+});
+
+document.addEventListener("click", function(event) {
+  if (!menuToggle.contains(event.target) && !menu.contains(event.target)) {
+    menu.classList.remove("active");
+  }
+});
+</script>
 </body>
 </html>
