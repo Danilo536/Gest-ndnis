@@ -9,14 +9,9 @@ body {
 
 .navbar {
   background-color: black;
-  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-}
-.navbar {
-    background-color: #333;
     overflow: hidden;
     padding: 10px 20px;
   }
@@ -69,13 +64,6 @@ body {
   .menu-item:hover {
     background-color: #555;
   }
-.navbar-title {
-  color: #fff;
-  font-weight: normal;
-  margin: 0;
-}
-.gut:hover{
-}
 
 #hamburger {
   display: none;
