@@ -52,48 +52,6 @@ body {
   font-weight: normal;
   margin: 0;
 }
-.dropdown.active:hover{
-  src=script.js;
-}
-
-#hamburger {
-  display: none;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.dropdown {
-  display: none;
-  background-color: #333;
-  color: #fff;
-  position: absolute;
-  padding: 10px;
-  z-index: 1;
-}
-
-.dropdown-link {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 5px;
-  margin: 5px 0;
-  position: right;
-}
-  
-
-.dropdown {
-  position: absolute;
-  top: 50px; /* Abstand zum Hamburger-Symbol anpassen */
-  right: 0px; /* Abstand zur rechten Seite anpassen */
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  z-index: 1;
-  display: none;
-  max-width: 150px; /* Maximale Breite des Dropdown-Menüs anpassen */
-}
-
 @media only screen and (max-width: 600px) {
   #hamburger {
     display: block;
