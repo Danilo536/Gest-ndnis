@@ -9,17 +9,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="navbar">
-  <h1 class="navbar-title">Martin Luther</h1>
-  <div id="hamburger">&#9776;</div>
-  <div class="dropdown">
-    <div class="menu" id="dropdown">
-        <div class="menu-item"><a href="#">Zeitstrahl</a></div>
-        <div class="menu-item"><a href="#">Information</a></div>
-        <div class="menu-item"><a href="#">Quiz</a></div>
-    </div>
+<div id="menu-container">
+  <div id="menu-trigger">
+    <div id="hamburger-icon">&#9776;</div> <!-- Hamburger-Symbol -->
+  </div>
+  <div id="menu-options">
+    <a href="#" class="menu-option" onclick="showContent('timeline')">Zeitstrahl</a>
+    <a href="#" class="menu-option" onclick="showContent('info')">Information</a>
+    <a href="#" class="menu-option" onclick="showContent('quiz')">Quiz</a>
   </div>
 </div>
+
+<div id="content">
+  <!-- Placeholder for content -->
+</div>
+
 
 <div class="content">
     <div class="image">
