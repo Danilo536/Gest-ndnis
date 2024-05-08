@@ -15,7 +15,60 @@ body {
   align-items: center;
   padding: 10px;
 }
-
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    padding: 10px 20px;
+  }
+  .navbar-title {
+    color: white; /* Überschrift weiß */
+    float: left;
+    margin-right: 20px;
+  }
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s;
+  }
+  .navbar a:hover {
+    background-color: #555;
+  }
+  .menu-toggle {
+    color: white;
+    cursor: pointer;
+    float: right;
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .menu {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    width: 150px;
+    border-radius: 4px;
+    padding: 0;
+    top: 40px;
+    right: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+  .menu.active {
+    display: block;
+  }
+  .menu-item {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #555;
+    transition: background-color 0.3s;
+  }
+  .menu-item:last-child {
+    border-bottom: none;
+  }
+  .menu-item:hover {
+    background-color: #555;
+  }
 .navbar-title {
   color: #fff;
   font-weight: normal;
