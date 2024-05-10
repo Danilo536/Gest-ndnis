@@ -6,6 +6,33 @@ body {
   padding: 0;
 }
 
+.navbar {
+  background-color: black;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.navbar-title {
+  color: #fff;
+  font-weight: normal;
+  margin: 0;
+}  
+
+.gt {
+    background: grey;
+}
+
+h2 {
+    font-size: x-large;
+}
+
+p {
+    color: white;
+}
+
 
 .döner {
     margin-top: 50px;
