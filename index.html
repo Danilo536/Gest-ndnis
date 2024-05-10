@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,32 +5,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Martin Luther</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+	  .Text{
+	    font-size: 21px;
+	  }
+
+        .navbar {
+          background-color: #333;
+          color: #fff;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px;
+          position: relative;
+        }
+
+        .navbar-title {
+          color: #fff;
+          font-weight: normal;
+        }
+
+        .navbar-links {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+        }
+
+        .navbar-links a {
+          margin-right: 20px;
+          color: #fff;
+          text-decoration: none;
+        }
+
+        #hamburger {
+          display: none;
+          color: #fff;
+          font-size: 30px;
+          cursor: pointer;
+          position: absolute;
+          right: 10%; 
+        }
+
+        .dropdown {
+          display: none;
+          background-color: #333;
+          color: #fff;
+          position: absolute;
+          top: 80px;
+          right: 10px;
+          padding: 10px;
+          z-index: 1;
+          border-radius: 5px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown ul {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .dropdown-link {
+          color: #fff;
+          text-decoration: none;
+          display: block;
+          padding: 10px;
+          transition: background-color 0.3s;
+        }
+
+        .dropdown-link:hover {
+          background-color: #555;
+        }
+
+        .content {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .image {
+          flex: 1;
+          text-align: right;
+        }
+
+        .image img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        .de {
+          flex: 1;
+          padding: 20px;
+          text-align: left;
+        }
+
+        @media only screen and (max-width: 600px) {
+          .navbar-links {
+            display: none;
+          }
+
+	  .Text{
+	    font-size: 18px;
+	  }
+
+
+
+    	  .image {
+            display: none;
+          }
+
+          #hamburger {
+            display: block;
+            right: 5%;
+          }
+
+          .dropdown.active {
+            display: block;
+            position: absolute;
+            top: 105px;
+            right: 5%;
+          }
+
+          .image, .de {
+            text-align: center;
+          }
+
+          .image img {
+            width: 80%;
+          }
+
+          .de {
+            padding: 10px;
+          }
+        }
+    </style>
 </head>
 <body>
-    <navbar>Martin Luther</navbar>
-<div id="menu-container">
-  <div id="menu-trigger">
-    <div id="hamburger-icon">&#9776;</div> <!-- Hamburger-Symbol -->
+<div class="navbar">
+  <h1 class="navbar-title">Martin Luther</h1>
+  <div class="navbar-links">
+    <a href="#">Zeitstrahl</a>
+    <a href="#">Informationen</a>
+    <a href="#">Quiz</a>
   </div>
-  <div id="menu-options">
-    <a href="#" class="menu-option" onclick="showContent('timeline')">Zeitstrahl</a>
-    <a href="#" class="menu-option" onclick="showContent('info')">Information</a>
-    <a href="#" class="menu-option" onclick="showContent('quiz')">Quiz</a>
+  <div id="hamburger">&#9776;</div>
+  <div class="dropdown">
+    <ul>
+      <li><a href="timeline.html" class="dropdown-link">Zeitsrahl</a></li>
+      <li><a href="Info.html" class="dropdown-link">Information</a></li>
+      <li><a href="quiz.html" class="dropdown-link">Quiz</a></li>
+    </ul>
   </div>
-</div>
-
-<div id="content">
-  <!-- Placeholder for content -->
 </div>
 
 <div class="content">
-    <div class="image">
-        <img src="https://imgs.search.brave.com/0URRxRL-zW7D4tuTe-ABGwRcHCBFuBxY7elY5ZvL_wY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNDg2/Nzc1ODQ1L3Bob3Rv/L21hcnRpbi1sdXRo/ZXItYXQtdGhlLWFn/ZS1vZi01MC0xNTMz/LWFydGlzdC1jcmFu/YWNoLWx1Y2FzLXRo/ZS1lbGRlci5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UE5P/eWdUZnUyYmFwU1VR/VTA1TG5CTExTTGJF/YWpHV0tPOTFmQTB5/T1ZVST0" alt="Martin Luther" class="a">
-    </div>
     <div class="de">
         <h1 class="se">Willkommen auf der Startseite über Martin Luther</h1><br>
 
-        Auf dieser Seite können Sie sich umfassend über den Reformator Martin Luther informieren.<br>
+        <div class="Text">Auf dieser Seite können Sie sich umfassend über den Reformator Martin Luther informieren.<br>
         Nachdem Sie sich die Informationen über ihn und seinen Zeitstrahl durchgelesen haben,<br>
         können Sie Ihr Wissen bei einem schnellen Quiz überprüfen. <br>  
         <br>
@@ -41,32 +176,18 @@
         1517 veröffentlichte er seine 95 Thesen gegen den Ablasshandel und wollte damit eine Reform seiner Kirche anregen. <br>
         Die Bewegung, die er damit auslöste, ergriff nicht nur das kirchliche Leben, sondern auch alle Bereiche der Gesellschaft. <br>
         Heute ist Martin Luther als Reformator und Begründer des Protestantismus weltbekannt. <br>
+	</div>    
+</div>
+    <div class="image">
+        <img src="https://imgs.search.brave.com/0URRxRL-zW7D4tuTe-ABGwRcHCBFuBxY7elY5ZvL_wY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNDg2/Nzc1ODQ1L3Bob3Rv/L21hcnRpbi1sdXRo/ZXItYXQtdGhlLWFn/ZS1vZi01MC0xNTMz/LWFydGlzdC1jcmFu/YWNoLWx1Y2FzLXRo/ZS1lbGRlci5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UE5P/eWdUZnUyYmFwU1VR/VTA1TG5CTExTTGJF/YWpHV0tPOTFmQTB5/T1ZVST0" alt="Martin Luther" class="a">
     </div>
 </div>
  <script>
-function showContent(option) {
-  var contentDiv = document.getElementById("content");
-  switch (option) {
-    case 'timeline':
-      contentDiv.innerHTML = "<h2>Zeitstrahl</h2><p>Hier ist der Zeitstrahl-Inhalt.</p>";
-      break;
-    case 'info':
-      contentDiv.innerHTML = "<h2>Information</h2><p>Hier ist der Informations-Inhalt.</p>";
-      break;
-    case 'quiz':
-      contentDiv.innerHTML = "<h2>Quiz</h2><p>Hier ist der Quiz-Inhalt.</p>";
-      break;
-    default:
-      contentDiv.innerHTML = "<h2>Default</h2><p>Standardinhalt.</p>";
-  }
-}
+     var hamburger = document.getElementById("hamburger");
+var dropdown = document.querySelector('.dropdown');
 
-document.getElementById("menu-trigger").addEventListener("mouseenter", function() {
-  document.getElementById("menu-options").style.display = "block";
-});
-
-document.getElementById("menu-trigger").addEventListener("mouseleave", function() {
-  document.getElementById("menu-options").style.display = "none";
+hamburger.addEventListener('click', function() {
+  dropdown.classList.toggle('active');
 });
 
  </script>
