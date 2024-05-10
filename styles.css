@@ -82,13 +82,11 @@ p {
 }
 
 .navbar-btn {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    margin-left: 10px;
-    cursor: pointer;
-    text-decoration: none;
+background-color: transparent;
+color: #fff;
+padding: 10px 20px;
+border: 1px solid black;
+text-decoration: none;
 }
 
 .navbar-btn:hover {
@@ -101,4 +99,13 @@ p {
 
 .se {
     font-size: xxx-large;
+}
+
+
+@media only screen and (max-width: 600px) {
+.element,
+.döner {
+display: block;
+margin-bottom: 10px;
+}
 }
