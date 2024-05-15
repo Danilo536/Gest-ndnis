@@ -91,19 +91,20 @@ function showResult() {
 }
 
 
+
 function calculateScore() {
   var score = 0;
   var selectedButtons = document.querySelectorAll(".choice.selected");
   selectedButtons.forEach(function(selectedButton) {
-    var selectedAnswer = selectedButton.textContent;
     var currentQuestionIndex = Array.from(selectedButton.parentNode.children).indexOf(selectedButton);
     var currentQuestion = questions[currentQuestionIndex];
-    if (selectedAnswer === currentQuestion.correctAnswer) {
+    if (selectedButton.textContent === currentQuestion.correctAnswer) {
       score += 1;
     }
   });
   return score;
 }
+
 
 
 function restartQuiz() {
