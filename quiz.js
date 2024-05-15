@@ -87,16 +87,16 @@ function showResult() {
   quizContainer.style.display = "none";
   resultContainer.style.display = "block";
   var correctAnswers = 0;
-  for (var i = 0; i < questions.length; i++) {
-    var selectedButton = document.querySelectorAll(".choice.selected")[i];
-    var currentQuestion = questions[i];
-    if (selectedButton && selectedButton.textContent === currentQuestion.correctAnswer) {
+  var selectedButtons = document.querySelectorAll(".choice.selected");
+  selectedButtons.forEach(function(selectedButton) {
+    var currentQuestionIndex = Array.from(selectedButton.parentNode.children).indexOf(selectedButton);
+    var currentQuestion = questions[currentQuestionIndex];
+    if (selectedButton.textContent === currentQuestion.correctAnswer) {
       correctAnswers += 1;
     }
-  }
+  });
   resultText.textContent = "Deine Anzahl richtiger Antworten: " + correctAnswers + " von " + questions.length;
 }
-
 
 
 function calculateScore() {
