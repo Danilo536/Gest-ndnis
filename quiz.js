@@ -86,7 +86,6 @@ function checkAnswer(selectedButton) {
   });
   nextQuestionBtn.disabled = false;
 }
-
 function showResult() {
   quizContainer.style.display = "none";
   resultContainer.style.display = "block";
@@ -100,6 +99,7 @@ function showResult() {
   }
   resultText.textContent = "Deine Anzahl richtiger Antworten: " + correctAnswers + " von " + questions.length;
 }
+
 
 function restartQuiz() {
   window.location.reload();
