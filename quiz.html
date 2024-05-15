@@ -1,166 +1,47 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
-    <style>
-        /* CSS-Stile hier einfügen */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar {
-          background-color: #333;
-          color: #fff;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 10px;
-          position: relative;
-        }
-        
-
-        .navbar h1 {
-            margin: 0;
-            font-size: xx-large;
-        }
-
-        .navbar-btn {
-            background-color: transparent;
-            border: none;
-            color: #fff;
-            padding: 10px 20px;
-            margin-left: 10px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .navbar-btn:hover {
-            text-decoration: underline;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .quiz-container {
-            margin-top: 20px;
-        }
-
-        .options {
-            margin-top: 10px;
-        }
-
-        .quiz-btn {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        .quiz-btn:hover {
-            background-color: #555;
-        }
-
-        #restartBtn {
-            display: none;
-            margin-top: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <h1>Quiz</h1>
-        <button class="navbar-btn" onclick="window.location.reload()">Neustarten</button>
-    </nav>
 
-    <div class="content">
-        <div class="quiz-container">
-            <h2 class="question"></h2>
-            <div class="options"></div>
-            <button id="nextBtn" class="quiz-btn" style="display: none;" onclick="nextQuestion()">Nächste Frage</button>
-            <div id="result"></div>
-        </div>
+<div class="navbar">
+  <h1 class="navbar-title">Martin Luther</h1>
+  <a href="index.html" class="navbar-btn">Zurück</a>
+</div>
+
+<div class="intro" id="intro">
+  <h2>Willkommen zum Quiz über Martin Luther</h2>
+  <p>Hier kannst du dein Wissen über Martin Luther testen. Beantworte die folgenden Fragen und finde heraus, wie gut du über ihn Bescheid weißt!</p>
+  <button class="start-button" onclick="startQuiz()">Quiz starten</button>
+</div>
+
+<div class="quiz-container" id="quiz-container" style="display: none;">
+  <div class="question" id="question"></div>
+  <div class="choices">
+    <div class="choice-column" id="left-column"></div>
+    <div class="choice-column" id="right-column"></div>
+  </div>
+  <button class="next-question-btn" id="next-question-btn" onclick="displayNextQuestion()">Nächste Frage</button>
+</div>
+
+<div class="container" id="result-container" style="display: none;">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="result-container">
+        <div class="result-text" id="result-text"></div>
+        <button class="btn" id="restart-quiz-btn" onclick="restartQuiz()">Quiz neustarten</button>
+        <a href="index.html" class="btn">Zurück zur Startseite</a>
+      </div>
     </div>
+  </div>
+</div>
 
-    <script>
-        // JavaScript-Code hier einfügen
-        const questions = [
-            {
-                question: "Was markierte den Beginn der Reformation durch Martin Luther?",
-                options: ["Seine 95 Thesen", "Seine Predigten", "Seine Übersetzung der Bibel ins Deutsche", "Sein Eintritt in das Augustinerkloster"],
-                answer: "Seine 95 Thesen"
-            },
-            {
-                question: "Was betonte Martin Luther in seinen Lehren?",
-                options: ["Die Bedeutung von Ritualen", "Die Zentralität des Glaubens", "Die Autorität des Papstes", "Die Notwendigkeit von Ablassbriefen"],
-                answer: "Die Zentralität des Glaubens"
-            },
-            {
-                question: "Was war eine politische Auswirkung der Lehren von Martin Luther?",
-                options: ["Die Stärkung der päpstlichen Autorität", "Die Entstehung des Calvinismus", "Die Spaltung des Heiligen Römischen Reiches", "Die Annexion von Wittenberg durch den Papst"],
-                answer: "Die Spaltung des Heiligen Römischen Reiches"
-            },
-            {
-                question: "Was war ein Ergebnis von Luthers Übersetzung der Bibel ins Deutsche?",
-                options: ["Die Verbreitung von Luthers Schriften in ganz Europa", "Die Verdrängung des Lateinischen als Kirchensprache", "Die Einschränkung des Zugangs zur Bibel", "Die Verschärfung der religiösen Intoleranz"],
-                answer: "Die Verdrängung des Lateinischen als Kirchensprache"
-            },
-            {
-                question: "Wo starb Martin Luther?",
-                options: ["In Rom", "In Eisleben", "In Wittenberg", "In Paris"],
-                answer: "In Eisleben"
-            }
-        ];
+<script src="script.js"></script>
 
-        let currentQuestion = 0;
-        const totalQuestions = questions.length;
-        const quizContainer = document.querySelector('.quiz-container');
-        const questionElement = document.querySelector('.question');
-        const optionsElement = document.querySelector('.options');
-        const nextBtn = document.getElementById('nextBtn');
-        const resultElement = document.getElementById('result');
-
-        function loadQuestion() {
-            const q = questions[currentQuestion];
-            questionElement.textContent = q.question;
-            optionsElement.innerHTML = '';
-            q.options.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.textContent = option;
-                optionElement.className = 'option';
-                optionElement.onclick = () => checkAnswer(option);
-                optionsElement.appendChild(optionElement);
-            });
-        }
-
-        function checkAnswer(option) {
-            if (option === questions[currentQuestion].answer) {
-                resultElement.textContent = 'Richtig!';
-            } else {
-                resultElement.textContent = 'Falsch!';
-            }
-            currentQuestion++;
-            if (currentQuestion < totalQuestions) {
-                nextBtn.style.display = 'block';
-            } else {
-                resultElement.textContent += ` Quiz beendet. Du hast ${currentQuestion} von ${totalQuestions} Fragen richtig beantwortet.`;
-                nextBtn.style.display = 'none';
-                document.getElementById('restartBtn').style.display = 'block';
-            }
-        }
-
-        function nextQuestion() {
-            resultElement.textContent = '';
-            loadQuestion();
-            nextBtn.style.display = 'none';
-        }
-
-        loadQuestion();
-    </script>
 </body>
 </html>
