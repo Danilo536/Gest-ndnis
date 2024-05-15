@@ -86,15 +86,10 @@ function checkAnswer(selectedButton) {
 function showResult() {
   quizContainer.style.display = "none";
   resultContainer.style.display = "block";
-  var correctAnswers = 0;
-  for (var i = 0; i < questions.length; i++) {
-    var selectedButton = document.querySelectorAll(".choice.selected")[i];
-    var currentQuestion = questions[i];
-    if (selectedButton && selectedButton.textContent === currentQuestion.correctAnswer) {
-      correctAnswers += 1;
-    }
-  }
-  resultText.textContent = "Deine Anzahl richtiger Antworten: " + correctAnswers + " von " + questions.length;
+  var selectedButtons = document.querySelectorAll(".choice.selected");
+  var correctAnswers = selectedButtons.length;
+  var scoreText = "Deine Anzahl richtiger Antworten: " + correctAnswers + " von " + questions.length;
+  resultText.textContent = scoreText;
 }
 
 
