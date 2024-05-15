@@ -68,6 +68,10 @@ function selectAnswer(selectedButton) {
   });
   selectedButton.classList.add("selected");
   checkAnswer(selectedButton);
+  var allQuestionsAnswered = document.querySelectorAll(".choice.selected").length === questions.length;
+  if (allQuestionsAnswered) {
+    showResult();
+  }
 }
 
 function checkAnswer(selectedButton) {
@@ -82,6 +86,7 @@ function checkAnswer(selectedButton) {
   });
   nextQuestionBtn.disabled = false;
 }
+
 function showResult() {
   quizContainer.style.display = "none";
   resultContainer.style.display = "block";
