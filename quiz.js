@@ -102,6 +102,7 @@ function calculateScore() {
   return score;
 }
 
+
 function restartQuiz() {
   window.location.reload();
 }
