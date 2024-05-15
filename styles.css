@@ -65,6 +65,7 @@ p {
 .navbar h1 {
           color: #fff;
           font-weight: normal;
+  text-weight: x-large;
 }
 
 .navbar-right {
