@@ -86,13 +86,17 @@ function checkAnswer(selectedButton) {
 function showResult() {
   quizContainer.style.display = "none";
   resultContainer.style.display = "block";
-  var score = calculateScore();
-  console.log("Punktzahl:", score); // Überprüfen Sie die berechnete Punktzahl
-  console.log("Anzahl der Fragen:", questions.length); // Überprüfen Sie die Anzahl der Fragen
-  resultText.textContent = "Deine Anzahl richtiger Antworten: " + score + " von " + questions.length;
+  var correctAnswers = 0;
+  var selectedButtons = document.querySelectorAll(".choice.selected");
+  selectedButtons.forEach(function(selectedButton) {
+    var currentQuestionIndex = Array.from(selectedButton.parentNode.children).indexOf(selectedButton);
+    var currentQuestion = questions[currentQuestionIndex];
+    if (selectedButton.textContent === currentQuestion.correctAnswer) {
+      correctAnswers += 1;
+    }
+  });
+  resultText.textContent = "Deine Anzahl richtiger Antworten: " + correctAnswers + " von " + questions.length;
 }
-
-
 
 
 function calculateScore() {
