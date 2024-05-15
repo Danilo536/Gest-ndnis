@@ -87,8 +87,11 @@ function showResult() {
   quizContainer.style.display = "none";
   resultContainer.style.display = "block";
   var score = calculateScore();
+  console.log("Punktzahl:", score); // Überprüfen Sie die berechnete Punktzahl
+  console.log("Anzahl der Fragen:", questions.length); // Überprüfen Sie die Anzahl der Fragen
   resultText.textContent = "Deine Anzahl richtiger Antworten: " + score + " von " + questions.length;
 }
+
 
 
 
