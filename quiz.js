@@ -92,13 +92,15 @@ function showResult() {
 
 function calculateScore() {
   var score = 0;
-  for (var i = 0; i < questions.length; i++) {
-    var q = questions[i];
-    var selectedButton = document.querySelectorAll(".choice.selected")[i];
-    if (selectedButton && selectedButton.textContent === q.correctAnswer) {
+  var selectedButtons = document.querySelectorAll(".choice.selected");
+  selectedButtons.forEach(function(selectedButton) {
+    var selectedAnswer = selectedButton.textContent;
+    var currentQuestionIndex = Array.from(selectedButton.parentNode.children).indexOf(selectedButton);
+    var currentQuestion = questions[currentQuestionIndex];
+    if (selectedAnswer === currentQuestion.correctAnswer) {
       score += 1;
     }
-  }
+  });
   return score;
 }
 
