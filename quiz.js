@@ -90,6 +90,7 @@ function showResult() {
   resultText.textContent = "Deine Anzahl richtiger Antworten: " + score + " von " + questions.length;
 }
 
+
 function calculateScore() {
   var score = 0;
   var selectedButtons = document.querySelectorAll(".choice.selected");
