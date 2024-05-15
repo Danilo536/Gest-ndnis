@@ -1,125 +1,113 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+var currentQuestion = -1;
+var quizContainer = document.getElementById("quiz-container");
+var intro = document.getElementById("intro");
+var question = document.getElementById("question");
+var leftColumn = document.getElementById("left-column");
+var rightColumn = document.getElementById("right-column");
+var nextQuestionBtn = document.getElementById("next-question-btn");
+var resultContainer = document.getElementById("result-container");
+var resultText = document.getElementById("result-text");
+
+var questions = [
+  {
+    question: "Wann wurde Martin Luther geboren?",
+    choices: ["1483", "1501", "1520", "1546"],
+    correctAnswer: "1483"
+  },
+  {
+    question: "Wo wurde Martin Luther geboren?",
+    choices: ["Leipzig", "Erfurt", "Wittenberg", "Eisleben"],
+    correctAnswer: "Eisleben"
+  },
+  // Weitere Fragen hier einfügen...
+];
+
+function displayQuestion() {
+  var q = questions[currentQuestion];
+  question.textContent = q.question;
+  leftColumn.innerHTML = "";
+  rightColumn.innerHTML = "";
+  for (var i = 0; i < q.choices.length; i++) {
+    var choice = q.choices[i];
+    var button = document.createElement("button");
+    button.textContent = choice;
+    button.classList.add("choice");
+    button.addEventListener("click", function(event) {
+      selectAnswer(event.target);
+    });
+    if (i < 2) {
+      button.style.marginRight = "10px"; // Für den Abstand nach rechts
+      leftColumn.appendChild(button);
+    } else {
+      button.style.marginLeft = "10px"; // Für den Abstand nach links
+      rightColumn.appendChild(button);
+    }
+  }
+  nextQuestionBtn.disabled = true;
 }
 
-.navbar {
-  background-color: black;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+function displayNextQuestion() {
+  currentQuestion++;
+  if (currentQuestion === questions.length - 1) {
+    nextQuestionBtn.textContent = "Auswertung anzeigen";
+    nextQuestionBtn.onclick = function() {
+      showResult();
+    };
+  }
+  if (currentQuestion < questions.length) {
+    displayQuestion();
+  }
 }
 
-.navbar-title {
-  margin-left: 20px;
+function selectAnswer(selectedButton) {
+  var q = questions[currentQuestion];
+  var buttons = document.querySelectorAll(".choice");
+  buttons.forEach(function(button) {
+    button.classList.remove("selected");
+    button.disabled = true; // Deaktivieren aller Buttons nach der Auswahl
+  });
+  selectedButton.classList.add("selected");
+  checkAnswer(selectedButton);
 }
 
-.navbar-btn {
-  background-color: white;
-  color: black;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
+function checkAnswer(selectedButton) {
+  var q = questions[currentQuestion];
+  var buttons = document.querySelectorAll(".choice");
+  buttons.forEach(function(button) {
+    if (button.textContent === q.correctAnswer) {
+      button.style.backgroundColor = "green"; // Markieren der richtigen Antwort grün
+    } else if (button.classList.contains("selected")) {
+      button.style.backgroundColor = "red"; // Markieren der ausgewählten Antwort rot
+    }
+  });
+  nextQuestionBtn.disabled = false; // Aktivieren des Buttons für die nächste Frage
 }
 
-.intro {
-  text-align: center;
-  margin-top: 50px;
+function showResult() {
+  quizContainer.style.display = "none";
+  resultContainer.style.display = "block";
+  var score = calculateScore();
+  resultText.textContent = "Deine Anzahl richtiger Antworten: " + score + " von " + questions.length;
 }
 
-.start-button {
-  display: block;
-  margin: 0 auto;
-  padding: 10px 20px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+function calculateScore() {
+  var score = 0;
+  for (var i = 0; i < questions.length; i++) {
+    var q = questions[i];
+    var selectedButton = document.querySelectorAll(".choice.selected")[i];
+    if (selectedButton && selectedButton.textContent === q.correctAnswer) {
+      score += 1;
+    }
+  }
+  return score;
 }
 
-.start-button:hover {
-  background-color: #333;
+function restartQuiz() {
+  window.location.reload();
 }
 
-.quiz-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+function startQuiz() {
+  quizContainer.style.display = "block";
+  intro.style.display = "none";
+  displayNextQuestion();
 }
-
-.question {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.choices {
-  display: flex;
-  justify-content: space-between;
-}
-
-.choice-column {
-  flex-basis: 45%;
-}
-
-.choice {
-  margin-bottom: 10px;
-  padding: 10px 20px;
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 90%;
-}
-
-.choice:hover {
-  background-color: #eee;
-}
-
-.next-question-btn {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.next-question-btn:hover {
-  background-color: #333;
-}
-
-.result-container {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.result-text {
-  margin-bottom: 20px;
-}
-
-.btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #333;
-}
-
