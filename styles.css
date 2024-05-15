@@ -63,8 +63,8 @@ p {
     float:right;
 
 .navbar h1 {
-    margin: 0;
-    font-size: xx-large;
+          color: #fff;
+          font-weight: normal;
 }
 
 .navbar-right {
