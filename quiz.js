@@ -18,7 +18,7 @@ var questions = [
     question: "Wo wurde Martin Luther geboren?",
     choices: ["Leipzig", "Erfurt", "Wittenberg", "Eisleben"],
     correctAnswer: "Eisleben"
-  },
+  }
   // Weitere Fragen hier einfügen...
 ];
 
@@ -36,10 +36,10 @@ function displayQuestion() {
       selectAnswer(event.target);
     });
     if (i < 2) {
-      button.style.marginRight = "10px"; // Für den Abstand nach rechts
+      button.style.marginRight = "10px";
       leftColumn.appendChild(button);
     } else {
-      button.style.marginLeft = "10px"; // Für den Abstand nach links
+      button.style.marginLeft = "10px";
       rightColumn.appendChild(button);
     }
   }
@@ -64,7 +64,7 @@ function selectAnswer(selectedButton) {
   var buttons = document.querySelectorAll(".choice");
   buttons.forEach(function(button) {
     button.classList.remove("selected");
-    button.disabled = true; // Deaktivieren aller Buttons nach der Auswahl
+    button.disabled = true;
   });
   selectedButton.classList.add("selected");
   checkAnswer(selectedButton);
@@ -75,12 +75,12 @@ function checkAnswer(selectedButton) {
   var buttons = document.querySelectorAll(".choice");
   buttons.forEach(function(button) {
     if (button.textContent === q.correctAnswer) {
-      button.style.backgroundColor = "green"; // Markieren der richtigen Antwort grün
+      button.style.backgroundColor = "green";
     } else if (button.classList.contains("selected")) {
-      button.style.backgroundColor = "red"; // Markieren der ausgewählten Antwort rot
+      button.style.backgroundColor = "red";
     }
   });
-  nextQuestionBtn.disabled = false; // Aktivieren des Buttons für die nächste Frage
+  nextQuestionBtn.disabled = false;
 }
 
 function showResult() {
@@ -97,22 +97,6 @@ function showResult() {
   });
   resultText.textContent = "Deine Anzahl richtiger Antworten: " + correctAnswers + " von " + questions.length;
 }
-
-
-function calculateScore() {
-  var score = 0;
-  var selectedButtons = document.querySelectorAll(".choice.selected");
-  selectedButtons.forEach(function(selectedButton) {
-    var currentQuestionIndex = Array.from(selectedButton.parentNode.children).indexOf(selectedButton);
-    var currentQuestion = questions[currentQuestionIndex];
-    if (selectedButton.textContent === currentQuestion.correctAnswer) {
-      score += 1;
-    }
-  });
-  return score;
-}
-
-
 
 function restartQuiz() {
   window.location.reload();
