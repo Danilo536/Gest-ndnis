@@ -86,18 +86,36 @@ function checkAnswer(selectedButton) {
   });
   nextQuestionBtn.disabled = false;
 }
+
 function showResult() {
-  quizContainer.style.display = "none";
-  resultContainer.style.display = "block";
-  var correctAnswers = 0;
-  for (var i = 0; i < questions.length; i++) {
-    var selectedButton = document.querySelectorAll(".choice.selected")[i];
-    var currentQuestion = questions[i];
-    if (selectedButton && selectedButton.textContent === currentQuestion.correctAnswer) {
-      correctAnswers += 1;
-    }
-  }
-  resultText.textContent = "Deine Anzahl richtiger Antworten: " + correctAnswers + " von " + questions.length;
+var correctAnswers = 0;
+var wrongAnswers = [];
+
+questions.forEach(function(q, index) {
+var selectedButton = document.querySelector(".choice.selected");
+if (selectedButton.textContent === q.correctAnswer) {
+correctAnswers++;
+} else {
+wrongAnswers.push({ question: q.question, correctAnswer: q.correctAnswer });
+}
+});
+
+resultText.textContent = "Du hast " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+
+if (wrongAnswers.length > 0) {
+var wrongList = document.createElement("ul");
+
+wrongAnswers.forEach(function(wrong) {
+  var item = document.createElement("li");
+  item.textContent = wrong.question + " - Die richtige Antwort ist: " + wrong.correctAnswer;
+  wrongList.appendChild(item);
+});
+
+resultContainer.appendChild(wrongList);
+Copy
+}
+
+resultContainer.style.display = "block";
 }
 
 
