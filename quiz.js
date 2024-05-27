@@ -129,3 +129,6 @@ function showResult() {
   resultContainer.style.display = "block";
 }
 
+  resultContainer.style.display = "block";
+}
+
