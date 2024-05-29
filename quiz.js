@@ -53,6 +53,11 @@ function displayNextQuestion() {
     nextQuestionBtn.onclick = function() {
       showResult();
     };
+  } else {
+    nextQuestionBtn.textContent = "Nächste Frage";
+    nextQuestionBtn.onclick = function() {
+      displayNextQuestion();
+    };
   }
   if (currentQuestion < questions.length) {
     displayQuestion();
@@ -68,10 +73,7 @@ function selectAnswer(selectedButton) {
   });
   selectedButton.classList.add("selected");
   checkAnswer(selectedButton);
-  var allQuestionsAnswered = document.querySelectorAll(".choice.selected").length === questions.length;
-  if (allQuestionsAnswered) {
-    showResult();
-  }
+  nextQuestionBtn.disabled = false;
 }
 
 function checkAnswer(selectedButton) {
@@ -84,10 +86,7 @@ function checkAnswer(selectedButton) {
       button.style.backgroundColor = "red";
     }
   });
-  nextQuestionBtn.disabled = false;
 }
-
-
 
 function restartQuiz() {
   window.location.reload();
@@ -105,7 +104,7 @@ function showResult() {
 
   questions.forEach(function(q, index) {
     var selectedButton = document.querySelectorAll(".choice.selected")[index];
-    if (selectedButton.textContent === q.correctAnswer) {
+    if (selectedButton && selectedButton.textContent === q.correctAnswer) {
       correctAnswers++;
     } else {
       wrongAnswers.push({ question: q.question, correctAnswer: q.correctAnswer });
@@ -127,4 +126,8 @@ function showResult() {
   }
 
   resultContainer.style.display = "block";
+  nextQuestionBtn.style.display = "none"; // Verstecke den Button nach der Auswertung
 }
+
+document.addEventListener('DOMContentLoaded', startQuiz);
+
