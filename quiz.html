@@ -11,13 +11,14 @@
 
 <div class="navbar">
   <h1 class="navbar-title">Martin Luther</h1>
-  <a href="index.html" id="back-btn" class="navbar-btn" style="display: none;">Zurück</a>
+  <a href="index.html" id="back-btn" class="navbar-btn">Zurück</a>
 </div>
 
 <div class="intro" id="intro">
   <h2>Willkommen zum Quiz über Martin Luther</h2>
   <p>Hier kannst du dein Wissen über Martin Luther testen. Beantworte die folgenden Fragen und finde heraus, wie gut du über ihn Bescheid weißt!</p>
   <button class="start-button" onclick="startQuiz()">Quiz starten</button>
+  <p style="font-style: italic; color: red;">Hinweis: Wenn das Quiz gestartet wurde, kann die Seite nicht mehr verlassen werden, bis das Quiz beendet ist.</p>
 </div>
 
 <div class="quiz-container" id="quiz-container" style="display: none;">
@@ -26,7 +27,7 @@
     <div class="choice-column" id="left-column"></div>
     <div class="choice-column" id="right-column"></div>
   </div>
-  <button class="next-question-btn" id="next-question-btn" style="display: none;" onclick="displayNextQuestion()">Nächste Frage</button>
+  <button class="next-question-btn" id="next-question-btn" onclick="displayNextQuestion()">Nächste Frage</button>
 </div>
 
 <div class="container" id="result-container" style="display: none;">
