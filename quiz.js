@@ -53,11 +53,6 @@ function displayNextQuestion() {
     nextQuestionBtn.onclick = function() {
       showResult();
     };
-  } else {
-    nextQuestionBtn.textContent = "Nächste Frage";
-    nextQuestionBtn.onclick = function() {
-      displayNextQuestion();
-    };
   }
   if (currentQuestion < questions.length) {
     displayQuestion();
@@ -73,7 +68,6 @@ function selectAnswer(selectedButton) {
   });
   selectedButton.classList.add("selected");
   checkAnswer(selectedButton);
-  nextQuestionBtn.disabled = false;
 }
 
 function checkAnswer(selectedButton) {
@@ -86,6 +80,7 @@ function checkAnswer(selectedButton) {
       button.style.backgroundColor = "red";
     }
   });
+  nextQuestionBtn.disabled = false;
 }
 
 function restartQuiz() {
@@ -112,6 +107,7 @@ function showResult() {
   });
 
   resultText.textContent = "Du hast " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+  resultContainer.innerHTML = ''; // Reset the result container
 
   if (wrongAnswers.length > 0) {
     var wrongList = document.createElement("ul");
@@ -126,8 +122,8 @@ function showResult() {
   }
 
   resultContainer.style.display = "block";
-  nextQuestionBtn.style.display = "none"; // Verstecke den Button nach der Auswertung
+  nextQuestionBtn.style.display = "none"; // Hide the next question button after showing the result
 }
 
+// Event-Listener für das Laden des Quiz
 document.addEventListener('DOMContentLoaded', startQuiz);
-
