@@ -48,14 +48,16 @@ function displayQuestion() {
 
 function displayNextQuestion() {
   currentQuestion++;
+  if (currentQuestion < questions.length) {
+    displayQuestion();
+  } else {
+    showResult();
+  }
   if (currentQuestion === questions.length - 1) {
     nextQuestionBtn.textContent = "Auswertung anzeigen";
     nextQuestionBtn.onclick = function() {
       showResult();
     };
-  }
-  if (currentQuestion < questions.length) {
-    displayQuestion();
   }
 }
 
@@ -126,4 +128,8 @@ function showResult() {
 }
 
 // Event-Listener für das Laden des Quiz
-document.addEventListener('DOMContentLoaded', startQuiz);
+document.addEventListener('DOMContentLoaded', function() {
+  // Start Quiz Button Event Listener
+  var startBtn = document.getElementById('start-btn');
+  startBtn.addEventListener('click', startQuiz);
+});
