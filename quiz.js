@@ -5,8 +5,6 @@ var question = document.getElementById("question");
 var leftColumn = document.getElementById("left-column");
 var rightColumn = document.getElementById("right-column");
 var nextQuestionBtn = document.getElementById("next-question-btn");
-var resultContainer = document.getElementById("result-container");
-var resultText = document.getElementById("result-text");
 
 var questions = [
   {
@@ -85,13 +83,10 @@ function checkAnswer(selectedButton) {
   nextQuestionBtn.disabled = false;
 }
 
-function restartQuiz() {
-  window.location.reload();
-}
-
 function startQuiz() {
   quizContainer.style.display = "block";
   intro.style.display = "none";
+  document.getElementById("back-btn").style.display = "none";
   displayNextQuestion();
 }
 
@@ -108,23 +103,14 @@ function showResult() {
     }
   });
 
-  resultText.textContent = "Du hast " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
-  resultContainer.innerHTML = ''; // Reset the result container
+  var resultMessage = "Du hast " + correctAnswers + " von " + questions.length + " Fragen richtig beantwortet.";
+  var resultData = {
+    resultMessage: resultMessage,
+    wrongAnswers: wrongAnswers
+  };
 
-  if (wrongAnswers.length > 0) {
-    var wrongList = document.createElement("ul");
-
-    wrongAnswers.forEach(function(wrong) {
-      var item = document.createElement("li");
-      item.textContent = wrong.question + " - Die richtige Antwort ist: " + wrong.correctAnswer;
-      wrongList.appendChild(item);
-    });
-
-    resultContainer.appendChild(wrongList);
-  }
-
-  resultContainer.style.display = "block";
-  nextQuestionBtn.style.display = "none"; // Hide the next question button after showing the result
+  localStorage.setItem('quizResult', JSON.stringify(resultData));
+  window.location.href = 'result.html';
 }
 
 // Event-Listener für das Laden des Quiz
