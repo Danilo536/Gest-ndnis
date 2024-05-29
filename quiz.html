@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="quiz.css">
+<link rel="stylesheet" href="quiz.css"> <!-- Annahme: Du hast eine CSS-Datei namens "quiz.css" -->
 </head>
 <body>
 
 <div class="navbar">
   <h1 class="navbar-title">Martin Luther</h1>
-  <a href="index.html" class="navbar-btn">Zurück</a>
+  <a href="index.html" id="back-btn" class="navbar-btn" style="display: none;">Zurück</a>
 </div>
 
 <div class="intro" id="intro">
@@ -26,7 +26,7 @@
     <div class="choice-column" id="left-column"></div>
     <div class="choice-column" id="right-column"></div>
   </div>
-  <button class="next-question-btn" id="next-question-btn" onclick="displayNextQuestion()">Nächste Frage</button>
+  <button class="next-question-btn" id="next-question-btn" style="display: none;" onclick="displayNextQuestion()">Nächste Frage</button>
 </div>
 
 <div class="container" id="result-container" style="display: none;">
