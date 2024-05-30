@@ -7,17 +7,42 @@
     <title>Zeitstrahl</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-    
-        /* Zusätzliches CSS für das Styling der Zeitstrahl-Seite */
-        .timeline-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f2f2f2;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+        body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.Text {
+  font-size: 21px;
+}
+
+.navbar {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%; /* 100% Breite */
+  height: 70px; /* Höhe wie das Original */
+}
+
+.navbar-title {
+  margin-left: 20px;
+  font-weight:normal ;
+  color: white;
+  font-size: 30px;
+}
+
+.back-button {
+  margin-right: 25px;
+  font-weight:normal ;
+  color: white;
+  font-size: 21px;
+  text-decoration: none;
+}
+
 
         .timeline-image {
             max-width: 100%;
@@ -34,7 +59,7 @@
         <h1>Martin Luther</h1>
     </div>
     <div class="navbar-right">
-        <button class="navbar-btn" onclick="window.history.back()">Zurück</button>
+        <button class="back-button" onclick="window.history.back()">Zurück</button>
     </div>
 </nav>
 
