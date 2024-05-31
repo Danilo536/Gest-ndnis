@@ -28,34 +28,34 @@ var questions = [
     correctAnswer: "1517"
   },
     {
+    question:
+    choices:
+    correctAnswer:
+  },
+    {
+    question:
+    choices:
+    correctAnswer:
+  },
+    {
+    question:
+    choices:
+    correctAnswer:
+  },
+    {
+    question:
+    choices:
+    correctAnswer:
+  },
+    {
+    question:
+    choices:
+    correctAnswer:
+  },
+   {
     question: "Wann starb Martin Luther?",
     choices: ["1546", "1456" ,"1670", "1547"],
     correctAnswer: "1546"
-  },
-    {
-    question:
-    choices:
-    correctAnswer:
-  },
-    {
-    question:
-    choices:
-    correctAnswer:
-  },
-    {
-    question:
-    choices:
-    correctAnswer:
-  },
-    {
-    question:
-    choices:
-    correctAnswer:
-  },
-    {
-    question:
-    choices:
-    correctAnswer:
   },
   // Weitere Fragen hier einfügen...
 ];
