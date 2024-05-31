@@ -95,42 +95,88 @@
     </div>
 
     <script>
+        const questions = [
+            {
+                question: "Was war Martin Luthers Beruf?",
+                choices: ["Priester", "Mönch", "Professor", "Alle obigen Antworten"],
+                answer: "Alle obigen Antworten"
+            },
+            {
+                question: "In welchem Jahr wurden die 95 Thesen veröffentlicht?",
+                choices: ["1517", "1521", "1530", "1546"],
+                answer: "1517"
+            },
+            {
+                question: "Was war der Hauptgrund für Martin Luthers Thesenanschlag?",
+                choices: ["Ablasshandel", "Hexenverfolgung", "Kreuzzüge", "Ketzerverbrennung"],
+                answer: "Ablasshandel"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
         function startQuiz() {
             document.getElementById('intro').style.display = 'none';
             document.getElementById('quiz-container').style.display = 'block';
+            displayNextQuestion();
         }
 
         function displayNextQuestion() {
-            // Placeholder for displaying the next question
+            const questionElement = document.getElementById('question');
+            const leftColumn = document.getElementById('left-column');
+            const rightColumn = document.getElementById('right-column');
+
+            if (currentQuestionIndex >= questions.length) {
+                auswertung();
+                return;
+            }
+
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.innerText = currentQuestion.question;
+
+            leftColumn.innerHTML = "";
+            rightColumn.innerHTML = "";
+
+            currentQuestion.choices.forEach((choice, index) => {
+                const choiceElement = document.createElement('div');
+                choiceElement.innerHTML = `
+                    <input type="radio" name="choice" id="choice${index}" value="${choice}">
+                    <label for="choice${index}">${choice}</label>
+                `;
+                if (index % 2 === 0) {
+                    leftColumn.appendChild(choiceElement);
+                } else {
+                    rightColumn.appendChild(choiceElement);
+                }
+            });
         }
 
         function auswertung() {
             let correctAnswers = 0;
-            const answers = ["Antwort1", "Antwort2", "Antwort3"];
-            const userAnswers = [document.getElementById("q1").value, document.getElementById("q2").value, document.getElementById("q3").value];
-
             let corrections = "";
-            userAnswers.forEach((answer, index) => {
-                if (answer === answers[index]) {
+
+            questions.forEach((question, index) => {
+                const selectedChoice = document.querySelector(`input[name="choice"]:checked`);
+                if (selectedChoice && selectedChoice.value === question.answer) {
                     correctAnswers++;
                 } else {
-                    corrections += `Frage ${index + 1}: Korrekte Antwort ist ${answers[index]}<br>`;
+                    corrections += `Frage ${index + 1}: Korrekte Antwort ist ${question.answer}<br>`;
                 }
             });
 
-            localStorage.setItem("correctAnswers", correctAnswers);
-            localStorage.setItem("corrections", corrections);
-
             document.getElementById('quiz-container').style.display = 'none';
             document.getElementById('result-container').style.display = 'block';
-            document.getElementById('correct').innerText = localStorage.getItem('correctAnswers');
-            document.getElementById('corrections').innerHTML = localStorage.getItem('corrections');
+            document.getElementById('correct').innerText = correctAnswers;
+            document.getElementById('corrections').innerHTML = corrections;
         }
 
         function restartQuiz() {
-            localStorage.removeItem('correctAnswers');
-            localStorage.removeItem('corrections');
-            window.location.href = 'quiz.html';
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('intro').style.display = 'block';
+            document.getElementById('result-container').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'none';
         }
     </script>
 </body>
