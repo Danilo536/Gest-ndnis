@@ -16,7 +16,47 @@ var questions = [
     question: "Wo wurde Martin Luther geboren?",
     choices: ["Leipzig", "Erfurt", "Wittenberg", "Eisleben"],
     correctAnswer: "Eisleben"
-  }
+  },
+  {
+    question: "Was wurde Luther, nachdem er in das Augustinerkloster in Erfurt eintrat?",
+    choices: ["Priester", "Mönch", "Bischoff", "Pfarrer"],
+    correctAnswer: "Mönch"
+  },
+    {
+    question: "In welchem Jahr nagelte Martin Luther seine 95-Thesen an die Tür?",
+    choices: ["1415", "1530", "1517", "1500"],
+    correctAnswer: "1517"
+  },
+    {
+    question: "Wann starb Martin Luther?",
+    choices: ["1546", "1456" ,"1670", "1547"],
+    correctAnswer: "1546"
+  },
+    {
+    question:
+    choices:
+    correctAnswer:
+  },
+    {
+    question:
+    choices:
+    correctAnswer:
+  },
+    {
+    question:
+    choices:
+    correctAnswer:
+  },
+    {
+    question:
+    choices:
+    correctAnswer:
+  },
+    {
+    question:
+    choices:
+    correctAnswer:
+  },
   // Weitere Fragen hier einfügen...
 ];
 
